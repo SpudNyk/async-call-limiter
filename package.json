@@ -1,0 +1,9 @@
+{
+  "name": "debounce-async",
+  "version": "1.0.0",
+  "description": "Debounces and can combine calls to async functions",
+  "type": "module",
+  "main": "index.js",
+  "repository": "https://github.com/SpudNyk/debounce-async",
+  "license": "MIT"
+}
