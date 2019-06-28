@@ -8,7 +8,7 @@ A set of functions useful in an async/await environment.
   
   See source for details.
 
-  `debounce`
-  `throttle`
-  `delay`
-  `retry`
+  - `debounce`
+  - `throttle`
+  - `delay`
+  - `retry`
