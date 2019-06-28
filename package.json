@@ -1,9 +1,18 @@
 {
-  "name": "debounce-async",
+  "name": "async-functions",
   "version": "1.0.0",
   "description": "Debounces and can combine calls to async functions",
   "type": "module",
   "main": "index.js",
   "repository": "https://github.com/SpudNyk/debounce-async",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "eslint": "^6.0.1",
+    "jest": "^24.8.0",
+    "lolex": "^4.1.0"
+  }
 }
