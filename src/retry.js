@@ -1,4 +1,5 @@
 import delay from './delay';
+import cancelable from './cancelable';
 
 const defaultWaitTimes = [
     // 10 seconds
@@ -29,21 +30,19 @@ const retry = (fn, waitTimes = defaultWaitTimes, stop = 10) => {
     const getWaitAfter = createWaitAfterFn(waitTimes);
     const shouldStop = createShouldStopFn(stop);
     let attempt = 0;
-    let cancelled = false;
-    let paused = null;
-    let complete = false;
+    let cancelReason = null;
+    let sleeping = null;
     const exec = async () => {
-        while (!cancelled) {
+        while (!cancelReason) {
             try {
-                const result = await fn();
-                if (cancelled) {
-                    throw new Error('Aborted');
+                const value = await fn();
+                if (!cancelReason) {
+                    return value;
                 }
-                complete = true;
-                return result;
             } catch (error) {
-                if (cancelled) {
-                    throw new Error('Aborted');
+                // handle cancels after an error
+                if (cancelReason) {
+                    throw cancelReason;
                 }
                 // how long to wait after the last attempt
                 const wait = getWaitAfter(attempt);
@@ -52,25 +51,27 @@ const retry = (fn, waitTimes = defaultWaitTimes, stop = 10) => {
                 if (shouldStop(attempt, wait, error)) {
                     throw error;
                 }
-                paused = delay(null, wait);
-                await paused;
+                sleeping = delay(null, wait);
+                await sleeping;
+                // eslint-disable-next-line require-atomic-updates
+                sleeping = null;
             }
         }
-    };
-    const attempting = exec();
-    attempting.cancel = reason => {
-        if (complete) {
-            throw new Error('Already Completed');
-        }
-        if (cancelled) {
-            throw new Error('Already Cancelled');
-        }
-        cancelled = true;
-        if (paused) {
-            paused.cancel(reason ? reason : new Error('Cancelled'));
+        // handle cancels after waiting for value or sleeping
+        if (cancelReason) {
+            throw cancelReason;
         }
     };
-    return attempting;
+
+    return cancelable(exec(), reason => {
+        if (cancelReason) {
+            return;
+        }
+        cancelReason = reason;
+        if (sleeping) {
+            sleeping.cancel(reason);
+        }
+    });
 };
 
 export default retry;

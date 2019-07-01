@@ -12,11 +12,13 @@ const pending = () => {
             resolve(arg);
             resolve = throwCompleted;
             reject = throwCompleted;
+            return value.promise;
         };
         value.error = err => {
             reject(err);
             resolve = throwError;
             reject = throwError;
+            return value.promise;
         };
     });
     return value;
