@@ -1,5 +1,5 @@
 import lolex from 'lolex';
-import delay from './delay';
+import delay from '../delay';
 
 describe('delay', () => {
     let clock = null;

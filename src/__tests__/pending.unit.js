@@ -1,4 +1,4 @@
-import pending from './pending';
+import pending from '../pending';
 
 describe('pending', () => {
     it('completes with the correct value', async () => {

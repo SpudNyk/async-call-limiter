@@ -1,5 +1,5 @@
 import lolex from 'lolex';
-import retry from './retry';
+import retry from '../retry';
 
 const failUntil = count => {
     const stop = count - 1;
@@ -49,6 +49,22 @@ describe('retry', () => {
         expect(fn).toHaveBeenCalledTimes(5);
     });
     it('can cancel', async () => {
+        const fn = jest.fn(failUntil(9));
+        const result = retry(fn, undefined, 10);
+        result.cancel(new Error('testing cancel'));
+        await exhaustRetries(5);
+        expect(fn).toHaveBeenCalled();
+        await expect(result).rejects.toThrow('testing cancel');
+    });
+    it('can cancel success', async () => {
+        const fn = jest.fn(async () => true);
+        const result = retry(fn, undefined, 10);
+        result.cancel(new Error('testing cancel'));
+        await exhaustRetries(5);
+        expect(fn).toHaveReturned();
+        await expect(result).rejects.toThrow('testing cancel');
+    });
+    it('can cancel after attempts', async () => {
         const fn = jest.fn(failUntil(9));
         const result = retry(fn, undefined, 10);
         await exhaustRetries(5);

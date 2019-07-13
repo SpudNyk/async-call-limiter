@@ -1,5 +1,5 @@
 import lolex from 'lolex';
-import debounce from './debounce';
+import debounce from '../debounce';
 
 describe('debounce', () => {
     let clock = null;
@@ -92,7 +92,7 @@ describe('debounce', () => {
     });
     it('forces a call after maxDelay', async () => {
         const executor = jest.fn(args => args);
-        const debounced = debounce(executor, 50, undefined, 100);
+        const debounced = debounce(executor, undefined, undefined, 100);
         debounced(1);
         expect(executor).toHaveBeenCalledTimes(0);
         await clock.asyncTick(25);
@@ -107,6 +107,9 @@ describe('debounce', () => {
         await clock.asyncTick(25);
         debounced(5);
         expect(executor).toHaveBeenCalledTimes(1);
+        await clock.asyncTick(200);
+        debounced(6);
+        expect(executor).toHaveBeenCalledTimes(2);
     });
     it('cancels', async () => {
         const executor = jest.fn(args => args);
@@ -125,5 +128,17 @@ describe('debounce', () => {
         await clock.asyncTick(25);
         expect(executor).toHaveBeenCalledTimes(0);
         await expect(result).rejects.toThrow('cancel reason test');
+    });
+    it('calls onCancel when cancelled', async () => {
+        const executor = jest.fn(args => args);
+        const onCancel = jest.fn(()=>{})
+        const debounced = debounce(executor, 50, undefined, 100, onCancel);
+        const result = debounced(1);
+        await clock.asyncTick(25);
+        expect(onCancel).toHaveBeenCalledTimes(0);
+        debounced.cancel();
+        expect(executor).toHaveBeenCalledTimes(0);
+        await expect(result).rejects.toThrow();
+        expect(onCancel).toHaveBeenCalledTimes(1);
     });
 });
