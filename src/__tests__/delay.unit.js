@@ -5,12 +5,12 @@ describe('delay', () => {
     let clock = null;
     beforeAll(() => {
         clock = lolex.install();
-        clock.asyncTick = async (v) => {
+        clock.asyncTick = async v => {
             if (v) {
                 clock.tick(v);
             }
             return true;
-        }
+        };
     });
     afterAll(() => {
         clock.uninstall();

@@ -61,7 +61,7 @@ const throttle = (fn, delay = 50, argumentsReducer, onCancel = null) => {
         invoke();
     };
 
-    const cancel = (reason) => {
+    const cancel = reason => {
         clear();
         if (onCancel) {
             onCancel();

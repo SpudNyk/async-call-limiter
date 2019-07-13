@@ -23,7 +23,12 @@ import latestArgumentsReducer from './latestArgumentsReducer';
  * @returns {debounced}
  */
 const onCallDefault = () => {};
-const callReduce = (fn, callReducer, onStartCall = onCallDefault, onEndCall = onCallDefault) => {
+const callReduce = (
+    fn,
+    callReducer,
+    onStartCall = onCallDefault,
+    onEndCall = onCallDefault
+) => {
     const reducer =
         typeof callReducer === 'function'
             ? callReducer
@@ -57,7 +62,7 @@ const callReduce = (fn, callReducer, onStartCall = onCallDefault, onEndCall = on
     };
 
     const call = (...callArgs) => {
-        onStartCall()
+        onStartCall();
         args = reducer(args, callArgs);
         if (result === null) {
             result = pending();

@@ -48,7 +48,7 @@ describe('throttle', () => {
         expect(executor).toHaveBeenCalledTimes(1);
         await clock.asyncTick(1);
         expect(executor).toHaveBeenCalledTimes(2);
-    })
+    });
     it('calls the executor in appropriate intervals', async () => {
         const executor = jest.fn(() => null);
         const throttled = throttle(executor, 50, args => args);

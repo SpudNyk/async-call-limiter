@@ -131,7 +131,7 @@ describe('debounce', () => {
     });
     it('calls onCancel when cancelled', async () => {
         const executor = jest.fn(args => args);
-        const onCancel = jest.fn(()=>{})
+        const onCancel = jest.fn(() => {});
         const debounced = debounce(executor, 50, undefined, 100, onCancel);
         const result = debounced(1);
         await clock.asyncTick(25);

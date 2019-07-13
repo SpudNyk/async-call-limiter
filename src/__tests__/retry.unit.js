@@ -73,7 +73,7 @@ describe('retry', () => {
         await expect(result).rejects.toThrow('testing cancel');
     });
     it('can use wait function after each attempt', async () => {
-        const waitFn = jest.fn(attempt => 100);
+        const waitFn = jest.fn(() => 100);
         const result = retry(failUntil(10), waitFn, 10);
         await exhaustRetries(10);
         expect(waitFn).toHaveBeenCalledTimes(9);
