@@ -1,5 +1,16 @@
 import pending from './pending';
 
+/**
+ * Wraps a promise that can be cancelled by calling it's cancel function
+ * If the promise settles then call
+ * Cancelling a promise causes it to reject with the given reason or Cancelled
+ * 
+ * @param {Promise} promise The promise to wrap.
+ * @param {*} canceller A function to call that will cause the wrapped promise to reject.
+ * This can be used to abort transactions etc. 
+ * 
+ * @returns {Promise} A cancellable promise.
+ */
 const cancelable = (promise, canceller) => {
     const result = pending();
     let cancelReason = false;

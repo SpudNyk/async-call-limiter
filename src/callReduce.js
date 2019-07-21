@@ -3,31 +3,31 @@ import latestArgumentsReducer from './latestArgumentsReducer';
 
 /**
  * @callback callReducer
- * Combines multiple debounced function call arguments into a single list for the actual
- * execution of the function.
- * @param {*[]} current The current reduced arguments (empty for the initial call).
+ * reducer used to determine the invocation arguments of function.
+ * @param {*[]} current The current invocation arguments (empty for the initial call).
  * @param {*[]} next The next arguments.
- * @returns {*[]} The new reduced arguments.
+ * @returns {*[]} The new invocation arguments.
  */
 
 /**
  * @function
- * Ensure multiple calls to a function will only execute it once no more calls have happend for `delay` milliseconds.
- * The result of the call will be returned as a promise to the caller.
- * @param {function} fn The function to debounce
- * @param {number} delay The number of milliseconds before the function will be called.
+ * Utility function that wraps a function and will use a reducer to combine the arguments
+ * of multiple calls to that function. As the function is not executed until it is invoked
+ * a promise for the result is returned to the callers.
+ * @param {function} fn The function to wrap.
  * @param {?callReducer} callReducer Used to determine the arguments when `fn` is invoked.
- * This will be called every time the debounced function is called.
+ * This will be called every time the wrapped function is called.
  * If not supplied the default implementation of only using the latest arguments will be used.
- * @param {function} cancelFn If supplied this function will be called if the debounced function is cancelled.
+ * @param {function} onBeforeReduce If supplied this function will be called before the reducer is called.
+ * @param {function} onAfterReduce If supplied this function will be called if the wrapped function is cancelled.
  * @returns {debounced}
  */
 const onCallDefault = () => {};
 const callReduce = (
     fn,
     callReducer,
-    onStartCall = onCallDefault,
-    onEndCall = onCallDefault
+    onBeforeReduce = onCallDefault,
+    onAfterReduce = onCallDefault
 ) => {
     const reducer =
         typeof callReducer === 'function'
@@ -62,12 +62,12 @@ const callReduce = (
     };
 
     const call = (...callArgs) => {
-        onStartCall();
+        onBeforeReduce();
         args = reducer(args, callArgs);
         if (result === null) {
             result = pending();
         }
-        onEndCall();
+        onAfterReduce();
         return result.promise;
     };
 
