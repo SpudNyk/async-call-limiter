@@ -16,6 +16,9 @@ const createWaitAfterFn = times => {
     if (typeof times === 'function') {
         return times;
     }
+    if (typeof times === 'number') {
+        return () => times;
+    }
     return attempt => times[Math.min(attempt, times.length - 1)];
 };
 
