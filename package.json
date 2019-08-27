@@ -14,8 +14,8 @@
         "@babel/core": "^7.5.5",
         "@babel/plugin-transform-modules-commonjs": "^7.5.0",
         "@babel/preset-env": "^7.5.5",
-        "eslint": "^6.1.0",
-        "jest": "^24.8.0",
-        "lolex": "^4.1.0"
+        "eslint": "^6.2.2",
+        "jest": "^24.9.0",
+        "lolex": "^4.2.0"
     }
 }
