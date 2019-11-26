@@ -2,6 +2,13 @@
     "name": "async-call-limiter",
     "version": "1.0.0",
     "description": "Debounces and throttle calls to async functions allowing return values",
+    "keywords": [
+        "debounce",
+        "async",
+        "throttle",
+        "promise",
+        "async-functions"
+    ],
     "main": "lib/index.js",
     "module": "esm/index.js",
     "repository": "https://github.com/SpudNyk/async-call-limiter.git",
