@@ -17,13 +17,13 @@
     "devDependencies": {
         "@babel/cli": "^7.7.4",
         "@babel/core": "^7.7.4",
-        "@babel/plugin-transform-modules-commonjs": "^7.5.0",
+        "@babel/plugin-transform-modules-commonjs": "^7.7.4",
         "@babel/plugin-transform-runtime": "^7.7.4",
         "@babel/preset-env": "^7.7.4",
         "cross-env": "^6.0.3",
-        "eslint": "^6.2.2",
+        "eslint": "^6.7.1",
         "jest": "^24.9.0",
-        "lolex": "^4.2.0"
+        "lolex": "^5.1.1"
     },
     "publishConfig": {
         "access": "public"
