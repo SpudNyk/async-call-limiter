@@ -1,21 +1,34 @@
 {
-    "name": "async-functions",
+    "name": "async-call-limiter",
     "version": "1.0.0",
-    "description": "Debounces and can combine calls to async functions",
-    "type": "module",
-    "main": "index.js",
-    "repository": "https://github.com/SpudNyk/debounce-async",
+    "description": "Debounces and throttle calls to async functions allowing return values",
+    "main": "lib/index.js",
+    "module": "esm/index.js",
+    "repository": "https://github.com/SpudNyk/async-call-limiter.git",
     "license": "MIT",
+    "sideEffects": false,
     "scripts": {
+        "build:cjs": "cross-env BABEL_ENV=cjs babel src -d lib",
+        "build:esm": "cross-env BABEL_ENV=esm babel src -d esm",
+        "build:es": "cross-env BABEL_ENV=es babel src -d es",
+        "build": "yarn build:cjs && yarn build:esm && yarn build:es",
         "test": "jest"
     },
     "devDependencies": {
-        "@babel/cli": "^7.5.5",
-        "@babel/core": "^7.5.5",
+        "@babel/cli": "^7.7.4",
+        "@babel/core": "^7.7.4",
         "@babel/plugin-transform-modules-commonjs": "^7.5.0",
-        "@babel/preset-env": "^7.5.5",
+        "@babel/plugin-transform-runtime": "^7.7.4",
+        "@babel/preset-env": "^7.7.4",
+        "cross-env": "^6.0.3",
         "eslint": "^6.2.2",
         "jest": "^24.9.0",
         "lolex": "^4.2.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=10.0.0"
     }
 }
