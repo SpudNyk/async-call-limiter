@@ -11,6 +11,7 @@
     ],
     "main": "lib/index.js",
     "module": "esm/index.js",
+    "homepage": "https://spudnyk.github.io/async-call-limiter",
     "repository": "https://github.com/SpudNyk/async-call-limiter.git",
     "license": "MIT",
     "sideEffects": false,
