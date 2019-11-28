@@ -6,7 +6,7 @@ import pending from './pending';
  * Cancelling a promise causes it to reject with the given reason or Cancelled
  * 
  * @param {Promise} promise The promise to wrap.
- * @param {*} canceller A function to call that will cause the wrapped promise to reject.
+ * @param {canceller=} canceller A function to call that will cause the wrapped promise to reject.
  * This can be used to abort transactions etc. 
  * 
  * @returns {Promise} A cancellable promise.

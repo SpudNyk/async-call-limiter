@@ -1,15 +1,6 @@
 import callReduce from './callReduce';
 
 /**
- * @callback argumentsReducer
- * Combines multiple debounced function call arguments into a single list for the actual
- * execution of the function.
- * @param {*[]} current The current reduced arguments (empty for the initial call).
- * @param {*[]} next The next arguments.
- * @returns {*[]} The new reduced arguments.
- */
-
-/**
  * A throttled function
  * @callback throttled
  * @param {...*} arguments The arguments to the function.
@@ -18,7 +9,6 @@ import callReduce from './callReduce';
  */
 
 /**
- * @function
  * Ensure multiple calls to a function will only execute it at most once every `delay` milliseconds.
  * The result of the call will be returned as a promise to the caller.
  * @param {function} fn The function to throttle

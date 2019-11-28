@@ -1,28 +1,19 @@
 import pending from './pending';
 import latestArgumentsReducer from './latestArgumentsReducer';
 
+const onCallDefault = () => {};
 /**
- * @callback callReducer
- * reducer used to determine the invocation arguments of function.
- * @param {*[]} current The current invocation arguments (empty for the initial call).
- * @param {*[]} next The next arguments.
- * @returns {*[]} The new invocation arguments.
- */
-
-/**
- * @function
  * Utility function that wraps a function and will use a reducer to combine the arguments
  * of multiple calls to that function. As the function is not executed until it is invoked
  * a promise for the result is returned to the callers.
  * @param {function} fn The function to wrap.
- * @param {?callReducer} callReducer Used to determine the arguments when `fn` is invoked.
+ * @param {?argumentsReducer} callReducer Used to determine the arguments when `fn` is invoked.
  * This will be called every time the wrapped function is called.
  * If not supplied the default implementation of only using the latest arguments will be used.
  * @param {function} onBeforeReduce If supplied this function will be called before the reducer is called.
  * @param {function} onAfterReduce If supplied this function will be called if the wrapped function is cancelled.
  * @returns {debounced}
  */
-const onCallDefault = () => {};
 const callReduce = (
     fn,
     callReducer,
