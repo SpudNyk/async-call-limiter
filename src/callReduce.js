@@ -1,6 +1,14 @@
 import pending from './pending';
 import latestArgumentsReducer from './latestArgumentsReducer';
 
+/**
+ * reducer used to create the invocation arguments for a function call.
+ * @callback argumentsReducer
+ * @param {Array} current The current invocation arguments (empty for the initial call).
+ * @param {Array} next The next arguments.
+ * @returns {Array} The new invocation arguments.
+ */
+
 const onCallDefault = () => {};
 /**
  * Utility function that wraps a function and will use a reducer to combine the arguments

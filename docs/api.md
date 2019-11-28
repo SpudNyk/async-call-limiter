@@ -19,7 +19,7 @@ The result of the call will be returned as a promise to the caller.</p>
 <dd><p>Promises a given value/or function call result after a given wait</p>
 </dd>
 <dt><a href="#latestArgumentsReducer">latestArgumentsReducer(current, next)</a> ⇒ <code>Array</code></dt>
-<dd><p>An <a href="argumentsReducer">argumentsReducer</a> that always uses the latest given arguments</p>
+<dd><p>An <a href="#argumentsReducer">argumentsReducer</a> that always uses the latest given arguments</p>
 </dd>
 <dt><a href="#throttle">throttle(fn, delay, argumentsReducer, onCancel)</a> ⇒ <code><a href="#throttled">throttled</a></code></dt>
 <dd><p>Ensure multiple calls to a function will only execute it at most once every <code>delay</code> milliseconds.
@@ -30,6 +30,9 @@ The result of the call will be returned as a promise to the caller.</p>
 ## Typedefs
 
 <dl>
+<dt><a href="#argumentsReducer">argumentsReducer</a> ⇒ <code>Array</code></dt>
+<dd><p>reducer used to create the invocation arguments for a function call.</p>
+</dd>
 <dt><a href="#debounced">debounced</a> ⇒ <code>Promise</code></dt>
 <dd><p>A debounced function</p>
 </dd>
@@ -50,7 +53,7 @@ a promise for the result is returned to the callers.
 | Param | Type | Description |
 | --- | --- | --- |
 | fn | <code>function</code> | The function to wrap. |
-| callReducer | <code>argumentsReducer</code> | Used to determine the arguments when `fn` is invoked. This will be called every time the wrapped function is called. If not supplied the default implementation of only using the latest arguments will be used. |
+| callReducer | [<code>argumentsReducer</code>](#argumentsReducer) | Used to determine the arguments when `fn` is invoked. This will be called every time the wrapped function is called. If not supplied the default implementation of only using the latest arguments will be used. |
 | onBeforeReduce | <code>function</code> | If supplied this function will be called before the reducer is called. |
 | onAfterReduce | <code>function</code> | If supplied this function will be called if the wrapped function is cancelled. |
 
@@ -81,7 +84,7 @@ The result of the call will be returned as a promise to the caller.
 | --- | --- | --- | --- |
 | fn | <code>function</code> |  | The function to debounce |
 | delay | <code>number</code> | <code>50</code> | The number of milliseconds on inactivity before the function will be called. |
-| argumentsReducer | <code>argumentsReducer</code> |  | Used to determine the arguments when `fn` is invoked. This will be called every time the debounced function is called. If not supplied the default implementation of only using the latest arguments will be used. |
+| argumentsReducer | [<code>argumentsReducer</code>](#argumentsReducer) |  | Used to determine the arguments when `fn` is invoked. This will be called every time the debounced function is called. If not supplied the default implementation of only using the latest arguments will be used. |
 | maxDelay | <code>number</code> | <code>0</code> | The maximum number of milliseconds before the function will be called. If this is not 0 then the function will be called after the elapsed time. |
 | cancelFn | <code>function</code> |  | If supplied this function will be called if the debounced function is cancelled. |
 
@@ -104,7 +107,7 @@ execute any pending functions.
 <a name="latestArgumentsReducer"></a>
 
 ## latestArgumentsReducer(current, next) ⇒ <code>Array</code>
-An [argumentsReducer](argumentsReducer) that always uses the latest given arguments
+An [argumentsReducer](#argumentsReducer) that always uses the latest given arguments
 
 **Kind**: global function  
 **Returns**: <code>Array</code> - The new arguments  
@@ -126,8 +129,21 @@ The result of the call will be returned as a promise to the caller.
 | --- | --- | --- | --- |
 | fn | <code>function</code> |  | The function to throttle |
 | delay | <code>number</code> | <code>50</code> | The number of milliseconds between functions. |
-| argumentsReducer | <code>argumentsReducer</code> |  | Used to determine the arguments when `fn` is invoked. This will be called every time the throttled function is called. If not supplied the default implementation of only using the latest arguments will be used. |
+| argumentsReducer | [<code>argumentsReducer</code>](#argumentsReducer) |  | Used to determine the arguments when `fn` is invoked. This will be called every time the throttled function is called. If not supplied the default implementation of only using the latest arguments will be used. |
 | onCancel | <code>function</code> | <code></code> | If supplied this function will be called if the throttled function is cancelled. |
+
+<a name="argumentsReducer"></a>
+
+## argumentsReducer ⇒ <code>Array</code>
+reducer used to create the invocation arguments for a function call.
+
+**Kind**: global typedef  
+**Returns**: <code>Array</code> - The new invocation arguments.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| current | <code>Array</code> | The current invocation arguments (empty for the initial call). |
+| next | <code>Array</code> | The next arguments. |
 
 <a name="debounced"></a>
 
