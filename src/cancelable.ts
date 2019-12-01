@@ -1,28 +1,28 @@
 import pending from './pending';
+import { CancelFunction, CancelablePromise } from './types';
 
 /**
  * Wraps a promise that can be cancelled by calling it's cancel function
  * If the promise settles then call
  * Cancelling a promise causes it to reject with the given reason or Cancelled
- * 
- * @param {Promise} promise The promise to wrap.
- * @param {canceller=} canceller A function to call that will cause the wrapped promise to reject.
- * This can be used to abort transactions etc. 
- * 
- * @returns {Promise} A cancellable promise.
+ *
+ * @param promise The promise to wrap.
+ * @param canceller A function to call that will cause the wrapped promise to reject.
+ * This can be used to abort transactions etc.
+ *
+ * @returns A cancellable promise.
  */
-const cancelable = (promise, canceller) => {
-    const result = pending();
-    let cancelReason = false;
+const cancelable = <T>(promise: Promise<T>, canceller?: CancelFunction) => {
+    const result = pending<T>();
+    let cancelReason: Error | false = false;
     let cancelled = false;
     let settled = false;
-
-    if (!canceller) {
-        canceller = reason => {
-            cancelled = true;
-            result.error(reason);
-        };
-    }
+    const fireCancel = canceller
+        ? canceller
+        : (reason?: Error) => {
+              cancelled = true;
+              result.error(reason);
+          };
 
     promise.then(
         value => {
@@ -50,7 +50,8 @@ const cancelable = (promise, canceller) => {
             }
         }
     );
-    result.promise.cancel = reason => {
+    const resultPromise = result.promise as CancelablePromise<T>;
+    resultPromise.cancel = (reason?) => {
         if (settled) {
             throw new Error('Already Settled');
         }
@@ -58,9 +59,9 @@ const cancelable = (promise, canceller) => {
             throw new Error('Already Cancelled');
         }
         cancelReason = reason ? reason : new Error('Cancelled');
-        canceller(cancelReason);
+        fireCancel(cancelReason);
     };
-    return result.promise;
+    return resultPromise;
 };
 
 export default cancelable;

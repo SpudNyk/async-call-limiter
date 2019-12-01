@@ -1,10 +1,14 @@
 import lolex from 'lolex';
 import debounce from '../debounce';
 
+type AsyncInstalledClock = lolex.InstalledClock & {
+    asyncTick(v?: string | number): Promise<boolean>;
+};
+
 describe('debounce', () => {
-    let clock = null;
+    let clock: AsyncInstalledClock;
     beforeAll(() => {
-        clock = lolex.install();
+        clock = lolex.install() as AsyncInstalledClock;
         clock.asyncTick = async v => {
             if (v) {
                 clock.tick(v);
@@ -33,7 +37,7 @@ describe('debounce', () => {
         await result;
     });
     it('calls the executor only after settling', async () => {
-        const executor = jest.fn(() => null);
+        const executor = jest.fn((n: number) => null);
         const debounced = debounce(executor, 50, args => args);
         debounced(1);
         debounced(2);
@@ -61,18 +65,22 @@ describe('debounce', () => {
         expect(reducer).toHaveBeenCalledTimes(5);
     });
     it('uses the arguments reducer', async () => {
-        const debounced = debounce(arg => arg, 1, ([current = 0], [num]) => [
-            current + num
-        ]);
+        const debounced = debounce<(n: number) => number, [number]>(
+            arg => arg,
+            1,
+            ([current = 0], [num]) => [current + num]
+        );
         debounced(4);
         const result = debounced(6);
         clock.tick(25);
         await expect(result).resolves.toBe(10);
     });
     it('resets the arguments reducer between invocations', async () => {
-        const debounced = debounce(arg => arg, 25, ([current = 0], [num]) => [
-            current + num
-        ]);
+        const debounced = debounce<(arg: number) => number, [number]>(
+            arg => arg,
+            25,
+            ([current = 0], [num]) => [current + num]
+        );
         debounced(4);
         const result = debounced(6);
         clock.tick(25);

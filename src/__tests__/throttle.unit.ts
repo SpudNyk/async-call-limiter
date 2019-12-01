@@ -1,8 +1,12 @@
 import lolex from 'lolex';
 import throttle from '../throttle';
 
+type AsyncInstalledClock = lolex.InstalledClock & {
+    asyncTick(v?: string | number): Promise<boolean>;
+};
+
 describe('throttle', () => {
-    let clock = null;
+    let clock: AsyncInstalledClock;
     beforeAll(() => {
         clock = lolex.install();
         clock.asyncTick = async v => {
@@ -34,7 +38,7 @@ describe('throttle', () => {
     });
     it('calls the executor next tick after delay since last call', async () => {
         const executor = jest.fn(() => null);
-        const throttled = throttle(executor, 50, args => args);
+        const throttled = throttle(executor, 50);
         expect(executor).toHaveBeenCalledTimes(0);
         // prime the throttle
         throttled();
@@ -50,12 +54,12 @@ describe('throttle', () => {
         expect(executor).toHaveBeenCalledTimes(2);
     });
     it('calls the executor in appropriate intervals', async () => {
-        const executor = jest.fn(() => null);
-        const throttled = throttle(executor, 50, args => args);
+        const executor = jest.fn((x: number) => null);
+        const throttled = throttle(executor, 50);
         expect(executor).toHaveBeenCalledTimes(0);
         let calls = 0;
         // prime the throttle
-        throttled();
+        throttled(-1);
         expect(executor).toHaveBeenCalledTimes(calls);
         await clock.asyncTick(1);
         calls++;
@@ -88,18 +92,22 @@ describe('throttle', () => {
         expect(reducer).toHaveBeenCalledTimes(5);
     });
     it('uses the arguments reducer', async () => {
-        const throttled = throttle(arg => arg, 20, ([current = 0], [num]) => [
-            current + num
-        ]);
+        const throttled = throttle<(arg: number) => number, [number]>(
+            arg => arg,
+            20,
+            ([current = 0], [num]) => [current + num]
+        );
         throttled(4);
         const result = throttled(6);
         clock.tick(25);
         await expect(result).resolves.toBe(10);
     });
     it('resets the arguments reducer between invocations', async () => {
-        const throttled = throttle(arg => arg, 25, ([current = 0], [num]) => [
-            current + num
-        ]);
+        const throttled = throttle<(arg: number) => number, [number]>(
+            arg => arg,
+            25,
+            ([current = 0], [num]) => [current + num]
+        );
         throttled(4);
         const result = throttled(6);
         clock.tick(25);

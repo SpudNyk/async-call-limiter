@@ -1,8 +1,12 @@
 import lolex from 'lolex';
 import delay from '../delay';
 
+type AsyncInstalledClock = lolex.InstalledClock & {
+    asyncTick(v?: string | number): Promise<boolean>;
+};
+
 describe('delay', () => {
-    let clock = null;
+    let clock: AsyncInstalledClock;
     beforeAll(() => {
         clock = lolex.install();
         clock.asyncTick = async v => {

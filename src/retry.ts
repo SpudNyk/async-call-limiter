@@ -1,5 +1,6 @@
 import delay from './delay';
 import cancelable from './cancelable';
+import { BaseFunction, CancelablePromise } from './types';
 
 const defaultWaitTimes = [
     // 10 seconds
@@ -12,29 +13,55 @@ const defaultWaitTimes = [
     10 * 60 * 1000
 ];
 
-const createWaitAfterFn = times => {
+/**
+ * Function for determining a how long to wait after the given attempt
+ * @param attempt The number of attempts tried
+ * @return The wait time in milliseconds
+ */
+interface WaitTimeFunction {
+    (attempt: number): number;
+}
+
+type WaitTimes = WaitTimeFunction | number[] | number;
+
+const createWaitAfterFn = (times: WaitTimes): WaitTimeFunction => {
     if (typeof times === 'function') {
         return times;
     }
     if (typeof times === 'number') {
         return () => times;
     }
-    return attempt => times[Math.min(attempt, times.length - 1)];
+    return (attempt: number) => times[Math.min(attempt, times.length - 1)];
 };
 
-const createShouldStopFn = stop => {
+/**
+ * Function for determining a how long to wait after the given attempt
+ * @param attempt The number of attempts tried
+ * @return The wait time in milliseconds
+ */
+interface StopFn {
+    (attempt: number, wait: number, error: Error): boolean;
+}
+
+type Stop = StopFn | number;
+
+const createShouldStopFn = (stop: Stop): StopFn => {
     if (typeof stop === 'function') {
         return stop;
     }
     return attempt => attempt >= stop;
 };
 
-const retry = (fn, waitTimes = defaultWaitTimes, stop = 10) => {
+const retry = (
+    fn: BaseFunction,
+    waitTimes: WaitTimes = defaultWaitTimes,
+    stop: Stop = 10
+) => {
     const getWaitAfter = createWaitAfterFn(waitTimes);
     const shouldStop = createShouldStopFn(stop);
     let attempt = 0;
-    let cancelReason = null;
-    let sleeping = null;
+    let cancelReason: Error | undefined;
+    let sleeping: CancelablePromise<null> | undefined;
     const exec = async () => {
         while (!cancelReason) {
             try {
@@ -57,7 +84,7 @@ const retry = (fn, waitTimes = defaultWaitTimes, stop = 10) => {
                 sleeping = delay(null, wait);
                 await sleeping;
                 // eslint-disable-next-line require-atomic-updates
-                sleeping = null;
+                sleeping = undefined;
             }
         }
         // handle cancels after waiting for value or sleeping
@@ -66,7 +93,7 @@ const retry = (fn, waitTimes = defaultWaitTimes, stop = 10) => {
         }
     };
 
-    return cancelable(exec(), reason => {
+    return cancelable(exec(), (reason?: Error) => {
         if (cancelReason) {
             return;
         }

@@ -1,7 +1,7 @@
 import lolex from 'lolex';
 import retry from '../retry';
 
-const failUntil = count => {
+const failUntil = (count: number) => {
     const stop = count - 1;
     let run = 0;
     return async () => {
@@ -14,14 +14,14 @@ const failUntil = count => {
 };
 
 describe('retry', () => {
-    let clock = null;
+    let clock: lolex.InstalledClock;
     beforeAll(() => {
         clock = lolex.install();
     });
     afterAll(() => {
         clock.uninstall();
     });
-    const exhaustRetries = async count => {
+    const exhaustRetries = async (count: number) => {
         // specifically built for retry function (needs to await twice for each timer exhaustion)
         for (let i = 0; i < count; i++) {
             await Promise.resolve();

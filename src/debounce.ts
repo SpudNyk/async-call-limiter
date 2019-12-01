@@ -1,4 +1,18 @@
-import callReduce from './callReduce';
+import callReduce, {
+    InvokeFunction,
+    ArgumentsReducer,
+    CallFunction
+} from './callReduce';
+import { Cancelable } from './types';
+
+/**
+ * The debounced function
+ */
+type Debounced<F extends InvokeFunction, CallArgs extends any[]> = CallFunction<
+    F,
+    CallArgs
+> &
+    Cancelable;
 
 /**
  * A debounced function
@@ -11,28 +25,31 @@ import callReduce from './callReduce';
 /**
  * Ensure multiple calls to a function will only execute it once no more calls have happend for `delay` milliseconds.
  * The result of the call will be returned as a promise to the caller.
- * @param {function} fn The function to debounce
- * @param {number} delay The number of milliseconds on inactivity before the function will be called.
- * @param {?argumentsReducer} argumentsReducer Used to determine the arguments when `fn` is invoked.
+ * @param fn The function to debounce
+ * @param delay The number of milliseconds on inactivity before the function will be called.
+ * @param argumentsReducer Used to determine the arguments when `fn` is invoked.
  * This will be called every time the debounced function is called.
  * If not supplied the default implementation of only using the latest arguments will be used.
- * @param {number} maxDelay The maximum number of milliseconds before the function will be called.
+ * @param maxDelay The maximum number of milliseconds before the function will be called.
  * If this is not 0 then the function will be called after the elapsed time.
- * @param {function} cancelFn If supplied this function will be called if the debounced function is cancelled.
- * @returns {debounced}
+ * @param cancelFn If supplied this function will be called if the debounced function is cancelled.
+ * @return the debounced function
  */
-const debounce = (
-    fn,
+const debounce = <
+    Invoke extends InvokeFunction,
+    CallArgs extends any[] = Parameters<Invoke>
+>(
+    fn: Invoke,
     delay = 50,
-    argumentsReducer,
+    argumentsReducer?: ArgumentsReducer<Parameters<Invoke>, CallArgs>,
     maxDelay = 0,
-    onCancel = null
-) => {
-    let lastRun = null;
-    let timeout = null;
+    onCancel?: () => any
+): Debounced<Invoke, CallArgs> => {
+    let lastRun: number | null = null;
+    let timeout: number | undefined;
     const clear = () => {
         clearTimeout(timeout);
-        timeout = null;
+        timeout = undefined;
     };
 
     const postCall =
@@ -53,7 +70,7 @@ const debounce = (
                   timeout = setTimeout(run, delay);
               };
 
-    const [call, invoke, reset] = callReduce(
+    const [call, invoke, reset] = callReduce<Invoke, CallArgs>(
         fn,
         argumentsReducer,
         () => {
@@ -67,7 +84,7 @@ const debounce = (
         invoke();
     };
 
-    const cancel = reason => {
+    const cancel = (reason?: Error) => {
         clear();
         if (onCancel) {
             onCancel();
@@ -75,8 +92,9 @@ const debounce = (
         reset(reason ? reason : new Error('cancelled'));
     };
 
-    call.cancel = cancel;
-    return call;
+    const debounced = call as Debounced<Invoke, CallArgs>;
+    debounced.cancel = cancel;
+    return debounced;
 };
 
 export default debounce;
