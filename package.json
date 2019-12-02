@@ -24,7 +24,7 @@
         "build:esm": "cross-env BABEL_ENV=esm babel src -d dist/esm --extensions \".ts,.tsx\"",
         "build:es": "cross-env BABEL_ENV=es babel src -d dist/es --extensions \".ts,.tsx\"",
         "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:types && yarn build:package",
-        "docs": "typedoc --out docs/api --readme none --hideSources",
+        "docs": "typedoc --out docs/api --readme none --name async-call-limiter --gitRevision master",
         "test": "jest"
     },
     "devDependencies": {
@@ -43,7 +43,6 @@
         "jsdoc-to-markdown": "^5.0.3",
         "lolex": "^5.1.1",
         "typedoc": "^0.15.3",
-        "typedoc-plugin-markdown": "^2.2.11",
         "typescript": "^3.7.2",
         "yargs": "^15.0.2"
     },
