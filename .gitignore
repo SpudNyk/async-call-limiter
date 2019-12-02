@@ -1,4 +1,3 @@
 node_modules
-es
-esm
-lib
+dist
+.DS_Store

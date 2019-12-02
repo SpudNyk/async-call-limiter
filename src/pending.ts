@@ -14,7 +14,7 @@ export interface Pending<T> {
      * Indicate an error occurred
      * @param err
      */
-    error(err?: Error): Promise<T>;
+    error(err?: any): Promise<T>;
     /**
      * complete the result
      * @param result the final result

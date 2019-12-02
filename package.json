@@ -7,20 +7,24 @@
         "async",
         "throttle",
         "promise",
-        "async-functions"
+        "async-functions",
+        "typescript"
     ],
     "main": "lib/index.js",
     "module": "esm/index.js",
+    "types": "lib/index.d.js",
     "homepage": "https://spudnyk.github.io/async-call-limiter",
     "repository": "https://github.com/SpudNyk/async-call-limiter.git",
     "license": "MIT",
     "sideEffects": false,
     "scripts": {
-        "build:cjs": "cross-env BABEL_ENV=cjs babel src -d lib --extensions \".ts,.tsx\"",
-        "build:esm": "cross-env BABEL_ENV=esm babel src -d esm --extensions \".ts,.tsx\"",
-        "build:es": "cross-env BABEL_ENV=es babel src -d es --extensions \".ts,.tsx\"",
-        "build": "yarn build:cjs && yarn build:esm && yarn build:es",
-        "docs": "jsdoc2md src/*.js > docs/api.md",
+        "build:package": "node scripts/package-cli.js . dist",
+        "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
+        "build:cjs": "cross-env BABEL_ENV=cjs babel src -d dist/cjs --extensions \".ts,.tsx\"",
+        "build:esm": "cross-env BABEL_ENV=esm babel src -d dist/esm --extensions \".ts,.tsx\"",
+        "build:es": "cross-env BABEL_ENV=es babel src -d dist/es --extensions \".ts,.tsx\"",
+        "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:types && yarn build:package",
+        "docs": "typedoc --out docs/api --readme none",
         "test": "jest"
     },
     "devDependencies": {
@@ -33,11 +37,15 @@
         "@types/jest": "^24.0.23",
         "@types/lolex": "^5.1.0",
         "cross-env": "^6.0.3",
-        "eslint": "^6.7.1",
+        "eslint": "^6.7.2",
+        "fs-jetpack": "^2.2.3",
         "jest": "^24.9.0",
         "jsdoc-to-markdown": "^5.0.3",
         "lolex": "^5.1.1",
-        "typescript": "^3.7.2"
+        "typedoc": "^0.15.3",
+        "typedoc-plugin-markdown": "^2.2.11",
+        "typescript": "^3.7.2",
+        "yargs": "^15.0.2"
     },
     "publishConfig": {
         "access": "public"
