@@ -26,8 +26,6 @@
 
 Ƭ **CallFunction**: *function*
 
-*Defined in [callReduce.ts:6](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/callReduce.ts#L6)*
-
 #### Type declaration:
 
 ▸ (...`args`: Args): *Promise‹ReturnType‹F››*
@@ -44,15 +42,11 @@ ___
 
 Ƭ **ReducerFunction**: *[ArgumentsReducer](../interfaces/_callreduce_.argumentsreducer.md)‹Parameters‹F›, CallArgs›*
 
-*Defined in [callReduce.ts:23](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/callReduce.ts#L23)*
-
 ## Functions
 
 ### `Const` callReduce
 
 ▸ **callReduce**<**Invoke**, **CallArgs**, **Reducer**>(`fn`: Invoke, `callReducer?`: [Reducer](undefined), `onBeforeReduce`: [InvokeFunction](../interfaces/_callreduce_.invokefunction.md), `onAfterReduce`: [InvokeFunction](../interfaces/_callreduce_.invokefunction.md)): *[[CallFunction](_callreduce_.md#callfunction)‹Invoke, CallArgs›, function, function]*
-
-*Defined in [callReduce.ts:47](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/callReduce.ts#L47)*
 
 Utility function that wraps a function and will use a reducer to combine the arguments
 of multiple calls to that function. As the function is not executed until it is invoked
@@ -83,8 +77,6 @@ ___
 
 ▸ **latestArgumentsReducer**<**T**>(`invokeArgs`: T, `callArgs`: T): *T*
 
-*Defined in [callReduce.ts:28](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/callReduce.ts#L28)*
-
 **Type parameters:**
 
 ▪ **T**: *any[]*
@@ -103,7 +95,5 @@ ___
 ### `Const` noop
 
 ▸ **noop**(): *void*
-
-*Defined in [callReduce.ts:33](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/callReduce.ts#L33)*
 
 **Returns:** *void*

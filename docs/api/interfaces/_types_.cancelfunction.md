@@ -10,8 +10,6 @@
 
 ▸ (`error?`: Error): *void*
 
-*Defined in [types.ts:5](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/types.ts#L5)*
-
 **Parameters:**
 
 Name | Type |

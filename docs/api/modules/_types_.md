@@ -20,5 +20,3 @@
 ###  CancelablePromise
 
 Ƭ **CancelablePromise**: *Promise‹T› & [Cancelable](../interfaces/_types_.cancelable.md)*
-
-*Defined in [types.ts:13](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/types.ts#L13)*

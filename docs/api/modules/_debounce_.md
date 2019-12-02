@@ -18,8 +18,6 @@
 
 Ƭ **Debounced**: *[CallFunction](_callreduce_.md#callfunction)‹F, CallArgs› & [Cancelable](../interfaces/_types_.cancelable.md)*
 
-*Defined in [debounce.ts:11](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/debounce.ts#L11)*
-
 The debounced function
 
 ## Functions
@@ -27,8 +25,6 @@ The debounced function
 ### `Const` debounce
 
 ▸ **debounce**<**Invoke**, **CallArgs**>(`fn`: Invoke, `delay`: number, `argumentsReducer?`: [ArgumentsReducer](../interfaces/_callreduce_.argumentsreducer.md)‹Parameters‹Invoke›, CallArgs›, `maxDelay`: number, `onCancel?`: undefined | function): *[Debounced](_debounce_.md#debounced)‹Invoke, CallArgs›*
-
-*Defined in [debounce.ts:38](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/debounce.ts#L38)*
 
 Ensure multiple calls to a function will only execute it once no more calls have happend for `delay` milliseconds.
 The result of the call will be returned as a promise to the caller.

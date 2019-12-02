@@ -1,6 +1,6 @@
 {
     "name": "async-call-limiter",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "Debounces and throttle calls to async functions allowing return values",
     "keywords": [
         "debounce",
@@ -24,7 +24,7 @@
         "build:esm": "cross-env BABEL_ENV=esm babel src -d dist/esm --extensions \".ts,.tsx\"",
         "build:es": "cross-env BABEL_ENV=es babel src -d dist/es --extensions \".ts,.tsx\"",
         "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:types && yarn build:package",
-        "docs": "typedoc --out docs/api --readme none",
+        "docs": "typedoc --out docs/api --readme none --hideSources",
         "test": "jest"
     },
     "devDependencies": {

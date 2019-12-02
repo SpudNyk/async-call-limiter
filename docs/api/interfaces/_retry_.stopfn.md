@@ -12,8 +12,6 @@ Function for determining a how long to wait after the given attempt
 
 ▸ (`attempt`: number, `wait`: number, `error`: Error): *boolean*
 
-*Defined in [retry.ts:42](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/retry.ts#L42)*
-
 Function for determining a how long to wait after the given attempt
 
 **Parameters:**

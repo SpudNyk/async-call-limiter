@@ -14,8 +14,6 @@
 
 ▸ (...`args`: any[]): *any*
 
-*Defined in [types.ts:1](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/types.ts#L1)*
-
 **Parameters:**
 
 Name | Type |

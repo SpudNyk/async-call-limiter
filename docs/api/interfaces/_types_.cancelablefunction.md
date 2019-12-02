@@ -12,8 +12,6 @@
 
 ▸ (...`args`: any[]): *any*
 
-*Defined in [types.ts:1](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/types.ts#L1)*
-
 **Parameters:**
 
 Name | Type |
@@ -33,5 +31,3 @@ Name | Type |
 ###  cancel
 
 • **cancel**: *[CancelFunction](_types_.cancelfunction.md)*
-
-*Defined in [types.ts:16](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/types.ts#L16)*

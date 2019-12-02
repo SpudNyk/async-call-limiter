@@ -30,15 +30,11 @@
 
 Ƭ **Stop**: *[StopFn](../interfaces/_retry_.stopfn.md) | number*
 
-*Defined in [retry.ts:46](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/retry.ts#L46)*
-
 ___
 
 ###  WaitTimes
 
 Ƭ **WaitTimes**: *[WaitTimeFunction](../interfaces/_retry_.waittimefunction.md) | number[] | number*
-
-*Defined in [retry.ts:25](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/retry.ts#L25)*
 
 ## Variables
 
@@ -55,15 +51,11 @@ ___
     10 * 60 * 1000
 ]
 
-*Defined in [retry.ts:5](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/retry.ts#L5)*
-
 ## Functions
 
 ### `Const` createShouldStopFn
 
 ▸ **createShouldStopFn**(`stop`: [Stop](_retry_.md#stop)): *[StopFn](../interfaces/_retry_.stopfn.md)*
-
-*Defined in [retry.ts:48](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/retry.ts#L48)*
 
 **Parameters:**
 
@@ -79,8 +71,6 @@ ___
 
 ▸ **createWaitAfterFn**(`times`: [WaitTimes](_retry_.md#waittimes)): *[WaitTimeFunction](../interfaces/_retry_.waittimefunction.md)*
 
-*Defined in [retry.ts:27](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/retry.ts#L27)*
-
 **Parameters:**
 
 Name | Type |
@@ -94,8 +84,6 @@ ___
 ### `Const` retry
 
 ▸ **retry**(`fn`: [BaseFunction](../interfaces/_types_.basefunction.md), `waitTimes`: [WaitTimes](_retry_.md#waittimes), `stop`: [Stop](_retry_.md#stop)): *Promise‹any› & [Cancelable](../interfaces/_types_.cancelable.md)*
-
-*Defined in [retry.ts:55](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/retry.ts#L55)*
 
 **Parameters:**
 

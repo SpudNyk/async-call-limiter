@@ -18,15 +18,11 @@
 
 Ƭ **Throttled**: *[CallFunction](_callreduce_.md#callfunction)‹F, CallArgs› & [Cancelable](../interfaces/_types_.cancelable.md)*
 
-*Defined in [throttle.ts:8](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/throttle.ts#L8)*
-
 ## Functions
 
 ### `Const` throttle
 
 ▸ **throttle**<**Invoke**, **CallArgs**>(`fn`: Invoke, `delay`: number, `argumentsReducer?`: [ArgumentsReducer](../interfaces/_callreduce_.argumentsreducer.md)‹Parameters‹Invoke›, CallArgs›, `onCancel?`: undefined | function): *[Throttled](_throttle_.md#throttled)‹Invoke, CallArgs›*
-
-*Defined in [throttle.ts:24](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/throttle.ts#L24)*
 
 Ensure multiple calls to a function will only execute it at most once every `delay` milliseconds.
 The result of the call will be returned as a promise to the caller.

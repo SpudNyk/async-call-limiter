@@ -18,8 +18,6 @@ reducer used to create the invocation arguments for a function call.
 
 ▸ (`invokeArgs`: InvokeArgs, `callArgs`: CallArgs): *InvokeArgs*
 
-*Defined in [callReduce.ts:14](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/callReduce.ts#L14)*
-
 reducer used to create the invocation arguments for a function call.
 
 **Parameters:**

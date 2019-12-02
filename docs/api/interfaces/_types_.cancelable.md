@@ -17,5 +17,3 @@
 ###  cancel
 
 • **cancel**: *[CancelFunction](_types_.cancelfunction.md)*
-
-*Defined in [types.ts:10](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/types.ts#L10)*

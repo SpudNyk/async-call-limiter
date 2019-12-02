@@ -14,8 +14,6 @@
 
 ▸ **delay**<**T**>(`value`: T, `wait`: number): *[CancelablePromise](_types_.md#cancelablepromise)‹T›*
 
-*Defined in [delay.ts:15](https://github.com/SpudNyk/async-call-limiter/blob/a5b269b/src/delay.ts#L15)*
-
 Promises a given value/or function call result after a given wait
 
 **Type parameters:**
