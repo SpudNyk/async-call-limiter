@@ -90,10 +90,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 					<a name="throttled" class="tsd-anchor"></a>
 					<h3>Throttled</h3>
-					<div class="tsd-signature tsd-kind-icon">Throttled&lt;F, CallArgs&gt;<span class="tsd-signature-symbol">:</span> <a href="_callreduce_.html#callfunction" class="tsd-signature-type">CallFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/_types_.cancelable.html" class="tsd-signature-type">Cancelable</a></div>
+					<div class="tsd-signature tsd-kind-icon">Throttled&lt;F, R&gt;<span class="tsd-signature-symbol">:</span> <a href="_callreduce_.html#callfunction" class="tsd-signature-type">CallFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">, </span><a href="_callreduce_.html#reducercallparameters" class="tsd-signature-type">ReducerCallParameters</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/_types_.cancelable.html" class="tsd-signature-type">Cancelable</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/throttle.ts#L8">throttle.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/throttle.ts#L9">throttle.ts:9</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -102,7 +102,7 @@
 							<h4>F<span class="tsd-signature-symbol">: </span><a href="../interfaces/_callreduce_.invokefunction.html" class="tsd-signature-type">InvokeFunction</a></h4>
 						</li>
 						<li>
-							<h4>CallArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+							<h4>R<span class="tsd-signature-symbol">: </span><a href="_callreduce_.html#reducerfunction" class="tsd-signature-type">ReducerFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -113,7 +113,7 @@
 					<a name="throttle" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> throttle</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">throttle&lt;Invoke, CallArgs&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Invoke</span>, delay<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, argumentsReducer<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_callreduce_.argumentsreducer.html" class="tsd-signature-type">ArgumentsReducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">&gt;</span>, onCancel<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_throttle_.html#throttled" class="tsd-signature-type">Throttled</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">throttle&lt;Invoke, Reducer&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Invoke</span>, delay<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, argumentsReducer<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">Reducer</a>, onCancel<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_throttle_.html#throttled" class="tsd-signature-type">Throttled</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Reducer</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -134,7 +134,7 @@
 									<h4>Invoke<span class="tsd-signature-symbol">: </span><a href="../interfaces/_callreduce_.invokefunction.html" class="tsd-signature-type">InvokeFunction</a></h4>
 								</li>
 								<li>
-									<h4>CallArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+									<h4>Reducer<span class="tsd-signature-symbol">: </span><a href="_callreduce_.html#reducerfunction" class="tsd-signature-type">ReducerFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -148,7 +148,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> delay: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;50</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> delay: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 50</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The number of milliseconds between functions.</p>
@@ -156,7 +156,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> argumentsReducer: <a href="../interfaces/_callreduce_.argumentsreducer.html" class="tsd-signature-type">ArgumentsReducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> argumentsReducer: <a href="" class="tsd-signature-type">Reducer</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>Used to determine the arguments when <code>fn</code> is invoked.
@@ -166,7 +166,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> onCancel: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> onCancel: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>If supplied this function will be called if the throttled function is cancelled.</p>
@@ -174,7 +174,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_throttle_.html#throttled" class="tsd-signature-type">Throttled</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_throttle_.html#throttled" class="tsd-signature-type">Throttled</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Reducer</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
