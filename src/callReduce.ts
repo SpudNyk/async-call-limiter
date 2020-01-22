@@ -3,7 +3,9 @@ import { BaseFunction } from './types';
 
 export interface InvokeFunction extends BaseFunction {}
 
-export type CallFunction<F extends InvokeFunction, Args extends any[]> = (...args: Args) => Promise<ReturnType<F>>;
+export type CallFunction<F extends InvokeFunction, Args extends any[]> = (
+    ...args: Args
+) => Promise<ReturnType<F>>;
 
 /**
  * reducer used to create the invocation arguments for a function call.
@@ -25,13 +27,45 @@ export type ReducerFunction<
     CallArgs extends any[] = Parameters<F>
 > = ArgumentsReducer<Parameters<F>, CallArgs>;
 
+export type ReducerCallParameters<
+    Reducer extends ArgumentsReducer<any, any> | undefined,
+    D = never
+> = Reducer extends (i: any, call: infer Args) => any ? Args : D;
+
 export const latestArgumentsReducer = <T extends any[]>(
     invokeArgs: T,
     callArgs: T
 ): T => callArgs;
 
 const noop = () => {};
-
+const wrap = <F extends BaseFunction>(
+    fn: F,
+    before?: BaseFunction,
+    after?: BaseFunction
+): F => {
+    let wrapped: BaseFunction = fn;
+    if (before && after) {
+        wrapped = (...args) => {
+            before();
+            const result = fn(...args);
+            after();
+            return result;
+        };
+    } else if (before) {
+        wrapped = (...args) => {
+            before();
+            const result = fn(...args);
+            return result;
+        };
+    } else if (after) {
+        wrapped = (...args) => {
+            const result = fn(...args);
+            after();
+            return result;
+        };
+    }
+    return wrapped as F;
+};
 /**
  * Utility function that wraps a function and will use a reducer to combine the arguments
  * of multiple calls to that function. As the function is not executed until it is invoked
@@ -46,21 +80,20 @@ const noop = () => {};
  */
 const callReduce = <
     Invoke extends InvokeFunction,
-    CallArgs extends any[] = Parameters<Invoke>,
-    Reducer extends ReducerFunction<Invoke, CallArgs> = ReducerFunction<
-        Invoke,
-        CallArgs
-    >
+    Reducer extends ReducerFunction<Invoke, any> = ReducerFunction<Invoke>
 >(
     fn: Invoke,
     callReducer?: Reducer,
-    onBeforeReduce: InvokeFunction = noop,
-    onAfterReduce: InvokeFunction = noop
+    onBeforeReduce?: BaseFunction,
+    onAfterReduce?: BaseFunction
 ): [
     /**
      * This is the main wrapped function
      */
-    CallFunction<Invoke, CallArgs>,
+    CallFunction<
+        Invoke,
+        ReducerCallParameters<typeof reducer, Parameters<Invoke>>
+    >,
     /**
      * Call this to invoke the main function and return it's result to any waiting callers
      */
@@ -77,7 +110,7 @@ const callReduce = <
             ? callReducer
             : (latestArgumentsReducer as Reducer);
     let result: Pending<ReturnType<Invoke>> | null = null;
-    let args: any[] | Parameters<Invoke> = [];
+    let args: Parameters<Invoke> | any[] = [];
 
     const reset = (reason?: Error) => {
         if (result !== null) {
@@ -104,15 +137,17 @@ const callReduce = <
         }
     };
 
-    const call = (...callArgs: CallArgs) => {
-        onBeforeReduce();
-        args = reducer(args as Parameters<Invoke>, callArgs);
-        if (result === null) {
-            result = pending<ReturnType<Invoke>>();
-        }
-        onAfterReduce();
-        return result.promise;
-    };
+    const call = wrap(
+        (...callArgs: ReducerCallParameters<Reducer, Parameters<Invoke>>) => {
+            args = reducer(args as Parameters<Invoke>, callArgs);
+            if (result === null) {
+                result = pending<ReturnType<Invoke>>();
+            }
+            return result.promise;
+        },
+        onBeforeReduce,
+        onAfterReduce
+    );
 
     return [call, invoke, reset];
 };

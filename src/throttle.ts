@@ -1,15 +1,15 @@
 import callReduce, {
     InvokeFunction,
-    ArgumentsReducer,
+    ReducerCallParameters,
+    ReducerFunction,
     CallFunction
 } from './callReduce';
 import { Cancelable } from './types';
 
-type Throttled<F extends InvokeFunction, CallArgs extends any[]> = CallFunction<
-    F,
-    CallArgs
-> &
-    Cancelable;
+type Throttled<
+    F extends InvokeFunction,
+    R extends ReducerFunction<F, any>
+> = CallFunction<F, ReducerCallParameters<R>> & Cancelable;
 
 /**
  * Ensure multiple calls to a function will only execute it at most once every `delay` milliseconds.
@@ -23,13 +23,13 @@ type Throttled<F extends InvokeFunction, CallArgs extends any[]> = CallFunction<
  */
 const throttle = <
     Invoke extends InvokeFunction,
-    CallArgs extends any[] = Parameters<Invoke>
+    Reducer extends ReducerFunction<Invoke, any> = ReducerFunction<Invoke>
 >(
     fn: Invoke,
     delay: number = 50,
-    argumentsReducer?: ArgumentsReducer<Parameters<Invoke>, CallArgs>,
+    argumentsReducer?: Reducer,
     onCancel?: () => any
-): Throttled<Invoke, CallArgs> => {
+): Throttled<Invoke, Reducer> => {
     let timeout: number | undefined;
     let lastRun: number | null = null;
     const clear = () => {
@@ -37,7 +37,7 @@ const throttle = <
         timeout = undefined;
     };
 
-    const [call, invoke, reset] = callReduce<Invoke, CallArgs>(
+    const [call, invoke, reset] = callReduce(
         fn,
         argumentsReducer,
         undefined,
@@ -69,7 +69,7 @@ const throttle = <
         reset(reason ? reason : new Error('cancelled'));
     };
 
-    const wrapped = call as Throttled<Invoke, CallArgs>;
+    const wrapped = (call as unknown) as Throttled<Invoke, Reducer>;
     wrapped.cancel = cancel;
     return wrapped;
 };

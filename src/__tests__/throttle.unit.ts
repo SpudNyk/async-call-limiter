@@ -1,6 +1,6 @@
 import lolex from 'lolex';
 import throttle from '../throttle';
-
+type NumArgs = Parameters<(num: number) => {}>;
 type AsyncInstalledClock = lolex.InstalledClock & {
     asyncTick(v?: string | number): Promise<boolean>;
 };
@@ -92,10 +92,10 @@ describe('throttle', () => {
         expect(reducer).toHaveBeenCalledTimes(5);
     });
     it('uses the arguments reducer', async () => {
-        const throttled = throttle<(arg: number) => number, [number]>(
-            arg => arg,
+        const throttled = throttle(
+            (arg: number): number => arg,
             20,
-            ([current = 0], [num]) => [current + num]
+            ([current = 0]: [number], [num]: NumArgs) => [current + num]
         );
         throttled(4);
         const result = throttled(6);
@@ -103,10 +103,10 @@ describe('throttle', () => {
         await expect(result).resolves.toBe(10);
     });
     it('resets the arguments reducer between invocations', async () => {
-        const throttled = throttle<(arg: number) => number, [number]>(
-            arg => arg,
+        const throttled = throttle(
+            (arg: number): number => arg,
             25,
-            ([current = 0], [num]) => [current + num]
+            ([current = 0], [num]: NumArgs) => [current + num]
         );
         throttled(4);
         const result = throttled(6);

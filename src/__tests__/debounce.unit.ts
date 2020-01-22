@@ -65,21 +65,28 @@ describe('debounce', () => {
         expect(reducer).toHaveBeenCalledTimes(5);
     });
     it('uses the arguments reducer', async () => {
-        const debounced = debounce<(n: number) => number, [number]>(
-            arg => arg,
+        const ident = (x: number): number => x
+        const debounced = debounce(
+            ident,
             1,
-            ([current = 0], [num]) => [current + num]
+            (
+                [current = 0]: [number],
+                [num]: Parameters<(num: number) => {}>
+            ) => [current + num]
         );
-        debounced(4);
+        debounced(5);
         const result = debounced(6);
         clock.tick(25);
-        await expect(result).resolves.toBe(10);
+        await expect(result).resolves.toBe(11);
     });
     it('resets the arguments reducer between invocations', async () => {
-        const debounced = debounce<(arg: number) => number, [number]>(
-            arg => arg,
+        const ident = (x: number): number => x
+        const debounced = debounce(
+            ident,
             25,
-            ([current = 0], [num]) => [current + num]
+            ([current = 0], [num]: Parameters<(num: number) => {}>) => [
+                current + num
+            ]
         );
         debounced(4);
         const result = debounced(6);

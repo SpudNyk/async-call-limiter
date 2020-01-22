@@ -1,18 +1,18 @@
 import callReduce, {
     InvokeFunction,
-    ArgumentsReducer,
-    CallFunction
+    ReducerCallParameters,
+    CallFunction,
+    ReducerFunction
 } from './callReduce';
 import { Cancelable } from './types';
 
 /**
  * The debounced function
  */
-type Debounced<F extends InvokeFunction, CallArgs extends any[]> = CallFunction<
-    F,
-    CallArgs
-> &
-    Cancelable;
+type Debounced<
+    F extends InvokeFunction,
+    R extends ReducerFunction<F, any>
+> = CallFunction<F, ReducerCallParameters<R>> & Cancelable;
 
 /**
  * A debounced function
@@ -35,16 +35,17 @@ type Debounced<F extends InvokeFunction, CallArgs extends any[]> = CallFunction<
  * @param cancelFn If supplied this function will be called if the debounced function is cancelled.
  * @return the debounced function
  */
+
 const debounce = <
     Invoke extends InvokeFunction,
-    CallArgs extends any[] = Parameters<Invoke>
+    Reducer extends ReducerFunction<Invoke, any> = ReducerFunction<Invoke>
 >(
     fn: Invoke,
     delay = 50,
-    argumentsReducer?: ArgumentsReducer<Parameters<Invoke>, CallArgs>,
+    argumentsReducer?: Reducer,
     maxDelay = 0,
     onCancel?: () => any
-): Debounced<Invoke, CallArgs> => {
+): Debounced<Invoke, Reducer> => {
     let lastRun: number | null = null;
     let timeout: number | undefined;
     const clear = () => {
@@ -70,7 +71,7 @@ const debounce = <
                   timeout = setTimeout(run, delay);
               };
 
-    const [call, invoke, reset] = callReduce<Invoke, CallArgs>(
+    const [call, invoke, reset] = callReduce(
         fn,
         argumentsReducer,
         () => {
@@ -92,7 +93,7 @@ const debounce = <
         reset(reason ? reason : new Error('cancelled'));
     };
 
-    const debounced = call as Debounced<Invoke, CallArgs>;
+    const debounced = (call as unknown) as Debounced<Invoke, Reducer>;
     debounced.cancel = cancel;
     return debounced;
 };
