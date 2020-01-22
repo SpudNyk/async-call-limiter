@@ -1,6 +1,6 @@
 {
     "name": "async-call-limiter",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Debounces and throttle calls to async functions allowing return values",
     "keywords": [
         "debounce",
@@ -28,23 +28,23 @@
         "test": "jest"
     },
     "devDependencies": {
-        "@babel/cli": "^7.7.4",
-        "@babel/core": "^7.7.4",
-        "@babel/plugin-transform-modules-commonjs": "^7.7.4",
-        "@babel/plugin-transform-runtime": "^7.7.4",
-        "@babel/preset-env": "^7.7.4",
-        "@babel/preset-typescript": "^7.7.4",
-        "@types/jest": "^24.0.23",
+        "@babel/cli": "^7.8.3",
+        "@babel/core": "^7.8.3",
+        "@babel/plugin-transform-modules-commonjs": "^7.8.3",
+        "@babel/plugin-transform-runtime": "^7.8.3",
+        "@babel/preset-env": "^7.8.3",
+        "@babel/preset-typescript": "^7.8.3",
+        "@types/jest": "^24.9.0",
         "@types/lolex": "^5.1.0",
         "cross-env": "^6.0.3",
-        "eslint": "^6.7.2",
+        "eslint": "^6.8.0",
         "fs-jetpack": "^2.2.3",
-        "jest": "^24.9.0",
+        "jest": "^25.1.0",
         "jsdoc-to-markdown": "^5.0.3",
-        "lolex": "^5.1.1",
-        "typedoc": "^0.15.3",
-        "typescript": "^3.7.2",
-        "yargs": "^15.0.2"
+        "lolex": "^5.1.2",
+        "typedoc": "^0.16.8",
+        "typescript": "^3.7.5",
+        "yargs": "^15.1.0"
     },
     "publishConfig": {
         "access": "public"
