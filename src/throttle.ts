@@ -1,9 +1,6 @@
-import callReduce, {
-    InvokeFunction,
-    ReducerCallParameters,
-    ReducerFunction,
-    CallFunction
-} from './callReduce';
+import callReduce, { InvokeFunction, CallFunction } from './callReduce';
+import deferred, { Deferred } from './deferred';
+import { ReducerCallParameters, ReducerFunction } from './callReducers';
 import { Cancelable } from './types';
 
 type Throttled<
@@ -30,39 +27,24 @@ const throttle = <
     argumentsReducer?: Reducer,
     onCancel?: () => any
 ): Throttled<Invoke, Reducer> => {
-    let timeout: number | undefined;
-    let lastRun: number | null = null;
-    const clear = () => {
-        clearTimeout(timeout);
-        timeout = undefined;
-    };
-
     const [call, invoke, reset] = callReduce(
         fn,
         argumentsReducer,
         undefined,
         () => {
-            if (lastRun === null) {
-                // first run schedule right away
-                lastRun = Date.now();
-                timeout = setTimeout(run, 0);
-            }
-            // no timer scheduled
-            if (timeout === undefined) {
-                const elapsed = Date.now() - lastRun;
-                timeout = setTimeout(run, Math.max(delay - elapsed, 0));
+            // nothing pending so go
+            if (execute.delay < 0) {
+                const elapsed =
+                    execute.called > 0 ? Date.now() - execute.called : delay;
+                // call right away or with how much time to go before next call
+                execute.defer(elapsed >= delay ? 0 : delay - elapsed);
             }
         }
     );
-
-    const run = () => {
-        clear();
-        lastRun = Date.now();
-        invoke();
-    };
+    const execute = deferred(invoke);
 
     const cancel = (reason?: Error) => {
-        clear();
+        execute.cancel();
         if (onCancel) {
             onCancel();
         }

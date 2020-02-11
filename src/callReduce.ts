@@ -1,5 +1,10 @@
 import pending, { Pending } from './pending';
 import { BaseFunction } from './types';
+import {
+    ReducerFunction,
+    ReducerCallParameters,
+    latestArguments
+} from './callReducers';
 
 export interface InvokeFunction extends BaseFunction {}
 
@@ -7,37 +12,6 @@ export type CallFunction<F extends InvokeFunction, Args extends any[]> = (
     ...args: Args
 ) => Promise<ReturnType<F>>;
 
-/**
- * reducer used to create the invocation arguments for a function call.
- */
-export interface ArgumentsReducer<
-    InvokeArgs extends any[] = any[],
-    CallArgs extends any[] = any[]
-> {
-    /**
-     * @param invokeArgs The current invocation arguments for the main function.
-     * @param callArgs The arguments given to the latest call.
-     * @returns The new invocation arguments.
-     */
-    (invokeArgs: InvokeArgs, callArgs: CallArgs): InvokeArgs;
-}
-
-export type ReducerFunction<
-    F extends InvokeFunction,
-    CallArgs extends any[] = Parameters<F>
-> = ArgumentsReducer<Parameters<F>, CallArgs>;
-
-export type ReducerCallParameters<
-    Reducer extends ArgumentsReducer<any, any> | undefined,
-    D = never
-> = Reducer extends (i: any, call: infer Args) => any ? Args : D;
-
-export const latestArgumentsReducer = <T extends any[]>(
-    invokeArgs: T,
-    callArgs: T
-): T => callArgs;
-
-const noop = () => {};
 const wrap = <F extends BaseFunction>(
     fn: F,
     before?: BaseFunction,
@@ -108,7 +82,7 @@ const callReduce = <
     const reducer: Reducer =
         typeof callReducer === 'function'
             ? callReducer
-            : (latestArgumentsReducer as Reducer);
+            : (latestArguments as Reducer);
     let result: Pending<ReturnType<Invoke>> | null = null;
     let args: Parameters<Invoke> | any[] = [];
 

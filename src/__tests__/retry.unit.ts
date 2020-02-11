@@ -1,4 +1,4 @@
-import lolex from 'lolex';
+import ft from '@sinonjs/fake-timers';
 import retry from '../retry';
 
 const failUntil = (count: number) => {
@@ -14,9 +14,9 @@ const failUntil = (count: number) => {
 };
 
 describe('retry', () => {
-    let clock: lolex.InstalledClock;
+    let clock: ft.InstalledClock;
     beforeAll(() => {
-        clock = lolex.install();
+        clock = ft.install();
     });
     afterAll(() => {
         clock.uninstall();

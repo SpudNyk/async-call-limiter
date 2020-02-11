@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ArgumentsReducer | async-call-limiter</title>
+	<title>&quot;deferred&quot; | async-call-limiter</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,81 +56,60 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_callreduce_.html">&quot;callReduce&quot;</a>
-				</li>
-				<li>
-					<a href="_callreduce_.argumentsreducer.html">ArgumentsReducer</a>
+					<a href="_deferred_.html">&quot;deferred&quot;</a>
 				</li>
 			</ul>
-			<h1>Interface ArgumentsReducer&lt;InvokeArgs, CallArgs&gt;</h1>
+			<h1>External module &quot;deferred&quot;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>reducer used to create the invocation arguments for a function call.</p>
-					</div>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>InvokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
-					</li>
-					<li>
-						<h4>CallArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">ArgumentsReducer</span>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3 class="tsd-before-signature">Callable</h3>
-				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>invokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">InvokeArgs</span>, callArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">InvokeArgs</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReduce.ts#L16">callReduce.ts:16</a></li>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_deferred_.deferred.html" class="tsd-kind-icon">Deferred</a></li>
 							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>reducer used to create the invocation arguments for a function call.</p>
-							</div>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>invokeArgs: <span class="tsd-signature-type">InvokeArgs</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>The current invocation arguments for the main function.</p>
-								</div>
-							</li>
-							<li>
-								<h5>callArgs: <span class="tsd-signature-type">CallArgs</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>The arguments given to the latest call.</p>
-								</div>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">InvokeArgs</span></h4>
-						<p>The new invocation arguments.</p>
-					</li>
-				</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_deferred_.html#deferred-1" class="tsd-kind-icon">deferred</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="deferred-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> deferred</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">deferred<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.basefunction.html" class="tsd-signature-type">BaseFunction</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_deferred_.deferred.html" class="tsd-signature-type">Deferred</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/deferred.ts#L21">deferred.ts:21</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>callback: <a href="../interfaces/_types_.basefunction.html" class="tsd-signature-type">BaseFunction</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_deferred_.deferred.html" class="tsd-signature-type">Deferred</a></h4>
+						</li>
+					</ul>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -139,67 +118,48 @@
 					<li class="globals  ">
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_callreduce_.html">&quot;call<wbr>Reduce&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_callreducers_.html">&quot;call<wbr>Reducers&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_cancelable_.html">&quot;cancelable&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_debounce_.html">&quot;debounce&quot;</a>
+					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_callreduce_.html">&quot;call<wbr>Reduce&quot;</a>
+						<a href="_deferred_.html">&quot;deferred&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_cancelable_.html">&quot;cancelable&quot;</a>
+						<a href="_delay_.html">&quot;delay&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_debounce_.html">&quot;debounce&quot;</a>
+						<a href="_index_.html">&quot;index&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_delay_.html">&quot;delay&quot;</a>
+						<a href="_pending_.html">&quot;pending&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">&quot;index&quot;</a>
+						<a href="_retry_.html">&quot;retry&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_pending_.html">&quot;pending&quot;</a>
+						<a href="_throttle_.html">&quot;throttle&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_retry_.html">&quot;retry&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_throttle_.html">&quot;throttle&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_types_.html">&quot;types&quot;</a>
+						<a href="_types_.html">&quot;types&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_callreduce_.argumentsreducer.html" class="tsd-kind-icon">Arguments<wbr>Reducer</a>
-					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_callreduce_.invokefunction.html" class="tsd-kind-icon">Invoke<wbr>Function</a>
+						<a href="../interfaces/_deferred_.deferred.html" class="tsd-kind-icon">Deferred</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../modules/_callreduce_.html#callfunction" class="tsd-kind-icon">Call<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../modules/_callreduce_.html#reducercallparameters" class="tsd-kind-icon">Reducer<wbr>Call<wbr>Parameters</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../modules/_callreduce_.html#reducerfunction" class="tsd-kind-icon">Reducer<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../modules/_callreduce_.html#callreduce" class="tsd-kind-icon">call<wbr>Reduce</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../modules/_callreduce_.html#latestargumentsreducer" class="tsd-kind-icon">latest<wbr>Arguments<wbr>Reducer</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_callreduce_.html#noop" class="tsd-kind-icon">noop</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../modules/_callreduce_.html#wrap" class="tsd-kind-icon">wrap</a>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_deferred_.html#deferred-1" class="tsd-kind-icon">deferred</a>
 					</li>
 				</ul>
 			</nav>

@@ -73,7 +73,6 @@
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter"><a href="../interfaces/_callreduce_.argumentsreducer.html" class="tsd-kind-icon">Arguments<wbr>Reducer</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_callreduce_.invokefunction.html" class="tsd-kind-icon">Invoke<wbr>Function</a></li>
 							</ul>
 						</section>
@@ -81,16 +80,12 @@
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_callreduce_.html#callfunction" class="tsd-kind-icon">Call<wbr>Function</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_callreduce_.html#reducercallparameters" class="tsd-kind-icon">Reducer<wbr>Call<wbr>Parameters</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_callreduce_.html#reducerfunction" class="tsd-kind-icon">Reducer<wbr>Function</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_callreduce_.html#callreduce" class="tsd-kind-icon">call<wbr>Reduce</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_callreduce_.html#latestargumentsreducer" class="tsd-kind-icon">latest<wbr>Arguments<wbr>Reducer</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_callreduce_.html#noop" class="tsd-kind-icon">noop</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported"><a href="_callreduce_.html#wrap" class="tsd-kind-icon">wrap</a></li>
 							</ul>
 						</section>
@@ -105,7 +100,7 @@
 					<div class="tsd-signature tsd-kind-icon">Call<wbr>Function&lt;F, Args&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Args</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReduce.ts#L6">callReduce.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReduce.ts#L11">callReduce.ts:11</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -139,44 +134,6 @@
 						</ul>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-					<a name="reducercallparameters" class="tsd-anchor"></a>
-					<h3>Reducer<wbr>Call<wbr>Parameters</h3>
-					<div class="tsd-signature tsd-kind-icon">Reducer<wbr>Call<wbr>Parameters&lt;Reducer, D&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Reducer</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, call<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">infer </span> Args<span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">Args</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">D</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReduce.ts#L30">callReduce.ts:30</a></li>
-						</ul>
-					</aside>
-					<h4 class="tsd-type-parameters-title">Type parameters</h4>
-					<ul class="tsd-type-parameters">
-						<li>
-							<h4>Reducer<span class="tsd-signature-symbol">: </span><a href="../interfaces/_callreduce_.argumentsreducer.html" class="tsd-signature-type">ArgumentsReducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
-						</li>
-						<li>
-							<h4>D</h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-					<a name="reducerfunction" class="tsd-anchor"></a>
-					<h3>Reducer<wbr>Function</h3>
-					<div class="tsd-signature tsd-kind-icon">Reducer<wbr>Function&lt;F, CallArgs&gt;<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_callreduce_.argumentsreducer.html" class="tsd-signature-type">ArgumentsReducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReduce.ts#L25">callReduce.ts:25</a></li>
-						</ul>
-					</aside>
-					<h4 class="tsd-type-parameters-title">Type parameters</h4>
-					<ul class="tsd-type-parameters">
-						<li>
-							<h4>F<span class="tsd-signature-symbol">: </span><a href="../interfaces/_callreduce_.invokefunction.html" class="tsd-signature-type">InvokeFunction</a></h4>
-						</li>
-						<li>
-							<h4>CallArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
@@ -184,13 +141,13 @@
 					<a name="callreduce" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> call<wbr>Reduce</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">call<wbr>Reduce&lt;Invoke, Reducer&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Invoke</span>, callReducer<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">Reducer</a>, onBeforeReduce<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_types_.basefunction.html" class="tsd-signature-type">BaseFunction</a>, onAfterReduce<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_types_.basefunction.html" class="tsd-signature-type">BaseFunction</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><a href="_callreduce_.html#callfunction" class="tsd-signature-type">CallFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><a href="_callreduce_.html#reducercallparameters" class="tsd-signature-type">ReducerCallParameters</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">reducer</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">]</span></li>
+						<li class="tsd-signature tsd-kind-icon">call<wbr>Reduce&lt;Invoke, Reducer&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Invoke</span>, callReducer<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">Reducer</a>, onBeforeReduce<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_types_.basefunction.html" class="tsd-signature-type">BaseFunction</a>, onAfterReduce<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_types_.basefunction.html" class="tsd-signature-type">BaseFunction</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><a href="_callreduce_.html#callfunction" class="tsd-signature-type">CallFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><a href="_callreducers_.html#reducercallparameters" class="tsd-signature-type">ReducerCallParameters</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">reducer</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReduce.ts#L81">callReduce.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReduce.ts#L55">callReduce.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -206,7 +163,7 @@
 									<h4>Invoke<span class="tsd-signature-symbol">: </span><a href="../interfaces/_callreduce_.invokefunction.html" class="tsd-signature-type">InvokeFunction</a></h4>
 								</li>
 								<li>
-									<h4>Reducer<span class="tsd-signature-symbol">: </span><a href="_callreduce_.html#reducerfunction" class="tsd-signature-type">ReducerFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									<h4>Reducer<span class="tsd-signature-symbol">: </span><a href="_callreducers_.html#reducerfunction" class="tsd-signature-type">ReducerFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -246,56 +203,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><a href="_callreduce_.html#callfunction" class="tsd-signature-type">CallFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><a href="_callreduce_.html#reducercallparameters" class="tsd-signature-type">ReducerCallParameters</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">reducer</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-					<a name="latestargumentsreducer" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> latest<wbr>Arguments<wbr>Reducer</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">latest<wbr>Arguments<wbr>Reducer&lt;T&gt;<span class="tsd-signature-symbol">(</span>invokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, callArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReduce.ts#L35">callReduce.ts:35</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>invokeArgs: <span class="tsd-signature-type">T</span></h5>
-								</li>
-								<li>
-									<h5>callArgs: <span class="tsd-signature-type">T</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-					<a name="noop" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> noop</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">noop<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReduce.ts#L40">callReduce.ts:40</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><a href="_callreduce_.html#callfunction" class="tsd-signature-type">CallFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><a href="_callreducers_.html#reducercallparameters" class="tsd-signature-type">ReducerCallParameters</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">reducer</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -309,7 +217,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReduce.ts#L41">callReduce.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReduce.ts#L15">callReduce.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -346,10 +254,16 @@
 						<a href="_callreduce_.html">&quot;call<wbr>Reduce&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="_callreducers_.html">&quot;call<wbr>Reducers&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="_cancelable_.html">&quot;cancelable&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_debounce_.html">&quot;debounce&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_deferred_.html">&quot;deferred&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_delay_.html">&quot;delay&quot;</a>
@@ -373,29 +287,14 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../interfaces/_callreduce_.argumentsreducer.html" class="tsd-kind-icon">Arguments<wbr>Reducer</a>
-					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/_callreduce_.invokefunction.html" class="tsd-kind-icon">Invoke<wbr>Function</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_callreduce_.html#callfunction" class="tsd-kind-icon">Call<wbr>Function</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_callreduce_.html#reducercallparameters" class="tsd-kind-icon">Reducer<wbr>Call<wbr>Parameters</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_callreduce_.html#reducerfunction" class="tsd-kind-icon">Reducer<wbr>Function</a>
-					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_callreduce_.html#callreduce" class="tsd-kind-icon">call<wbr>Reduce</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_callreduce_.html#latestargumentsreducer" class="tsd-kind-icon">latest<wbr>Arguments<wbr>Reducer</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_callreduce_.html#noop" class="tsd-kind-icon">noop</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
 						<a href="_callreduce_.html#wrap" class="tsd-kind-icon">wrap</a>

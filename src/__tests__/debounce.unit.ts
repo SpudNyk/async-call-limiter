@@ -1,20 +1,10 @@
-import lolex from 'lolex';
+import ft from '@sinonjs/fake-timers';
 import debounce from '../debounce';
 
-type AsyncInstalledClock = lolex.InstalledClock & {
-    asyncTick(v?: string | number): Promise<boolean>;
-};
-
 describe('debounce', () => {
-    let clock: AsyncInstalledClock;
+    let clock;
     beforeAll(() => {
-        clock = lolex.install() as AsyncInstalledClock;
-        clock.asyncTick = async v => {
-            if (v) {
-                clock.tick(v);
-            }
-            return true;
-        };
+        clock = ft.install({ now: Date.now() });
     });
     afterAll(() => {
         clock.uninstall();
@@ -24,7 +14,7 @@ describe('debounce', () => {
             expect(arg).toBe(5);
         }, 25);
         const result = debounced(5);
-        await clock.asyncTick(25);
+        await clock.tickAsync(25);
         await result;
     });
     it('uses with the latest argument', async () => {
@@ -37,6 +27,13 @@ describe('debounce', () => {
         await result;
     });
     it('calls the executor only after settling', async () => {
+        const start = Date.now();
+        let then = Date.now();
+        const elapsed = () => {
+            const now = Date.now();
+            console.log(`Elapsed: ${now - then} Total: ${now - start}`);
+            then = now;
+        };
         const executor = jest.fn((n: number) => null);
         const debounced = debounce(executor, 50, args => args);
         debounced(1);
@@ -45,13 +42,36 @@ describe('debounce', () => {
         debounced(4);
         debounced(5);
         expect(executor).toHaveBeenCalledTimes(0);
-        await clock.asyncTick(25);
+        await clock.tickAsync(25);
+        // reset the delay
         debounced(6);
         expect(executor).toHaveBeenCalledTimes(0);
-        await clock.asyncTick(25);
+        await clock.tickAsync(25);
         expect(executor).toHaveBeenCalledTimes(0);
-        await clock.asyncTick(50);
+        debounced(7);
+        await clock.tickAsync(25);
+        expect(executor).toHaveBeenCalledTimes(0);
+        debounced(8);
+        await clock.tickAsync(25);
+        expect(executor).toHaveBeenCalledTimes(0);
+        // let it settle
+        await clock.tickAsync(25);
         expect(executor).toHaveBeenCalledTimes(1);
+        // reset the delay
+        debounced(9);
+        expect(executor).toHaveBeenCalledTimes(1);
+        await clock.tickAsync(25);
+        expect(executor).toHaveBeenCalledTimes(1);
+        debounced(10);
+        await clock.tickAsync(25);
+        expect(executor).toHaveBeenCalledTimes(1);
+        debounced(11);
+        await clock.tickAsync(25);
+        expect(executor).toHaveBeenCalledTimes(1);
+        // let it settle
+        await clock.tickAsync(25);
+        expect(executor).toHaveBeenCalledTimes(2);
+
     });
     it('calls the arguments reducer on every call', async () => {
         const reducer = jest.fn(args => args);
@@ -65,7 +85,7 @@ describe('debounce', () => {
         expect(reducer).toHaveBeenCalledTimes(5);
     });
     it('uses the arguments reducer', async () => {
-        const ident = (x: number): number => x
+        const ident = (x: number): number => x;
         const debounced = debounce(
             ident,
             1,
@@ -80,7 +100,7 @@ describe('debounce', () => {
         await expect(result).resolves.toBe(11);
     });
     it('resets the arguments reducer between invocations', async () => {
-        const ident = (x: number): number => x
+        const ident = (x: number): number => x;
         const debounced = debounce(
             ident,
             25,
@@ -107,22 +127,22 @@ describe('debounce', () => {
     });
     it('forces a call after maxDelay', async () => {
         const executor = jest.fn(args => args);
-        const debounced = debounce(executor, undefined, undefined, 100);
+        const debounced = debounce(executor, 50, undefined, 100);
         debounced(1);
         expect(executor).toHaveBeenCalledTimes(0);
-        await clock.asyncTick(25);
+        await clock.tickAsync(25);
         debounced(2);
         expect(executor).toHaveBeenCalledTimes(0);
-        await clock.asyncTick(25);
+        await clock.tickAsync(25);
         debounced(3);
         expect(executor).toHaveBeenCalledTimes(0);
-        await clock.asyncTick(25);
+        await clock.tickAsync(25);
         debounced(4);
         expect(executor).toHaveBeenCalledTimes(0);
-        await clock.asyncTick(25);
+        await clock.tickAsync(25);
         debounced(5);
         expect(executor).toHaveBeenCalledTimes(1);
-        await clock.asyncTick(200);
+        await clock.tickAsync(200);
         debounced(6);
         expect(executor).toHaveBeenCalledTimes(2);
     });
@@ -130,30 +150,33 @@ describe('debounce', () => {
         const executor = jest.fn(args => args);
         const debounced = debounce(executor, 50, undefined, 100);
         const result = debounced(1);
-        await clock.asyncTick(25);
+        const done = expect(result).rejects.toThrow();
+        await clock.tickAsync(25);
         debounced.cancel();
         expect(executor).toHaveBeenCalledTimes(0);
-        await expect(result).rejects.toThrow();
+        await done;
     });
     it('cancels with reason', async () => {
         const executor = jest.fn(args => args);
         const debounced = debounce(executor, 50, undefined, 100);
         const result = debounced(1);
+        const done = expect(result).rejects.toThrow('cancel reason test');
         debounced.cancel(new Error('cancel reason test'));
-        await clock.asyncTick(25);
+        await clock.tickAsync(25);
         expect(executor).toHaveBeenCalledTimes(0);
-        await expect(result).rejects.toThrow('cancel reason test');
+        await done;
     });
     it('calls onCancel when cancelled', async () => {
         const executor = jest.fn(args => args);
         const onCancel = jest.fn(() => {});
         const debounced = debounce(executor, 50, undefined, 100, onCancel);
         const result = debounced(1);
-        await clock.asyncTick(25);
+        const done = expect(result).rejects.toThrow();
+        await clock.tickAsync(25);
         expect(onCancel).toHaveBeenCalledTimes(0);
         debounced.cancel();
         expect(executor).toHaveBeenCalledTimes(0);
-        await expect(result).rejects.toThrow();
         expect(onCancel).toHaveBeenCalledTimes(1);
+        await done;
     });
 });

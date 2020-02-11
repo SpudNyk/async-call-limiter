@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;cancelable&quot; | async-call-limiter</title>
+	<title>&quot;callReducers&quot; | async-call-limiter</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="_cancelable_.html">&quot;cancelable&quot;</a>
+					<a href="_callreducers_.html">&quot;callReducers&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;cancelable&quot;</h1>
+			<h1>External module &quot;callReducers&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -71,64 +71,157 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter"><a href="../interfaces/_callreducers_.argumentsreducer.html" class="tsd-kind-icon">Arguments<wbr>Reducer</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_callreducers_.html#reducercallparameters" class="tsd-kind-icon">Reducer<wbr>Call<wbr>Parameters</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_callreducers_.html#reducerfunction" class="tsd-kind-icon">Reducer<wbr>Function</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_cancelable_.html#cancelable" class="tsd-kind-icon">cancelable</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_callreducers_.html#combinearguments" class="tsd-kind-icon">combine<wbr>Arguments</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_callreducers_.html#latestarguments" class="tsd-kind-icon">latest<wbr>Arguments</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="reducercallparameters" class="tsd-anchor"></a>
+					<h3>Reducer<wbr>Call<wbr>Parameters</h3>
+					<div class="tsd-signature tsd-kind-icon">Reducer<wbr>Call<wbr>Parameters&lt;Reducer, D&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Reducer</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, call<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">infer </span> Args<span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">Args</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">D</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L23">callReducers.ts:23</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>Reducer<span class="tsd-signature-symbol">: </span><a href="../interfaces/_callreducers_.argumentsreducer.html" class="tsd-signature-type">ArgumentsReducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+						</li>
+						<li>
+							<h4>D</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="reducerfunction" class="tsd-anchor"></a>
+					<h3>Reducer<wbr>Function</h3>
+					<div class="tsd-signature tsd-kind-icon">Reducer<wbr>Function&lt;F, CallArgs&gt;<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_callreducers_.argumentsreducer.html" class="tsd-signature-type">ArgumentsReducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L18">callReducers.ts:18</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>F<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_.basefunction.html" class="tsd-signature-type">BaseFunction</a></h4>
+						</li>
+						<li>
+							<h4>CallArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-					<a name="cancelable" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> cancelable</h3>
+					<a name="combinearguments" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> combine<wbr>Arguments</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">cancelable&lt;T&gt;<span class="tsd-signature-symbol">(</span>promise<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, canceller<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_types_.cancelfunction.html" class="tsd-signature-type">CancelFunction</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/_types_.cancelable.html" class="tsd-signature-type">Cancelable</a></li>
+						<li class="tsd-signature tsd-kind-icon">combine<wbr>Arguments&lt;T&gt;<span class="tsd-signature-symbol">(</span>invokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span>, callArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/cancelable.ts#L15">cancelable.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L45">callReducers.ts:45</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Wraps a promise that can be cancelled by calling it&#39;s cancel function
-										If the promise settles then call
-									Cancelling a promise causes it to reject with the given reason or Cancelled</p>
+									<p>An arguments reducer that combines all arguments to the call function into
+									a single array given as the first argument to the invoke function.</p>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>T</h4>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>promise: <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>invokeArgs: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>The promise to wrap.</p>
+											<p>arguments to invocation function</p>
 										</div>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> canceller: <a href="../interfaces/_types_.cancelfunction.html" class="tsd-signature-type">CancelFunction</a></h5>
+									<h5>callArgs: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>A function to call that will cause the wrapped promise to reject.
-											This can be used to abort transactions etc.</p>
 										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/_types_.cancelable.html" class="tsd-signature-type">Cancelable</a></h4>
-							<p>A cancellable promise.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="latestarguments" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> latest<wbr>Arguments</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">latest<wbr>Arguments&lt;T&gt;<span class="tsd-signature-symbol">(</span>invokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, callArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L34">callReducers.ts:34</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>An arguments Reducer that uses the latest arguments given to the call
+									function as the arguments for the invoke function.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>invokeArgs: <span class="tsd-signature-type">T</span></h5>
+								</li>
+								<li>
+									<h5>callArgs: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -143,10 +236,10 @@
 					<li class=" tsd-kind-external-module">
 						<a href="_callreduce_.html">&quot;call<wbr>Reduce&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="_callreducers_.html">&quot;call<wbr>Reducers&quot;</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="_cancelable_.html">&quot;cancelable&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -177,8 +270,20 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="../interfaces/_callreducers_.argumentsreducer.html" class="tsd-kind-icon">Arguments<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_callreducers_.html#reducercallparameters" class="tsd-kind-icon">Reducer<wbr>Call<wbr>Parameters</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_callreducers_.html#reducerfunction" class="tsd-kind-icon">Reducer<wbr>Function</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_cancelable_.html#cancelable" class="tsd-kind-icon">cancelable</a>
+						<a href="_callreducers_.html#combinearguments" class="tsd-kind-icon">combine<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_callreducers_.html#latestarguments" class="tsd-kind-icon">latest<wbr>Arguments</a>
 					</li>
 				</ul>
 			</nav>

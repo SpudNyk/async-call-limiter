@@ -7,3 +7,11 @@ The default reducer implementation just uses the last arguments given, however y
 ## Documentation
 
 - [API](api/)
+
+### Example
+
+```javascript
+import { debounce } from 'async-call-limiter'
+
+
+```

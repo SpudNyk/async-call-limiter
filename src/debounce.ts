@@ -1,10 +1,7 @@
-import callReduce, {
-    InvokeFunction,
-    ReducerCallParameters,
-    CallFunction,
-    ReducerFunction
-} from './callReduce';
+import callReduce, { InvokeFunction, CallFunction } from './callReduce';
+import { ReducerCallParameters, ReducerFunction } from './callReducers';
 import { Cancelable } from './types';
+import deferred from './deferred';
 
 /**
  * The debounced function
@@ -46,47 +43,40 @@ const debounce = <
     maxDelay = 0,
     onCancel?: () => any
 ): Debounced<Invoke, Reducer> => {
-    let lastRun: number | null = null;
-    let timeout: number | undefined;
-    const clear = () => {
-        clearTimeout(timeout);
-        timeout = undefined;
-    };
-
+    let started = 0;
     const postCall =
         maxDelay > 0
             ? () => {
-                  if (lastRun === null) {
-                      // this is the first ever call so initialize
-                      lastRun = Date.now();
+                  if (execute.delay < 0) {
+                      // execute is fresh reset started
+                      started = Date.now();
+                      execute.defer(Math.min(delay, maxDelay));
+                  } else {
+                      const elapsed = Date.now() - started;
+                      if (elapsed >= maxDelay) {
+                          // defer is protected for 0;
+                          execute.defer(0);
+                      } else {
+                          // wait the minimum amount;
+                          const wait = Math.min(delay, maxDelay - elapsed);
+                          execute.defer(wait);
+                      }
                   }
-                  const elapsed = Date.now() - lastRun;
-                  const wait =
-                      elapsed > maxDelay
-                          ? 0
-                          : Math.min(maxDelay - elapsed, delay);
-                  timeout = setTimeout(run, wait);
               }
             : () => {
-                  timeout = setTimeout(run, delay);
+                  execute.defer(delay);
               };
 
     const [call, invoke, reset] = callReduce(
         fn,
         argumentsReducer,
-        () => {
-            clear();
-        },
+        undefined,
         postCall
     );
-
-    const run = () => {
-        lastRun = Date.now();
-        invoke();
-    };
+    const execute = deferred(invoke);
 
     const cancel = (reason?: Error) => {
-        clear();
+        execute.cancel();
         if (onCancel) {
             onCancel();
         }

@@ -1,20 +1,11 @@
-import lolex from 'lolex';
+import ft from '@sinonjs/fake-timers';
 import throttle from '../throttle';
 type NumArgs = Parameters<(num: number) => {}>;
-type AsyncInstalledClock = lolex.InstalledClock & {
-    asyncTick(v?: string | number): Promise<boolean>;
-};
 
 describe('throttle', () => {
-    let clock: AsyncInstalledClock;
+    let clock: ft.InstalledClock;
     beforeAll(() => {
-        clock = lolex.install();
-        clock.asyncTick = async v => {
-            if (v) {
-                clock.tick(v);
-            }
-            return true;
-        };
+        clock = ft.install({ now: Date.now() });
     });
     afterAll(() => {
         clock.uninstall();
@@ -24,7 +15,7 @@ describe('throttle', () => {
             expect(arg).toBe(5);
         }, 25);
         const result = throttled(5);
-        await clock.asyncTick(25);
+        await clock.tickAsync(25);
         await result;
     });
     it('uses with the latest argument', async () => {
@@ -43,14 +34,14 @@ describe('throttle', () => {
         // prime the throttle
         throttled();
         expect(executor).toHaveBeenCalledTimes(0);
-        await clock.asyncTick(1);
+        await clock.tickAsync(1);
         expect(executor).toHaveBeenCalledTimes(1);
-        await clock.asyncTick(100);
+        await clock.tickAsync(100);
         expect(executor).toHaveBeenCalledTimes(1);
         // recall should happen right away
         throttled();
         expect(executor).toHaveBeenCalledTimes(1);
-        await clock.asyncTick(1);
+        await clock.tickAsync(1);
         expect(executor).toHaveBeenCalledTimes(2);
     });
     it('calls the executor in appropriate intervals', async () => {
@@ -61,21 +52,21 @@ describe('throttle', () => {
         // prime the throttle
         throttled(-1);
         expect(executor).toHaveBeenCalledTimes(calls);
-        await clock.asyncTick(1);
+        await clock.tickAsync(1);
         calls++;
         expect(executor).toHaveBeenCalledTimes(calls);
         for (let i = 0; i < 10; i++) {
             throttled(i);
-            await clock.asyncTick(20);
+            await clock.tickAsync(20);
             throttled(i);
             // not longer than delay has passed so should have been called
             expect(executor).toHaveBeenCalledTimes(calls);
             throttled(i);
-            await clock.asyncTick(20);
+            await clock.tickAsync(20);
             throttled(i);
             // not longer than delay has passed so should have been called
             expect(executor).toHaveBeenCalledTimes(calls);
-            await clock.asyncTick(10);
+            await clock.tickAsync(10);
             calls++;
             expect(executor).toHaveBeenCalledTimes(calls);
         }
@@ -129,20 +120,22 @@ describe('throttle', () => {
         const executor = jest.fn(args => args);
         const throttled = throttle(executor, 50);
         throttled(1);
-        await clock.asyncTick(25);
+        await clock.tickAsync(25);
         expect(executor).toHaveBeenCalledTimes(1);
-        const result2 = throttled(2);
+        const result = throttled(2);
+        const done = expect(result).rejects.toThrow();
         throttled.cancel();
-        await clock.asyncTick(25);
-        await expect(result2).rejects.toThrow();
+        await clock.tickAsync(25);
+        await done;
     });
     it('cancels with reason', async () => {
         const executor = jest.fn(args => args);
         const throttled = throttle(executor, 50);
         const result = throttled(1);
+        const done = expect(result).rejects.toThrow('cancel reason test');
         throttled.cancel(new Error('cancel reason test'));
-        await clock.asyncTick(25);
+        await clock.tickAsync(25);
         expect(executor).toHaveBeenCalledTimes(0);
-        await expect(result).rejects.toThrow('cancel reason test');
+        await done;
     });
 });
