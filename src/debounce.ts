@@ -1,7 +1,7 @@
 import callReduce, { InvokeFunction, CallFunction } from './callReduce';
 import { ReducerCallParameters, ReducerFunction } from './callReducers';
 import { Cancelable } from './types';
-import deferred from './deferred';
+import deferred, { Deferred } from './deferred';
 
 /**
  * The debounced function
@@ -20,19 +20,34 @@ type Debounced<
  */
 
 /**
- * Ensure multiple calls to a function will only execute it once no more calls have happend for `delay` milliseconds.
- * The result of the call will be returned as a promise to the caller.
+ * Ensure multiple calls to a function will only execute it when it has been
+ * inactive (no more calls) for a specified delay.
+ *
+ * Execution always happens asynchronously.
+ *
+ * If the delay is `0` execution will be scheduled to occur after the current
+ * runtime event loop.
+ *
+ * The debounced function returns a promise that resolves to the return value
+ * of `func`.
+ *
+ * By default the arguments to `func` are the latest arguments given to the
+ * debounced function. For custom behaviour pass an `argumentsReducer`
+ * function.
+ *
  * @param fn The function to debounce
- * @param delay The number of milliseconds on inactivity before the function will be called.
- * @param argumentsReducer Used to determine the arguments when `fn` is invoked.
- * This will be called every time the debounced function is called.
- * If not supplied the default implementation of only using the latest arguments will be used.
- * @param maxDelay The maximum number of milliseconds before the function will be called.
- * If this is not 0 then the function will be called after the elapsed time.
+ * @param delay The number of milliseconds on inactivity before the function
+ * will be executed.
+ * @param argumentsReducer Used to create the arguments to `fn` when it is
+ * executed. It is run for every call of the debounced function. The default
+ * implementation is to execute `func` with the latest arguments.
+ * @param maxDelay The maximum number of milliseconds before the function will
+ * be executed. If execution has not happened as calls are still occuring then
+ * this the maximum number of milliseconds allowed to pass before the function
+ * will be executed.
  * @param cancelFn If supplied this function will be called if the debounced function is cancelled.
  * @return the debounced function
  */
-
 const debounce = <
     Invoke extends InvokeFunction,
     Reducer extends ReducerFunction<Invoke, any> = ReducerFunction<Invoke>
@@ -44,8 +59,10 @@ const debounce = <
     onCancel?: () => any
 ): Debounced<Invoke, Reducer> => {
     let started = 0;
-    const postCall =
-        maxDelay > 0
+    // Micro optimization if delay is zero defer will always force execution next tick so we can ignore maxDelay
+    // as all calls this process tick will be handled next tick
+    const afterReduce =
+        delay > 0 && maxDelay > 0
             ? () => {
                   if (execute.delay < 0) {
                       // execute is fresh reset started
@@ -54,10 +71,9 @@ const debounce = <
                   } else {
                       const elapsed = Date.now() - started;
                       if (elapsed >= maxDelay) {
-                          // defer is protected for 0;
+                          // it's been too long force execution next tick
                           execute.defer(0);
                       } else {
-                          // wait the minimum amount;
                           const wait = Math.min(delay, maxDelay - elapsed);
                           execute.defer(wait);
                       }
@@ -71,7 +87,7 @@ const debounce = <
         fn,
         argumentsReducer,
         undefined,
-        postCall
+        afterReduce
     );
     const execute = deferred(invoke);
 

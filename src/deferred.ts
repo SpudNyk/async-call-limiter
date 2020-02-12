@@ -31,8 +31,12 @@ const deferred = (callback: BaseFunction): Deferred => {
     const defer = (delay: number) => {
         delay = delay < 0 ? 0 : delay;
         deferred.deferred = Date.now();
-        // 0 delay still pending, no point clearing and restarting
+
         if (delay === 0 && deferred.delay === 0) {
+            // if a delay is 0 it will happen on next execution.
+            // so delaying a current delay of 0 should have no effect.
+            // This is necessary here as a setTimeout implementation could
+            // keep deferring execution, due to it's resolution issues.
             return;
         }
         // clear existing

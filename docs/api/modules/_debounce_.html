@@ -124,14 +124,22 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/debounce.ts#L36">debounce.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/debounce.ts#L51">debounce.ts:51</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Ensure multiple calls to a function will only execute it once no more calls have happend for <code>delay</code> milliseconds.
-									The result of the call will be returned as a promise to the caller.</p>
+									<p>Ensure multiple calls to a function will only execute it when it has been
+									inactive (no more calls) for a specified delay.</p>
 								</div>
+								<p>Execution always happens asynchronously.</p>
+								<p>If the delay is <code>0</code> execution will be scheduled to occur after the current
+								runtime event loop.</p>
+								<p>The debounced function returns a promise that resolves to the return value
+								of <code>func</code>.</p>
+								<p>By default the arguments to <code>func</code> are the latest arguments given to the
+									debounced function. For custom behaviour pass an <code>argumentsReducer</code>
+								function.</p>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -156,7 +164,8 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> delay: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 50</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>The number of milliseconds on inactivity before the function will be called.</p>
+											<p>The number of milliseconds on inactivity before the function
+											will be executed.</p>
 										</div>
 									</div>
 								</li>
@@ -164,9 +173,9 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> argumentsReducer: <a href="" class="tsd-signature-type">Reducer</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>Used to determine the arguments when <code>fn</code> is invoked.
-												This will be called every time the debounced function is called.
-											If not supplied the default implementation of only using the latest arguments will be used.</p>
+											<p>Used to create the arguments to <code>fn</code> when it is
+												executed. It is run for every call of the debounced function. The default
+											implementation is to execute <code>func</code> with the latest arguments.</p>
 										</div>
 									</div>
 								</li>
@@ -174,8 +183,10 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> maxDelay: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>The maximum number of milliseconds before the function will be called.
-											If this is not 0 then the function will be called after the elapsed time.</p>
+											<p>The maximum number of milliseconds before the function will
+												be executed. If execution has not happened as calls are still occuring then
+												this the maximum number of milliseconds allowed to pass before the function
+											will be executed.</p>
 										</div>
 									</div>
 								</li>

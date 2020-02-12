@@ -1,7 +1,12 @@
 import { BaseFunction } from './types';
 
 /**
- * reducer used to create the invocation arguments for a function call.
+ * A reducer used to create the invocation arguments for a function over
+ * multiple calls.
+ *
+ * It receives the current invocation arguments and the call arguments and
+ * returns the new invocation arguments.
+ *
  */
 export interface ArgumentsReducer<
     InvokeArgs extends any[] = any[],
@@ -9,6 +14,7 @@ export interface ArgumentsReducer<
 > {
     /**
      * @param invokeArgs The current invocation arguments for the main function.
+     * The first call will be an empty array.
      * @param callArgs The arguments given to the latest call.
      * @returns The new invocation arguments.
      */
@@ -26,8 +32,8 @@ export type ReducerCallParameters<
 > = Reducer extends (i: any, call: infer Args) => any ? Args : D;
 
 /**
- * An arguments Reducer that uses the latest arguments given to the call
- * function as the arguments for the invoke function.
+ * An arguments reducer that will use the latest call arguments as
+ * the invocation arguments.
  * @param invokeArgs
  * @param callArgs
  */
@@ -37,9 +43,22 @@ export const latestArguments = <T extends any[]>(
 ): T => callArgs;
 
 /**
- * An arguments reducer that combines all arguments to the call function into
- * a single array given as the first argument to the invoke function.
- * @param invokeArgs arguments to invocation function
+ * An arguments reducer that takes combines all arguments from every call
+ * function into an array that is used as the first argument to the invoke
+ * function.
+ *
+ * Example:
+ * ```
+ * // the sequence of calls below to a call function
+ * call(1);
+ * call(1,2,3);
+ * call(4,5);
+ * call([1]);
+ * // would be the equivalent to the invoke call below.
+ * invoke([1, 1, 2, 3, 4, 5, [1]])
+ * ```
+ *
+ * @param invokeArgs
  * @param callArgs
  */
 export const combineArguments = <T extends any>(

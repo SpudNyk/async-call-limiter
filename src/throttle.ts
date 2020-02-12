@@ -9,26 +9,38 @@ type Throttled<
 > = CallFunction<F, ReducerCallParameters<R>> & Cancelable;
 
 /**
- * Ensure multiple calls to a function will only execute it at most once every `delay` milliseconds.
- * The result of the call will be returned as a promise to the caller.
- * @param fn The function to throttle
- * @param delay The number of milliseconds between functions.
- * @param argumentsReducer Used to determine the arguments when `fn` is invoked.
- * This will be called every time the throttled function is called.
- * If not supplied the default implementation of only using the latest arguments will be used.
+ * Ensure multiple calls to a function will only execute at most once every
+ * `delay` milliseconds.
+ *
+ * The execution will always happens asynchronously. If the delay is `0` then
+ * execution will occur after the current runtime event loop.
+ *
+ * The throttled function returns a promise that resolves to the return value
+ * of `func`.
+ * 
+ * By default the arguments to `func` are the latest arguments given to the
+ * throttled function. For custom behaviour pass an `argumentsReducer`
+ * function.
+ *
+ * @param func The function to throttle
+ * @param delay The number of milliseconds between executions.
+ * @param argumentsReducer Used to create the arguments to `func` when it is
+ * executed. It is run for every call of the throttled function. The default
+ * implementation to execute `func` with the latest arguments.
  * @param onCancel If supplied this function will be called if the throttled function is cancelled.
+ * @return The throttled function
  */
 const throttle = <
     Invoke extends InvokeFunction,
     Reducer extends ReducerFunction<Invoke, any> = ReducerFunction<Invoke>
 >(
-    fn: Invoke,
+    func: Invoke,
     delay: number = 50,
     argumentsReducer?: Reducer,
     onCancel?: () => any
 ): Throttled<Invoke, Reducer> => {
     const [call, invoke, reset] = callReduce(
-        fn,
+        func,
         argumentsReducer,
         undefined,
         () => {

@@ -101,7 +101,7 @@
 					<div class="tsd-signature tsd-kind-icon">Reducer<wbr>Call<wbr>Parameters&lt;Reducer, D&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Reducer</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, call<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">infer </span> Args<span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">Args</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">D</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L23">callReducers.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L29">callReducers.ts:29</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -120,7 +120,7 @@
 					<div class="tsd-signature tsd-kind-icon">Reducer<wbr>Function&lt;F, CallArgs&gt;<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_callreducers_.argumentsreducer.html" class="tsd-signature-type">ArgumentsReducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L18">callReducers.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L24">callReducers.ts:24</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -146,14 +146,23 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L45">callReducers.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L64">callReducers.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>An arguments reducer that combines all arguments to the call function into
-									a single array given as the first argument to the invoke function.</p>
+									<p>An arguments reducer that takes combines all arguments from every call
+										function into an array that is used as the first argument to the invoke
+									function.</p>
 								</div>
+								<p>Example:</p>
+								<pre><code><span class="hljs-comment">// the sequence of calls below to a call function</span>
+call(<span class="hljs-number">1</span>);
+call(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>);
+call(<span class="hljs-number">4</span>,<span class="hljs-number">5</span>);
+call([<span class="hljs-number">1</span>]);
+<span class="hljs-comment">// would be the equivalent to the invoke call below.</span>
+invoke([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, [<span class="hljs-number">1</span>]])</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -165,11 +174,6 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>invokeArgs: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>arguments to invocation function</p>
-										</div>
-									</div>
 								</li>
 								<li>
 									<h5>callArgs: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h5>
@@ -193,13 +197,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L34">callReducers.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L40">callReducers.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>An arguments Reducer that uses the latest arguments given to the call
-									function as the arguments for the invoke function.</p>
+									<p>An arguments reducer that will use the latest call arguments as
+									the invocation arguments.</p>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
