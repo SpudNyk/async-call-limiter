@@ -42,9 +42,7 @@ module.exports = api => {
                     ]
                 ]
             },
-            es: {
-
-            }
+            es: {}
         }
     };
 };
