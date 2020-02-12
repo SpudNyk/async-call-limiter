@@ -1,6 +1,6 @@
 {
     "name": "async-call-limiter",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "description": "Debounces and throttle calls to async functions allowing return values",
     "keywords": [
         "debounce",
@@ -56,5 +56,7 @@
     "engines": {
         "node": ">=10.0.0"
     },
-    "dependencies": {}
+    "dependencies": {
+        "docs": "^0.3.2-canary.0"
+    }
 }
