@@ -1,17 +1,60 @@
-# Async Wrappers
+# async-wrappers
 
-These functions are similar to others debounce and throttle functions. e.g. [Lodash's](https://lodash.com): [debounce](https://lodash.com/docs/4.17.15#debounce) and [throttle](https://lodash.com/docs/4.17.15#throttle).
-However these functions differ in that the resulting function when called returns a promise that will resolve/reject when the wrapped function is invoked. The functions also can take an "argument reducer" function that determines the arguments that will be given to wrapped function.
-The default reducer implementation just uses the last arguments given, however you can use this to merge arguments so the wrapped function can handle all calls. This could be useful wrapping a request for specific items to merge multiple calls into one request.
+Implementations of debounce, throttle, retry and more targeted to promises/async/await.
+
+## Key Features
+
+1.  call argument aggregation - all arguments from calls to the wrapper can be combined for the call to the wrapped function, using a supplied argument reducer function. See the api documentation for supplied reducers.
+2.  call return values - calls to the wrapper will return a promise to wrapped function's result.
+3.  delay times of 0 are still asynchronous and will resolve on the next runtime loop.
 
 ## Documentation
 
-- [API](api/)
+See the [API](https://spudnyk.github.io/async-wrappers/api/).
 
-### Examples
+## Example
 
 ```javascript
-import { debounce, combineArguments } from 'async-call-limiter'
+const { debounce, combineArguments } = require('async-wrappers');
+const data = {
+    1: 'data 1',
+    2: 'data 2'
+    //...
+};
 
+// this could be fetching from a database or webservice
+// debounce supports async functions or returned promises
+const getByIds = ids => {
+    console.log(`Getting: ${JSON.stringify(ids)}`);
+    const keyed = {};
+    // this could be a server request
+    for (const id of ids) {
+        keyed[id] = data[id];
+    }
+    return keyed;
+};
 
+// data loader equivalent
+const load = debounce(getByIds, 0, combineArguments);
+const loadData = async id => {
+    const data = await load(id);
+    return data[id];
+};
+
+const main = async () => {
+    const foo = loadData(2);
+    const bar = loadData(1);
+    const baz = loadData(3);
+    console.log(`Foo: ${await foo}`);
+    console.log(`Bar: ${await bar}`);
+    console.log(`Baz: ${await baz}`);
+};
+
+main();
+
+// Outputs:
+// Getting: [2,1,3]
+// Foo: data 2
+// Bar: data 1
+// Baz: undefined
 ```
