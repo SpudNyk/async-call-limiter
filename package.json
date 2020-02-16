@@ -18,8 +18,8 @@
         }
     },
     "types": "types/index.d.ts",
-    "homepage": "https://spudnyk.github.io/async-call-limiter",
-    "repository": "https://github.com/SpudNyk/async-call-limiter.git",
+    "homepage": "https://spudnyk.github.io/async-wrappers",
+    "repository": "https://github.com/SpudNyk/async-wrappers.git",
     "license": "MIT",
     "sideEffects": false,
     "scripts": {
