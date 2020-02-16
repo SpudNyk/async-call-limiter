@@ -1,6 +1,6 @@
 {
     "name": "async-wrappers",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "A set of wrapper functions to perform debouncing, throttling, retrying etc.",
     "keywords": [
         "debounce",

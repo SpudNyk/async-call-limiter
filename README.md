@@ -1,6 +1,6 @@
 # async-wrappers
 
-Implementations of debounce, throttle, retry and other functions, with utility in an async environment.
+Implementations of debounce, throttle, retry and more targeted to promises/async/await.
 
 ## Key Features
 
