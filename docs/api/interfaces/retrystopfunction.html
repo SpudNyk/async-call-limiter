@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CancelableFunction | async-call-limiter</title>
+	<title>RetryStopFunction | async-wrappers</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">async-call-limiter</a>
+					<a href="../index.html" class="title">async-wrappers</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -38,10 +38,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -56,13 +52,10 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_types_.html">&quot;types&quot;</a>
-				</li>
-				<li>
-					<a href="_types_.cancelablefunction.html">CancelableFunction</a>
+					<a href="retrystopfunction.html">RetryStopFunction</a>
 				</li>
 			</ul>
-			<h1>Interface CancelableFunction</h1>
+			<h1>Interface RetryStopFunction</h1>
 		</div>
 	</div>
 </header>
@@ -73,62 +66,55 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_types_.basefunction.html" class="tsd-signature-type">BaseFunction</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">CancelableFunction</span>
-							</li>
-						</ul>
+						<span class="target">RetryStopFunction</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
-				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+				<ul class="tsd-signatures tsd-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>nextAttempt<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, delay<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/types.ts#L1">types.ts:1</a></li>
+								<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/retry.ts#L46">src/retry.ts:46</a></li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Function for determining if to stop for the given attempt</p>
+							</div>
+							<p>Errors thrown by this function will cause retry to reject with the
+							error.</p>
+						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+								<h5>nextAttempt: <span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The attempt number for the next try.</p>
+								</div>
+							</li>
+							<li>
+								<h5>delay: <span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The current delay before retrying.</p>
+								</div>
+							</li>
+							<li>
+								<h5>error: <span class="tsd-signature-type">any</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The error from the current attempt.</p>
+								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h4>
+						<p>true or a message to stop trying and reject with the given
+						message.</p>
 					</li>
 				</ul>
-			</section>
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.cancelablefunction.html#cancel" class="tsd-kind-icon">cancel</a></li>
-							</ul>
-						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="cancel" class="tsd-anchor"></a>
-					<h3>cancel</h3>
-					<div class="tsd-signature tsd-kind-icon">cancel<span class="tsd-signature-symbol">:</span> <a href="_types_.cancelfunction.html" class="tsd-signature-type">CancelFunction</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/types.ts#L16">types.ts:16</a></li>
-						</ul>
-					</aside>
-				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -137,66 +123,115 @@
 					<li class="globals  ">
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_callreduce_.html">&quot;call<wbr>Reduce&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_callreducers_.html">&quot;call<wbr>Reducers&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_cancelable_.html">&quot;cancelable&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_debounce_.html">&quot;debounce&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_deferred_.html">&quot;deferred&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_delay_.html">&quot;delay&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_pending_.html">&quot;pending&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_retry_.html">&quot;retry&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_throttle_.html">&quot;throttle&quot;</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_types_.html">&quot;types&quot;</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_types_.basefunction.html" class="tsd-kind-icon">Base<wbr>Function</a>
+					<li class=" tsd-kind-class">
+						<a href="../classes/retrycancellederror.html" class="tsd-kind-icon">Retry<wbr>Cancelled<wbr>Error</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_types_.cancelfunction.html" class="tsd-kind-icon">Cancel<wbr>Function</a>
+					<li class=" tsd-kind-class">
+						<a href="../classes/retryerror.html" class="tsd-kind-icon">Retry<wbr>Error</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_types_.cancelable.html" class="tsd-kind-icon">Cancelable</a>
+					<li class=" tsd-kind-class">
+						<a href="../classes/retrystoppederror.html" class="tsd-kind-icon">Retry<wbr>Stopped<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="basefunction.html" class="tsd-kind-icon">Base<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="cancelfunction.html" class="tsd-kind-icon">Cancel<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="cancelablefunction.html" class="tsd-kind-icon">Cancelable<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="cancelablepromise.html" class="tsd-kind-icon">Cancelable<wbr>Promise</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="debounced.html" class="tsd-kind-icon">Debounced</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="invokefunction.html" class="tsd-kind-icon">Invoke<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="retryargumentscallback.html" class="tsd-kind-icon">Retry<wbr>Arguments<wbr>Callback</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="retrynextdelayfunction.html" class="tsd-kind-icon">Retry<wbr>Next<wbr>Delay<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="retryresult.html" class="tsd-kind-icon">Retry<wbr>Result</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_types_.cancelablefunction.html" class="tsd-kind-icon">Cancelable<wbr>Function</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.cancelablefunction.html#cancel" class="tsd-kind-icon">cancel</a>
-							</li>
-						</ul>
+					<li class="current tsd-kind-interface">
+						<a href="retrystopfunction.html" class="tsd-kind-icon">Retry<wbr>Stop<wbr>Function</a>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../modules/_types_.html#cancelablepromise" class="tsd-kind-icon">Cancelable<wbr>Promise</a>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="throttled.html" class="tsd-kind-icon">Throttled</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="waiting.html" class="tsd-kind-icon">Waiting</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#argumentsreducer" class="tsd-kind-icon">Arguments<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#callfunction" class="tsd-kind-icon">Call<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#funcorarray" class="tsd-kind-icon">Func<wbr>OrArray</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#parametersorarray" class="tsd-kind-icon">Parameters<wbr>OrArray</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#reducerfunction" class="tsd-kind-icon">Reducer<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#resolver" class="tsd-kind-icon">Resolver</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#resolverfunction" class="tsd-kind-icon">Resolver<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../index.html#retryarguments" class="tsd-kind-icon">Retry<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#retrydelays" class="tsd-kind-icon">Retry<wbr>Delays</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#retryerrortypes" class="tsd-kind-icon">Retry<wbr>Error<wbr>Types</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../index.html#retrystop" class="tsd-kind-icon">Retry<wbr>Stop</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../index.html#callarguments" class="tsd-kind-icon">call<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../index.html#combinearguments" class="tsd-kind-icon">combine<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../index.html#debounce" class="tsd-kind-icon">debounce</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../index.html#extendarguments" class="tsd-kind-icon">extend<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../index.html#latestarguments" class="tsd-kind-icon">latest<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../index.html#retry" class="tsd-kind-icon">retry</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../index.html#throttle" class="tsd-kind-icon">throttle</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../index.html#wait" class="tsd-kind-icon">wait</a>
 					</li>
 				</ul>
 			</nav>

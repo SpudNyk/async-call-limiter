@@ -1,15 +1,25 @@
 import callReduce, { InvokeFunction, CallFunction } from './callReduce';
-import { ReducerCallParameters, ReducerFunction } from './callReducers';
-import { Cancelable } from './types';
-import deferred, { Deferred } from './deferred';
+import {
+    ReducerCallParameters,
+    ReducerFunction,
+    ArgumentsReducer
+} from './callReducers';
+import deferred from './deferred';
 
 /**
  * The debounced function
  */
-type Debounced<
+export interface Debounced<
     F extends InvokeFunction,
     R extends ReducerFunction<F, any>
-> = CallFunction<F, ReducerCallParameters<R>> & Cancelable;
+> extends CallFunction<F, ReducerCallParameters<R>> {
+    /**
+     * Cancels pending function execution. 
+     * Pending results will be rejected.
+     * @param reason Optional reason to reject results with.
+     */
+    cancel(reason?: Error): void;
+};
 
 /**
  * A debounced function
@@ -46,7 +56,10 @@ type Debounced<
  * this the maximum number of milliseconds allowed to pass before the function
  * will be executed.
  * @param cancelFn If supplied this function will be called if the debounced function is cancelled.
+ * @typeparam Reducer [[ArgumentsReducer]]
  * @return the debounced function
+ * 
+ * @category Wrapper
  */
 const debounce = <
     Invoke extends InvokeFunction,

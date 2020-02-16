@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>async-call-limiter</title>
+	<title>async-wrappers</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">async-call-limiter</a>
+					<a href="index.html" class="title">async-wrappers</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -38,10 +38,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -56,7 +52,7 @@
 					<a href="index.html">Globals</a>
 				</li>
 			</ul>
-			<h1>async-call-limiter</h1>
+			<h1>async-wrappers</h1>
 		</div>
 	</div>
 </header>
@@ -68,22 +64,799 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>External modules</h3>
+							<h3>Retry Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-external-module"><a href="modules/_callreduce_.html" class="tsd-kind-icon">&quot;call<wbr>Reduce&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_callreducers_.html" class="tsd-kind-icon">&quot;call<wbr>Reducers&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_cancelable_.html" class="tsd-kind-icon">&quot;cancelable&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_debounce_.html" class="tsd-kind-icon">&quot;debounce&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_deferred_.html" class="tsd-kind-icon">&quot;deferred&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_delay_.html" class="tsd-kind-icon">&quot;delay&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_index_.html" class="tsd-kind-icon">&quot;index&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_pending_.html" class="tsd-kind-icon">&quot;pending&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_retry_.html" class="tsd-kind-icon">&quot;retry&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_throttle_.html" class="tsd-kind-icon">&quot;throttle&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_types_.html" class="tsd-kind-icon">&quot;types&quot;</a></li>
+								<li class="tsd-kind-class"><a href="classes/retrycancellederror.html" class="tsd-kind-icon">Retry<wbr>Cancelled<wbr>Error</a></li>
+								<li class="tsd-kind-class"><a href="classes/retryerror.html" class="tsd-kind-icon">Retry<wbr>Error</a></li>
+								<li class="tsd-kind-class"><a href="classes/retrystoppederror.html" class="tsd-kind-icon">Retry<wbr>Stopped<wbr>Error</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface"><a href="interfaces/basefunction.html" class="tsd-kind-icon">Base<wbr>Function</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/cancelfunction.html" class="tsd-kind-icon">Cancel<wbr>Function</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/cancelablefunction.html" class="tsd-kind-icon">Cancelable<wbr>Function</a></li>
+								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/cancelablepromise.html" class="tsd-kind-icon">Cancelable<wbr>Promise</a></li>
+								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/debounced.html" class="tsd-kind-icon">Debounced</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/invokefunction.html" class="tsd-kind-icon">Invoke<wbr>Function</a></li>
+								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/retryargumentscallback.html" class="tsd-kind-icon">Retry<wbr>Arguments<wbr>Callback</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/retrynextdelayfunction.html" class="tsd-kind-icon">Retry<wbr>Next<wbr>Delay<wbr>Function</a></li>
+								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/retryresult.html" class="tsd-kind-icon">Retry<wbr>Result</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/retrystopfunction.html" class="tsd-kind-icon">Retry<wbr>Stop<wbr>Function</a></li>
+								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/throttled.html" class="tsd-kind-icon">Throttled</a></li>
+								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/waiting.html" class="tsd-kind-icon">Waiting</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Argument Reducer Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="index.html#argumentsreducer" class="tsd-kind-icon">Arguments<wbr>Reducer</a></li>
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="index.html#reducerfunction" class="tsd-kind-icon">Reducer<wbr>Function</a></li>
+							</ul>
+							<h3>Other Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="index.html#callfunction" class="tsd-kind-icon">Call<wbr>Function</a></li>
+								<li class="tsd-kind-type-alias"><a href="index.html#funcorarray" class="tsd-kind-icon">Func<wbr>OrArray</a></li>
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="index.html#parametersorarray" class="tsd-kind-icon">Parameters<wbr>OrArray</a></li>
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="index.html#resolver" class="tsd-kind-icon">Resolver</a></li>
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="index.html#resolverfunction" class="tsd-kind-icon">Resolver<wbr>Function</a></li>
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="index.html#retryarguments" class="tsd-kind-icon">Retry<wbr>Arguments</a></li>
+								<li class="tsd-kind-type-alias"><a href="index.html#retrydelays" class="tsd-kind-icon">Retry<wbr>Delays</a></li>
+								<li class="tsd-kind-type-alias"><a href="index.html#retrystop" class="tsd-kind-icon">Retry<wbr>Stop</a></li>
+							</ul>
+							<h3>Retry Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias"><a href="index.html#retryerrortypes" class="tsd-kind-icon">Retry<wbr>Error<wbr>Types</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Argument Reducer Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#callarguments" class="tsd-kind-icon">call<wbr>Arguments</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#combinearguments" class="tsd-kind-icon">combine<wbr>Arguments</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#extendarguments" class="tsd-kind-icon">extend<wbr>Arguments</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#latestarguments" class="tsd-kind-icon">latest<wbr>Arguments</a></li>
+							</ul>
+							<h3>Other Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#wait" class="tsd-kind-icon">wait</a></li>
+							</ul>
+							<h3>Wrapper Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#debounce" class="tsd-kind-icon">debounce</a></li>
+								<li class="tsd-kind-function"><a href="index.html#retry" class="tsd-kind-icon">retry</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#throttle" class="tsd-kind-icon">throttle</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Argument Reducer Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="argumentsreducer" class="tsd-anchor"></a>
+					<h3>Arguments<wbr>Reducer</h3>
+					<div class="tsd-signature tsd-kind-icon">Arguments<wbr>Reducer&lt;InvokeArgs, CallArgs&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>invokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">InvokeArgs</span>, callArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">InvokeArgs</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L12">src/callReducers.ts:12</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A reducer used to create the invocation arguments for a function over
+							multiple calls.</p>
+						</div>
+						<p>It receives the current invocation arguments and the call arguments and
+						returns the new invocation arguments.</p>
+					</div>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>InvokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li>
+							<h4>CallArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>invokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">InvokeArgs</span>, callArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">InvokeArgs</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<div class="tsd-comment tsd-typography">
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>invokeArgs: <span class="tsd-signature-type">InvokeArgs</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<div class="lead">
+														<p>The current invocation arguments for the main function.
+														The first call will be an empty array.</p>
+													</div>
+												</div>
+											</li>
+											<li>
+												<h5>callArgs: <span class="tsd-signature-type">CallArgs</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<div class="lead">
+														<p>The arguments given to the latest call.</p>
+													</div>
+												</div>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">InvokeArgs</span></h4>
+										<p>The new invocation arguments.</p>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="reducerfunction" class="tsd-anchor"></a>
+					<h3>Reducer<wbr>Function</h3>
+					<div class="tsd-signature tsd-kind-icon">Reducer<wbr>Function&lt;InvokeFunc, CallFuncOrArgs&gt;<span class="tsd-signature-symbol">:</span> <a href="index.html#argumentsreducer" class="tsd-signature-type">ArgumentsReducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">InvokeFunc</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><a href="index.html#parametersorarray" class="tsd-signature-type">ParametersOrArray</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CallFuncOrArgs</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L37">src/callReducers.ts:37</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An implementation <a href="index.html#argumentsreducer">ArgumentsReducer</a> for a particular invocation
+							function.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>typeparam</dt>
+							<dd><p>the arguments or type of the call function.</p>
+							</dd>
+						</dl>
+					</div>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>InvokeFunc<span class="tsd-signature-symbol">: </span><a href="interfaces/basefunction.html" class="tsd-signature-type">BaseFunction</a></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>the type of the invocation function.</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<h4>CallFuncOrArgs<span class="tsd-signature-symbol">: </span><a href="index.html#funcorarray" class="tsd-signature-type">FuncOrArray</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Other Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="callfunction" class="tsd-anchor"></a>
+					<h3>Call<wbr>Function</h3>
+					<div class="tsd-signature tsd-kind-icon">Call<wbr>Function&lt;F, Args&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Args</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="interfaces/cancelablepromise.html#promise" class="tsd-signature-type">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReduce.ts#L14">src/callReduce.ts:14</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>F<span class="tsd-signature-symbol">: </span><a href="interfaces/invokefunction.html" class="tsd-signature-type">InvokeFunction</a></h4>
+						</li>
+						<li>
+							<h4>Args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Args</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/cancelablepromise.html#promise" class="tsd-signature-type">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">Args</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <a href="interfaces/cancelablepromise.html#promise" class="tsd-signature-type">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="funcorarray" class="tsd-anchor"></a>
+					<h3>Func<wbr>OrArray</h3>
+					<div class="tsd-signature tsd-kind-icon">Func<wbr>OrArray<span class="tsd-signature-symbol">:</span> <a href="interfaces/basefunction.html" class="tsd-signature-type">BaseFunction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L24">src/callReducers.ts:24</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="parametersorarray" class="tsd-anchor"></a>
+					<h3>Parameters<wbr>OrArray</h3>
+					<div class="tsd-signature tsd-kind-icon">Parameters<wbr>OrArray&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">BaseFunction</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">T</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L25">src/callReducers.ts:25</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><a href="index.html#funcorarray" class="tsd-signature-type">FuncOrArray</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="resolver" class="tsd-anchor"></a>
+					<h3>Resolver</h3>
+					<div class="tsd-signature tsd-kind-icon">Resolver&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="index.html#resolverfunction" class="tsd-signature-type">ResolverFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/wait.ts#L6">src/wait.ts:6</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="resolverfunction" class="tsd-anchor"></a>
+					<h3>Resolver<wbr>Function</h3>
+					<div class="tsd-signature tsd-kind-icon">Resolver<wbr>Function&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/wait.ts#L5">src/wait.ts:5</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+					</ul>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="retryarguments" class="tsd-anchor"></a>
+					<h3>Retry<wbr>Arguments</h3>
+					<div class="tsd-signature tsd-kind-icon">Retry<wbr>Arguments&lt;F&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/retryargumentscallback.html" class="tsd-signature-type">RetryArgumentsCallback</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/retry.ts#L82">src/retry.ts:82</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>F<span class="tsd-signature-symbol">: </span><a href="interfaces/basefunction.html" class="tsd-signature-type">BaseFunction</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="retrydelays" class="tsd-anchor"></a>
+					<h3>Retry<wbr>Delays</h3>
+					<div class="tsd-signature tsd-kind-icon">Retry<wbr>Delays<span class="tsd-signature-symbol">:</span> <a href="interfaces/retrynextdelayfunction.html" class="tsd-signature-type">RetryNextDelayFunction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/retry.ts#L31">src/retry.ts:31</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="retrystop" class="tsd-anchor"></a>
+					<h3>Retry<wbr>Stop</h3>
+					<div class="tsd-signature tsd-kind-icon">Retry<wbr>Stop<span class="tsd-signature-symbol">:</span> <a href="interfaces/retrystopfunction.html" class="tsd-signature-type">RetryStopFunction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/retry.ts#L62">src/retry.ts:62</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Retry Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="retryerrortypes" class="tsd-anchor"></a>
+					<h3>Retry<wbr>Error<wbr>Types</h3>
+					<div class="tsd-signature tsd-kind-icon">Retry<wbr>Error<wbr>Types<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"cancelled"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"stopped"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/retry.ts#L102">src/retry.ts:102</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Types of retry errors</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Argument Reducer Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="callarguments" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> call<wbr>Arguments</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">call<wbr>Arguments&lt;T&gt;<span class="tsd-signature-symbol">(</span>invokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span>, callArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L120">src/callReducers.ts:120</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Reducer that provices the invocation function with a single array of
+									arrays of all calls.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>invokeArgs: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></h5>
+								</li>
+								<li>
+									<h5>callArgs: <span class="tsd-signature-type">T</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="combinearguments" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> combine<wbr>Arguments</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">combine<wbr>Arguments&lt;T&gt;<span class="tsd-signature-symbol">(</span>invokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span>, callArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L84">src/callReducers.ts:84</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>An arguments reducer that takes combines all arguments from every call
+										function into an array that is used as the first argument to the invoke
+									function.</p>
+								</div>
+								<p>Example:</p>
+								<pre><code><span class="hljs-comment">// the sequence of calls below to a call function</span>
+call(<span class="hljs-number">1</span>);
+call(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>);
+call(<span class="hljs-number">4</span>,<span class="hljs-number">5</span>);
+call([<span class="hljs-number">1</span>]);
+<span class="hljs-comment">// would be the equivalent to the invoke call below.</span>
+invoke([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, [<span class="hljs-number">1</span>]])</code></pre>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>invokeArgs: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></h5>
+								</li>
+								<li>
+									<h5>callArgs: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="extendarguments" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> extend<wbr>Arguments</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">extend<wbr>Arguments&lt;T&gt;<span class="tsd-signature-symbol">(</span>invokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span>, callArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L106">src/callReducers.ts:106</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Reducer that extends the invocation arguments array with all arguments
+									given to it.</p>
+								</div>
+								<pre><code></code></pre>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>invokeArgs: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5>callArgs: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="latestarguments" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> latest<wbr>Arguments</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">latest<wbr>Arguments&lt;T&gt;<span class="tsd-signature-symbol">(</span>invokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, callArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/callReducers.ts#L58">src/callReducers.ts:58</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>An arguments reducer that will use the latest call arguments as
+									the invocation arguments.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>invokeArgs: <span class="tsd-signature-type">T</span></h5>
+								</li>
+								<li>
+									<h5>callArgs: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Other Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="wait" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> wait</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">wait&lt;T&gt;<span class="tsd-signature-symbol">(</span>delay<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, value<span class="tsd-signature-symbol">?: </span><a href="index.html#resolver" class="tsd-signature-type">Resolver</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/waiting.html" class="tsd-signature-type">Waiting</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/wait.ts#L32">src/wait.ts:32</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Resolves after a given delay, optionally with a value.</p>
+								</div>
+								<p>If the delay is <code>0</code> the promises will resolve after the current
+								runtime event loop.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>delay: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The time in milliseconds before the value is returned.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <a href="index.html#resolver" class="tsd-signature-type">Resolver</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>An optional value to return after sleeping.
+												If a function is supplied it will be executed after the delay and it&#39;s
+											value is returned.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/waiting.html" class="tsd-signature-type">Waiting</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that resolves with the value/function result.
+							The promise has 2 extra functions defined:</p>
+							<ul>
+								<li><code>cancel</code> cancels the result and rejects the promise.</li>
+								<li><code>stop</code> stops waiting and resolves the promised value.</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Wrapper Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="debounce" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> debounce</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">debounce&lt;Invoke, Reducer&gt;<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Invoke</span>, delay<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, argumentsReducer<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">Reducer</a>, maxDelay<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, onCancel<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/debounced.html" class="tsd-signature-type">Debounced</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Reducer</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/debounce.ts#L64">src/debounce.ts:64</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Ensure multiple calls to a function will only execute it when it has been
+									inactive (no more calls) for a specified delay.</p>
+								</div>
+								<p>Execution always happens asynchronously.</p>
+								<p>If the delay is <code>0</code> execution will be scheduled to occur after the current
+								runtime event loop.</p>
+								<p>The debounced function returns a promise that resolves to the return value
+								of <code>func</code>.</p>
+								<p>By default the arguments to <code>func</code> are the latest arguments given to the
+									debounced function. For custom behaviour pass an <code>argumentsReducer</code>
+								function.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>Invoke<span class="tsd-signature-symbol">: </span><a href="interfaces/invokefunction.html" class="tsd-signature-type">InvokeFunction</a></h4>
+								</li>
+								<li>
+									<h4>Reducer<span class="tsd-signature-symbol">: </span><a href="index.html#reducerfunction" class="tsd-signature-type">ReducerFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									<div class="tsd-comment tsd-typography">
+										<p><a href="index.html#argumentsreducer">ArgumentsReducer</a></p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fn: <span class="tsd-signature-type">Invoke</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The function to debounce</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> delay: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 50</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The number of milliseconds on inactivity before the function
+											will be executed.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> argumentsReducer: <a href="" class="tsd-signature-type">Reducer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Used to create the arguments to <code>fn</code> when it is
+												executed. It is run for every call of the debounced function. The default
+											implementation is to execute <code>func</code> with the latest arguments.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> maxDelay: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The maximum number of milliseconds before the function will
+												be executed. If execution has not happened as calls are still occuring then
+												this the maximum number of milliseconds allowed to pass before the function
+											will be executed.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> onCancel: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/debounced.html" class="tsd-signature-type">Debounced</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Reducer</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>the debounced function</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="retry" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> retry</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">retry<span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><a href="interfaces/basefunction.html" class="tsd-signature-type">BaseFunction</a>, delay<span class="tsd-signature-symbol">?: </span><a href="index.html#retrydelays" class="tsd-signature-type">RetryDelays</a>, stop<span class="tsd-signature-symbol">?: </span><a href="index.html#retrystop" class="tsd-signature-type">RetryStop</a>, args<span class="tsd-signature-symbol">?: </span><a href="index.html#retryarguments" class="tsd-signature-type">RetryArguments</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">func</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/retryresult.html" class="tsd-signature-type">RetryResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">func</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/retry.ts#L166">src/retry.ts:166</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>func: <a href="interfaces/basefunction.html" class="tsd-signature-type">BaseFunction</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>the function to retry</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> delay: <a href="index.html#retrydelays" class="tsd-signature-type">RetryDelays</a><span class="tsd-signature-symbol"> = defaultDelays</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>A delay in milliseconds or an array of millisecond delays</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> stop: <a href="index.html#retrystop" class="tsd-signature-type">RetryStop</a><span class="tsd-signature-symbol"> = 10</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The number of attempts or function to determine when retry
+											should stop retrying <code>func</code>.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> args: <a href="index.html#retryarguments" class="tsd-signature-type">RetryArguments</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">func</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ([] as unknown) as Parameters&lt;typeof func&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>arguments to use for the base function</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/retryresult.html" class="tsd-signature-type">RetryResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">func</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="throttle" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> throttle</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">throttle&lt;Invoke, Reducer&gt;<span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Invoke</span>, delay<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, argumentsReducer<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">Reducer</a>, onCancel<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/throttled.html" class="tsd-signature-type">Throttled</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Reducer</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-call-limiter/blob/master/src/throttle.ts#L41">src/throttle.ts:41</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Ensure multiple calls to a function will only execute at most once every
+									<code>delay</code> milliseconds.</p>
+								</div>
+								<p>The execution will always happens asynchronously. If the delay is <code>0</code> then
+								execution will occur after the current runtime event loop.</p>
+								<p>The throttled function returns a promise that resolves to the return value
+								of <code>func</code>.</p>
+								<p>By default the arguments to <code>func</code> are the latest arguments given to the
+									throttled function. For custom behaviour pass an <code>argumentsReducer</code>
+								function.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>Invoke<span class="tsd-signature-symbol">: </span><a href="interfaces/invokefunction.html" class="tsd-signature-type">InvokeFunction</a></h4>
+								</li>
+								<li>
+									<h4>Reducer<span class="tsd-signature-symbol">: </span><a href="index.html#reducerfunction" class="tsd-signature-type">ReducerFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>func: <span class="tsd-signature-type">Invoke</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The function to throttle</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> delay: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 50</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The number of milliseconds between executions.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> argumentsReducer: <a href="" class="tsd-signature-type">Reducer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Used to create the arguments to <code>func</code> when it is
+												executed. It is run for every call of the throttled function. The default
+											implementation to execute <code>func</code> with the latest arguments.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> onCancel: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>If supplied this function will be called if the throttled function is cancelled.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/throttled.html" class="tsd-signature-type">Throttled</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Reducer</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The throttled function</p>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -93,43 +866,112 @@
 					<li class="globals current ">
 						<a href="index.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_callreduce_.html">&quot;call<wbr>Reduce&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_callreducers_.html">&quot;call<wbr>Reducers&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_cancelable_.html">&quot;cancelable&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_debounce_.html">&quot;debounce&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_deferred_.html">&quot;deferred&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_delay_.html">&quot;delay&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_pending_.html">&quot;pending&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_retry_.html">&quot;retry&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_throttle_.html">&quot;throttle&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_types_.html">&quot;types&quot;</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/retrycancellederror.html" class="tsd-kind-icon">Retry<wbr>Cancelled<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/retryerror.html" class="tsd-kind-icon">Retry<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/retrystoppederror.html" class="tsd-kind-icon">Retry<wbr>Stopped<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/basefunction.html" class="tsd-kind-icon">Base<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/cancelfunction.html" class="tsd-kind-icon">Cancel<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/cancelablefunction.html" class="tsd-kind-icon">Cancelable<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/cancelablepromise.html" class="tsd-kind-icon">Cancelable<wbr>Promise</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/debounced.html" class="tsd-kind-icon">Debounced</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/invokefunction.html" class="tsd-kind-icon">Invoke<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/retryargumentscallback.html" class="tsd-kind-icon">Retry<wbr>Arguments<wbr>Callback</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/retrynextdelayfunction.html" class="tsd-kind-icon">Retry<wbr>Next<wbr>Delay<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/retryresult.html" class="tsd-kind-icon">Retry<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/retrystopfunction.html" class="tsd-kind-icon">Retry<wbr>Stop<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/throttled.html" class="tsd-kind-icon">Throttled</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/waiting.html" class="tsd-kind-icon">Waiting</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="index.html#argumentsreducer" class="tsd-kind-icon">Arguments<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="index.html#callfunction" class="tsd-kind-icon">Call<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="index.html#funcorarray" class="tsd-kind-icon">Func<wbr>OrArray</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="index.html#parametersorarray" class="tsd-kind-icon">Parameters<wbr>OrArray</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="index.html#reducerfunction" class="tsd-kind-icon">Reducer<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="index.html#resolver" class="tsd-kind-icon">Resolver</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="index.html#resolverfunction" class="tsd-kind-icon">Resolver<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="index.html#retryarguments" class="tsd-kind-icon">Retry<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="index.html#retrydelays" class="tsd-kind-icon">Retry<wbr>Delays</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="index.html#retryerrortypes" class="tsd-kind-icon">Retry<wbr>Error<wbr>Types</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="index.html#retrystop" class="tsd-kind-icon">Retry<wbr>Stop</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="index.html#callarguments" class="tsd-kind-icon">call<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="index.html#combinearguments" class="tsd-kind-icon">combine<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="index.html#debounce" class="tsd-kind-icon">debounce</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="index.html#extendarguments" class="tsd-kind-icon">extend<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="index.html#latestarguments" class="tsd-kind-icon">latest<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="index.html#retry" class="tsd-kind-icon">retry</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="index.html#throttle" class="tsd-kind-icon">throttle</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="index.html#wait" class="tsd-kind-icon">wait</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

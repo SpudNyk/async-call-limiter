@@ -1,4 +1,4 @@
-# Async Call Limiter
+# Async Wrappers
 
 These functions are similar to others debounce and throttle functions. e.g. [Lodash's](https://lodash.com): [debounce](https://lodash.com/docs/4.17.15#debounce) and [throttle](https://lodash.com/docs/4.17.15#throttle).
 However these functions differ in that the resulting function when called returns a promise that will resolve/reject when the wrapped function is invoked. The functions also can take an "argument reducer" function that determines the arguments that will be given to wrapped function.
@@ -8,10 +8,10 @@ The default reducer implementation just uses the last arguments given, however y
 
 - [API](api/)
 
-### Example
+### Examples
 
 ```javascript
-import { debounce } from 'async-call-limiter'
+import { debounce, combineArguments } from 'async-call-limiter'
 
 
 ```

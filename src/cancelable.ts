@@ -2,6 +2,7 @@ import pending from './pending';
 import { CancelFunction, CancelablePromise } from './types';
 
 /**
+ * @internal
  * Wraps a promise that can be cancelled by calling it's cancel function
  * If the promise settles then call
  * Cancelling a promise causes it to reject with the given reason or Cancelled

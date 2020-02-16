@@ -1,5 +1,8 @@
 import { BaseFunction } from './types';
 
+/**
+ * @internal
+ */
 export interface Deferred {
     /**
      * The current delay
@@ -17,7 +20,9 @@ export interface Deferred {
     cancel: () => void;
 }
 
-// internal
+/**
+ * @internal
+ */
 const deferred = (callback: BaseFunction): Deferred => {
     let handle: any = null;
     let clear: BaseFunction = clearTimeout;

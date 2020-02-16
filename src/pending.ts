@@ -1,9 +1,13 @@
+/**
+ * @internal
+ */
 const throwSettled = () => {
     throw new Error('pending cannot be changed after it has settled');
 };
 
 /**
  * Used to hold a pending result
+ * @internal
  */
 export interface Pending<T> {
     /**
@@ -19,11 +23,12 @@ export interface Pending<T> {
      * complete the result
      * @param result the final result
      */
-    complete(result: T): Promise<T>;
+    complete(result: T | PromiseLike<T>): Promise<T>;
 }
 
 /**
  * create a waiting empty result
+ * @internal
  */
 const pending = <T>() => {
     const value = {} as Pending<T>;

@@ -1,7 +1,7 @@
 {
-    "name": "async-call-limiter",
-    "version": "1.3.1",
-    "description": "Debounces and throttle calls to async functions allowing return values",
+    "name": "async-wrappers",
+    "version": "2.0.0",
+    "description": "A set of wrapper functions to perform debouncing, throttling, retrying etc.",
     "keywords": [
         "debounce",
         "async",
@@ -10,9 +10,14 @@
         "async-functions",
         "typescript"
     ],
-    "main": "lib/index.js",
+    "main": "cjs/index.js",
     "module": "esm/index.js",
-    "types": "lib/index.d.js",
+    "exports": {
+        ".": {
+            "node": "cjs/index.js"
+        }
+    },
+    "types": "types/index.d.ts",
     "homepage": "https://spudnyk.github.io/async-call-limiter",
     "repository": "https://github.com/SpudNyk/async-call-limiter.git",
     "license": "MIT",
@@ -25,7 +30,7 @@
         "build:esm": "cross-env BABEL_ENV=esm babel src -d dist/esm --extensions \".ts,.tsx\"",
         "build:es": "cross-env BABEL_ENV=es babel src -d dist/es --extensions \".ts,.tsx\"",
         "build": "npm-run-all dist:clean build:cjs build:esm build:es build:types dist:package",
-        "docs": "typedoc --out docs/api --readme none --name async-call-limiter --gitRevision master",
+        "docs": "typedoc",
         "test": "jest"
     },
     "devDependencies": {

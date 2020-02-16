@@ -1,0 +1,14 @@
+{
+    "name": "async-wrappers",
+    "inputFiles": ["./src/index.ts"],
+    "gitRevision": "master",
+    "categorizeByGroup": true,
+    "excludeNotExported": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "excludeExternals": true,
+    "stripInternal": true,
+    "mode": "file",
+    "out": "docs/api",
+    "readme": "none"
+}

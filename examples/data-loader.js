@@ -1,21 +1,4 @@
-# async-wrappers
-
-Implementations of debounce, throttle, retry and other functions, with utility in an async environment.
-
-## Key Features
-
-1.  call argument aggregation - all arguments from calls to the wrapper can be combined for the call to the wrapped function, using a supplied argument reducer function. See the api documentation for supplied reducers.
-2.  call return values - calls to the wrapper will return a promise to wrapped function's result.
-3.  delay times of 0 are still asynchronous and will resolve on the next runtime loop.
-
-## Documentation
-
-See the [API](https://spudnyk.github.io/async-wrappers/api/).
-
-## Example
-
-```javascript
-const { debounce, combineArguments } = require('async-wrappers');
+const { debounce, combineArguments } = require('../dist');
 const data = {
     1: 'data 1',
     2: 'data 2'
@@ -57,4 +40,3 @@ main();
 // Foo: data 2
 // Bar: data 1
 // Baz: undefined
-```

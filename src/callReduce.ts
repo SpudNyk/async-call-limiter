@@ -1,3 +1,6 @@
+/**
+ * @internal
+ */
 import pending, { Pending } from './pending';
 import { BaseFunction } from './types';
 import {
@@ -12,6 +15,10 @@ export type CallFunction<F extends InvokeFunction, Args extends any[]> = (
     ...args: Args
 ) => Promise<ReturnType<F>>;
 
+
+/**
+ * @internal
+ */
 const wrap = <F extends BaseFunction>(
     fn: F,
     before?: BaseFunction,
@@ -41,6 +48,7 @@ const wrap = <F extends BaseFunction>(
     return wrapped as F;
 };
 /**
+ * @internal
  * Utility function that wraps a function and will use a reducer to combine the arguments
  * of multiple calls to that function. As the function is not executed until it is invoked
  * a promise for the result is returned to the callers.

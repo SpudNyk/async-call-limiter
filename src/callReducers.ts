@@ -7,25 +7,41 @@ import { BaseFunction } from './types';
  * It receives the current invocation arguments and the call arguments and
  * returns the new invocation arguments.
  *
+ * @category Argument Reducer
  */
-export interface ArgumentsReducer<
+export type ArgumentsReducer<
     InvokeArgs extends any[] = any[],
     CallArgs extends any[] = any[]
-> {
+> =
     /**
      * @param invokeArgs The current invocation arguments for the main function.
      * The first call will be an empty array.
      * @param callArgs The arguments given to the latest call.
      * @returns The new invocation arguments.
      */
-    (invokeArgs: InvokeArgs, callArgs: CallArgs): InvokeArgs;
-}
+    (invokeArgs: InvokeArgs, callArgs: CallArgs) => InvokeArgs;
 
+type FuncOrArray = BaseFunction | any[];
+export type ParametersOrArray<T extends FuncOrArray> = T extends BaseFunction
+    ? Parameters<T>
+    : T;
+
+/**
+ * An implementation [[ArgumentsReducer]] for a particular invocation
+ * function.
+ * @typeparam InvokeFunc the type of the invocation function.
+ * @typeparam CallArgs the arguments or type of the call function.
+ * 
+ * @category Argument Reducer
+ */
 export type ReducerFunction<
-    F extends BaseFunction,
-    CallArgs extends any[] = Parameters<F>
-> = ArgumentsReducer<Parameters<F>, CallArgs>;
+    InvokeFunc extends BaseFunction,
+    CallFuncOrArgs extends FuncOrArray = InvokeFunc
+> = ArgumentsReducer<Parameters<InvokeFunc>, ParametersOrArray<CallFuncOrArgs>>;
 
+/**
+ * @internal
+ */
 export type ReducerCallParameters<
     Reducer extends ArgumentsReducer<any, any> | undefined,
     D = never
@@ -36,6 +52,8 @@ export type ReducerCallParameters<
  * the invocation arguments.
  * @param invokeArgs
  * @param callArgs
+ * 
+ * @category Argument Reducer
  */
 export const latestArguments = <T extends any[]>(
     invokeArgs: T,
@@ -60,6 +78,8 @@ export const latestArguments = <T extends any[]>(
  *
  * @param invokeArgs
  * @param callArgs
+ * 
+ * @category Argument Reducer
  */
 export const combineArguments = <T extends any>(
     invokeArgs: [T[]],
@@ -71,4 +91,40 @@ export const combineArguments = <T extends any>(
     }
     combined.push(...callArgs);
     return invokeArgs;
+};
+
+/**
+ * Reducer that extends the invocation arguments array with all arguments
+ * given to it.
+ *
+ * ```
+ *
+ * ```
+ * 
+ * @category Argument Reducer
+ */
+export const extendArguments = <T extends any>(
+    invokeArgs: T[],
+    callArgs: T[]
+): T[] => {
+    invokeArgs.push(...callArgs);
+    return invokeArgs;
+};
+
+/**
+ * Reducer that provices the invocation function with a single array of
+ * arrays of all calls.
+ * 
+ * @category Argument Reducer
+ */
+export const callArguments = <T extends any>(
+    invokeArgs: [T[]],
+    callArgs: T
+) => {
+    let [calls] = invokeArgs;
+    if (calls === undefined) {
+        invokeArgs[0] = calls = [];
+    }
+    calls.push(callArgs);
+    return calls;
 };

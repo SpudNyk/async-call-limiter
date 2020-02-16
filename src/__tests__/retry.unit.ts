@@ -1,10 +1,11 @@
 import ft from '@sinonjs/fake-timers';
 import retry from '../retry';
+import { notDeepEqual } from 'assert';
 
 const failUntil = (count: number) => {
     const stop = count - 1;
     let run = 0;
-    return async () => {
+    return () => {
         if (run < stop) {
             run++;
             throw new Error('Failed');
@@ -24,68 +25,69 @@ describe('retry', () => {
     const exhaustRetries = async (count: number) => {
         // specifically built for retry function (needs to await twice for each timer exhaustion)
         for (let i = 0; i < count; i++) {
-            await Promise.resolve();
-            clock.runAll();
-            await Promise.resolve();
+            // await Promise.resolve();
+            // clock.runAll();
+            // await Promise.resolve();
+            await clock.nextAsync();
         }
     };
     it('fails after stopping', async () => {
         const result = retry(failUntil(11));
+        const done = expect(result).rejects.toThrow('Stopped');
         await exhaustRetries(10);
-        await expect(result).rejects.toThrow('Failed');
+        await done;
     });
     it('calls function every times before stopping', async () => {
         const fn = jest.fn(failUntil(11));
         const result = retry(fn, undefined, 10);
+        const done = expect(result).rejects.toThrow('Stopped');
         await exhaustRetries(10);
-        await expect(result).rejects.toThrow('Failed');
+        await done;
         expect(fn).toHaveBeenCalledTimes(10);
     });
     it('calls function until it succeeds', async () => {
         const fn = jest.fn(failUntil(5));
         const result = retry(fn, undefined, 10);
+        const done = expect(result).resolves.toBe(5);
         await exhaustRetries(10);
-        await expect(result).resolves.toBe(5);
+        await done;
         expect(fn).toHaveBeenCalledTimes(5);
+        expect(fn).toReturnTimes(1);
     });
     it('can cancel', async () => {
         const fn = jest.fn(failUntil(9));
         const result = retry(fn, undefined, 10);
-        result.cancel(new Error('testing cancel'));
+        const done = expect(result).rejects.toThrow('testing cancel');
+        result.cancel('testing cancel');
         await exhaustRetries(5);
-        expect(fn).toHaveBeenCalled();
-        await expect(result).rejects.toThrow('testing cancel');
-    });
-    it('can cancel success', async () => {
-        const fn = jest.fn(async () => true);
-        const result = retry(fn, undefined, 10);
-        result.cancel(new Error('testing cancel'));
-        await exhaustRetries(5);
-        expect(fn).toHaveReturned();
-        await expect(result).rejects.toThrow('testing cancel');
+        await done;
     });
     it('can cancel after attempts', async () => {
         const fn = jest.fn(failUntil(9));
         const result = retry(fn, undefined, 10);
+        const done = expect(result).rejects.toThrow('testing cancel');
         await exhaustRetries(5);
-        result.cancel(new Error('testing cancel'));
+        result.cancel('testing cancel');
         expect(fn).toHaveBeenCalled();
-        await expect(result).rejects.toThrow('testing cancel');
+        expect(fn).not.toReturn();
+        await exhaustRetries(5);
+        await done;
     });
-    it('can use wait function after each attempt', async () => {
+    it('calls the wait function after each attempt', async () => {
         const waitFn = jest.fn(() => 100);
-        const result = retry(failUntil(10), waitFn, 10);
+        const done = retry(failUntil(10), waitFn, 10);
         await exhaustRetries(10);
+        await done;
         expect(waitFn).toHaveBeenCalledTimes(9);
-        await result;
     });
-    it('can use stop function after each attempt', async () => {
+    it('calls the stop function after each attempt', async () => {
         const fn = jest.fn(failUntil(9));
         const stopFn = jest.fn(attempt => attempt > 5);
         const result = retry(fn, undefined, stopFn);
+        const done = expect(result).rejects.toThrow();
         await exhaustRetries(10);
+        await done;
         expect(fn).toHaveBeenCalledTimes(6);
         expect(stopFn).toHaveBeenCalledTimes(6);
-        await expect(result).rejects.toThrow();
     });
 });

@@ -1,5 +1,12 @@
 export { default as debounce } from './debounce';
 export { default as throttle } from './throttle';
-export { default as delay } from './delay';
+export { default as wait } from './wait';
 export { default as retry } from './retry';
-export { latestArguments, combineArguments } from './callReducers';
+export {
+    latestArguments,
+    combineArguments,
+    callArguments,
+    ArgumentsReducer,
+    ReducerFunction
+} from './callReducers';
+export { CallFunction } from './callReduce';
