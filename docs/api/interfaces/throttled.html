@@ -55,7 +55,7 @@
 					<a href="throttled.html">Throttled</a>
 				</li>
 			</ul>
-			<h1>Interface Throttled&lt;F, R&gt;</h1>
+			<h1>Interface Throttled&lt;F, R, F, R&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -66,10 +66,16 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>F<span class="tsd-signature-symbol">: </span><a href="invokefunction.html" class="tsd-signature-type">InvokeFunction</a></h4>
+						<h4>F<span class="tsd-signature-symbol">: </span><a href="basefunction.html" class="tsd-signature-type">BaseFunction</a></h4>
 					</li>
 					<li>
 						<h4>R<span class="tsd-signature-symbol">: </span><a href="../index.html#reducerfunction" class="tsd-signature-type">ReducerFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+					<li>
+						<h4>F<span class="tsd-signature-symbol">: </span><a href="basefunction.html" class="tsd-signature-type">BaseFunction</a></h4>
+					</li>
+					<li>
+						<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RF</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -95,7 +101,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/callReduce.ts#L14">src/callReduce.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/callReduce.ts#L12">src/callReduce.ts:12</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -133,7 +139,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/throttle.ts#L14">src/throttle.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/throttle.ts#L15">src/throttle.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -190,9 +196,6 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="debounced.html" class="tsd-kind-icon">Debounced</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="invokefunction.html" class="tsd-kind-icon">Invoke<wbr>Function</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="retryargumentscallback.html" class="tsd-kind-icon">Retry<wbr>Arguments<wbr>Callback</a>

@@ -1,9 +1,10 @@
-import callReduce, { InvokeFunction, CallFunction } from './callReduce';
+import { BaseFunction } from './types'
+import callReduce, { CallFunction } from './callReduce';
 import deferred, { Deferred } from './deferred';
 import { ReducerCallParameters, ReducerFunction } from './callReducers';
 
 export interface Throttled<
-    F extends InvokeFunction,
+    F extends BaseFunction,
     R extends ReducerFunction<F, any>
 > extends CallFunction<F, ReducerCallParameters<R>> {
     /**
@@ -39,7 +40,7 @@ export interface Throttled<
  * @category Wrapper
  */
 const throttle = <
-    Invoke extends InvokeFunction,
+    Invoke extends BaseFunction,
     Reducer extends ReducerFunction<Invoke, any> = ReducerFunction<Invoke>
 >(
     func: Invoke,

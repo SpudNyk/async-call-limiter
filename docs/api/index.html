@@ -79,7 +79,6 @@
 								<li class="tsd-kind-interface"><a href="interfaces/cancelablefunction.html" class="tsd-kind-icon">Cancelable<wbr>Function</a></li>
 								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/cancelablepromise.html" class="tsd-kind-icon">Cancelable<wbr>Promise</a></li>
 								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/debounced.html" class="tsd-kind-icon">Debounced</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/invokefunction.html" class="tsd-kind-icon">Invoke<wbr>Function</a></li>
 								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/retryargumentscallback.html" class="tsd-kind-icon">Retry<wbr>Arguments<wbr>Callback</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/retrynextdelayfunction.html" class="tsd-kind-icon">Retry<wbr>Next<wbr>Delay<wbr>Function</a></li>
 								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/retryresult.html" class="tsd-kind-icon">Retry<wbr>Result</a></li>
@@ -137,10 +136,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="argumentsreducer" class="tsd-anchor"></a>
 					<h3>Arguments<wbr>Reducer</h3>
-					<div class="tsd-signature tsd-kind-icon">Arguments<wbr>Reducer&lt;InvokeArgs, CallArgs&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>invokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">InvokeArgs</span>, callArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">InvokeArgs</span></div>
+					<div class="tsd-signature tsd-kind-icon">Arguments<wbr>Reducer&lt;InvokeArgs, CallArgs, InvokeArgs, CallArgs&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AR</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">InvokeArgs</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/callReducers.ts#L12">src/callReducers.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/index.ts#L21">src/index.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -159,53 +159,22 @@
 						<li>
 							<h4>CallArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
+						<li>
+							<h4>InvokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li>
+							<h4>CallArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
 					</ul>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>invokeArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">InvokeArgs</span>, callArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CallArgs</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">InvokeArgs</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<div class="tsd-comment tsd-typography">
-										</div>
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>invokeArgs: <span class="tsd-signature-type">InvokeArgs</span></h5>
-												<div class="tsd-comment tsd-typography">
-													<div class="lead">
-														<p>The current invocation arguments for the main function.
-														The first call will be an empty array.</p>
-													</div>
-												</div>
-											</li>
-											<li>
-												<h5>callArgs: <span class="tsd-signature-type">CallArgs</span></h5>
-												<div class="tsd-comment tsd-typography">
-													<div class="lead">
-														<p>The arguments given to the latest call.</p>
-													</div>
-												</div>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">InvokeArgs</span></h4>
-										<p>The new invocation arguments.</p>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="reducerfunction" class="tsd-anchor"></a>
 					<h3>Reducer<wbr>Function</h3>
-					<div class="tsd-signature tsd-kind-icon">Reducer<wbr>Function&lt;InvokeFunc, CallFuncOrArgs&gt;<span class="tsd-signature-symbol">:</span> <a href="index.html#argumentsreducer" class="tsd-signature-type">ArgumentsReducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">InvokeFunc</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><a href="index.html#parametersorarray" class="tsd-signature-type">ParametersOrArray</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CallFuncOrArgs</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Reducer<wbr>Function&lt;InvokeFunc, CallFuncOrArgs, InvokeFunc, CallFuncOrArgs&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RF</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">InvokeFunc</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CallFuncOrArgs</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/callReducers.ts#L37">src/callReducers.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/index.ts#L26">src/index.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -232,6 +201,12 @@
 						<li>
 							<h4>CallFuncOrArgs<span class="tsd-signature-symbol">: </span><a href="index.html#funcorarray" class="tsd-signature-type">FuncOrArray</a></h4>
 						</li>
+						<li>
+							<h4>InvokeFunc<span class="tsd-signature-symbol">: </span><a href="interfaces/basefunction.html" class="tsd-signature-type">BaseFunction</a></h4>
+						</li>
+						<li>
+							<h4>CallFuncOrArgs<span class="tsd-signature-symbol">: </span><a href="index.html#funcorarray" class="tsd-signature-type">FuncOrArray</a></h4>
+						</li>
 					</ul>
 				</section>
 			</section>
@@ -240,42 +215,28 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="callfunction" class="tsd-anchor"></a>
 					<h3>Call<wbr>Function</h3>
-					<div class="tsd-signature tsd-kind-icon">Call<wbr>Function&lt;F, Args&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Args</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="interfaces/cancelablepromise.html#promise" class="tsd-signature-type">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Call<wbr>Function&lt;F, Args, F, Args&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CF</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Args</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/callReduce.ts#L14">src/callReduce.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/callReduce.ts#L12">src/callReduce.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/index.ts#L16">src/index.ts:16</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
 					<ul class="tsd-type-parameters">
 						<li>
-							<h4>F<span class="tsd-signature-symbol">: </span><a href="interfaces/invokefunction.html" class="tsd-signature-type">InvokeFunction</a></h4>
+							<h4>F<span class="tsd-signature-symbol">: </span><a href="interfaces/basefunction.html" class="tsd-signature-type">BaseFunction</a></h4>
+						</li>
+						<li>
+							<h4>Args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+						<li>
+							<h4>F<span class="tsd-signature-symbol">: </span><a href="interfaces/basefunction.html" class="tsd-signature-type">BaseFunction</a></h4>
 						</li>
 						<li>
 							<h4>Args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Args</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/cancelablepromise.html#promise" class="tsd-signature-type">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">Args</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <a href="interfaces/cancelablepromise.html#promise" class="tsd-signature-type">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="funcorarray" class="tsd-anchor"></a>
@@ -284,6 +245,7 @@
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/callReducers.ts#L24">src/callReducers.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/index.ts#L25">src/index.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -650,7 +612,7 @@ invoke([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/debounce.ts#L64">src/debounce.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/debounce.ts#L65">src/debounce.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -670,7 +632,7 @@ invoke([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, 
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>Invoke<span class="tsd-signature-symbol">: </span><a href="interfaces/invokefunction.html" class="tsd-signature-type">InvokeFunction</a></h4>
+									<h4>Invoke<span class="tsd-signature-symbol">: </span><a href="interfaces/basefunction.html" class="tsd-signature-type">BaseFunction</a></h4>
 								</li>
 								<li>
 									<h4>Reducer<span class="tsd-signature-symbol">: </span><a href="index.html#reducerfunction" class="tsd-signature-type">ReducerFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -791,7 +753,7 @@ invoke([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/throttle.ts#L41">src/throttle.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/throttle.ts#L42">src/throttle.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -810,7 +772,7 @@ invoke([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, 
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>Invoke<span class="tsd-signature-symbol">: </span><a href="interfaces/invokefunction.html" class="tsd-signature-type">InvokeFunction</a></h4>
+									<h4>Invoke<span class="tsd-signature-symbol">: </span><a href="interfaces/basefunction.html" class="tsd-signature-type">BaseFunction</a></h4>
 								</li>
 								<li>
 									<h4>Reducer<span class="tsd-signature-symbol">: </span><a href="index.html#reducerfunction" class="tsd-signature-type">ReducerFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Invoke</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -893,9 +855,6 @@ invoke([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, 
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="interfaces/debounced.html" class="tsd-kind-icon">Debounced</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/invokefunction.html" class="tsd-kind-icon">Invoke<wbr>Function</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="interfaces/retryargumentscallback.html" class="tsd-kind-icon">Retry<wbr>Arguments<wbr>Callback</a>

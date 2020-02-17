@@ -9,9 +9,7 @@ import {
     latestArguments
 } from './callReducers';
 
-export interface InvokeFunction extends BaseFunction {}
-
-export type CallFunction<F extends InvokeFunction, Args extends any[]> = (
+export type CallFunction<F extends BaseFunction, Args extends any[]> = (
     ...args: Args
 ) => Promise<ReturnType<F>>;
 
@@ -61,7 +59,7 @@ const wrap = <F extends BaseFunction>(
  * @returns
  */
 const callReduce = <
-    Invoke extends InvokeFunction,
+    Invoke extends BaseFunction,
     Reducer extends ReducerFunction<Invoke, any> = ReducerFunction<Invoke>
 >(
     fn: Invoke,

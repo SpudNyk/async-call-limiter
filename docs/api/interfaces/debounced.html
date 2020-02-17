@@ -55,7 +55,7 @@
 					<a href="debounced.html">Debounced</a>
 				</li>
 			</ul>
-			<h1>Interface Debounced&lt;F, R&gt;</h1>
+			<h1>Interface Debounced&lt;F, R, F, R&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -73,10 +73,16 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>F<span class="tsd-signature-symbol">: </span><a href="invokefunction.html" class="tsd-signature-type">InvokeFunction</a></h4>
+						<h4>F<span class="tsd-signature-symbol">: </span><a href="basefunction.html" class="tsd-signature-type">BaseFunction</a></h4>
 					</li>
 					<li>
 						<h4>R<span class="tsd-signature-symbol">: </span><a href="../index.html#reducerfunction" class="tsd-signature-type">ReducerFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+					<li>
+						<h4>F<span class="tsd-signature-symbol">: </span><a href="basefunction.html" class="tsd-signature-type">BaseFunction</a></h4>
+					</li>
+					<li>
+						<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RF</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -102,7 +108,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/callReduce.ts#L14">src/callReduce.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/callReduce.ts#L12">src/callReduce.ts:12</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -145,7 +151,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/debounce.ts#L21">src/debounce.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/debounce.ts#L22">src/debounce.ts:22</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -212,9 +218,6 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="invokefunction.html" class="tsd-kind-icon">Invoke<wbr>Function</a>
-					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="retryargumentscallback.html" class="tsd-kind-icon">Retry<wbr>Arguments<wbr>Callback</a>
 					</li>

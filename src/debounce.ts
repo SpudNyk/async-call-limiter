@@ -1,4 +1,5 @@
-import callReduce, { InvokeFunction, CallFunction } from './callReduce';
+import { BaseFunction } from './types'
+import callReduce, { CallFunction } from './callReduce';
 import {
     ReducerCallParameters,
     ReducerFunction,
@@ -10,7 +11,7 @@ import deferred from './deferred';
  * The debounced function
  */
 export interface Debounced<
-    F extends InvokeFunction,
+    F extends BaseFunction,
     R extends ReducerFunction<F, any>
 > extends CallFunction<F, ReducerCallParameters<R>> {
     /**
@@ -62,7 +63,7 @@ export interface Debounced<
  * @category Wrapper
  */
 const debounce = <
-    Invoke extends InvokeFunction,
+    Invoke extends BaseFunction,
     Reducer extends ReducerFunction<Invoke, any> = ReducerFunction<Invoke>
 >(
     fn: Invoke,
