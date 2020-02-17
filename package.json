@@ -1,6 +1,6 @@
 {
     "name": "async-wrappers",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "A set of wrapper functions to perform debouncing, throttling, retrying etc.",
     "keywords": [
         "debounce",
@@ -46,7 +46,7 @@
         "@types/lolex": "^5.1.0",
         "@types/node": "^13.7.1",
         "cross-env": "^7.0.0",
-        "dist-package": "^0.2.1",
+        "dist-package": "^0.2.2",
         "eslint": "^6.8.0",
         "fs-jetpack": "^2.2.3",
         "jest": "^25.1.0",
