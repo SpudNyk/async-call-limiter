@@ -18,7 +18,7 @@ const getByIds = ids => {
 };
 
 // data loader equivalent
-const load = debounce(getByIds, 0, combineArguments);
+const load = debounce(getByIds, 0, { reducer: combineArguments });
 const loadData = async id => {
     const data = await load(id);
     return data[id];

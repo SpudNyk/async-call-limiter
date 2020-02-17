@@ -5,15 +5,15 @@ export { default as retry } from './retry';
 export {
     latestArguments,
     combineArguments,
-    callArguments
+    callArguments,
+    extendArguments
 } from './callReducers';
 
 // The following safely reexport types when transpiling.
 // This should be easier when typescript 3.8 releases
 // https://devblogs.microsoft.com/typescript/announcing-typescript-3-8-beta/#type-only-imports-exports
-import { BaseFunction } from './types';
 import { CallFunction as CF } from './callReduce';
-export type CallFunction<F extends BaseFunction, Args extends any[]> = CF<
+export type CallFunction<F extends (...args: any[]) => any, Args extends any[]> = CF<
     F,
     Args
 >;
@@ -22,13 +22,13 @@ export type ArgumentsReducer<
     InvokeArgs extends any[] = any[],
     CallArgs extends any[] = any[]
 > = AR<InvokeArgs, CallArgs>;
-type FuncOrArray = BaseFunction | any[];
+type FuncOrArray = (...args: any[]) => any | any[];
 export type ReducerFunction<
-    InvokeFunc extends BaseFunction,
-    CallFuncOrArgs extends FuncOrArray = InvokeFunc
-> = RF<InvokeFunc, CallFuncOrArgs>;
+    IF extends (...args: any[]) => any,
+    CallFuncOrArgs extends FuncOrArray = IF
+> = RF<IF, CallFuncOrArgs>;
 
 import { Debounced as DB } from './debounce';
-export type Debounced<F extends BaseFunction, R extends RF<F, any>> = DB<F, R>;
+export type Debounced<F extends (...args: any[]) => any, R extends RF<F, any>> = DB<F, R>;
 import { Throttled as TH } from './throttle';
-export type Throttled<F extends BaseFunction, R extends RF<F, any>> = TH<F, R>;
+export type Throttled<F extends (...args: any[]) => any, R extends RF<F, any>> = TH<F, R>;

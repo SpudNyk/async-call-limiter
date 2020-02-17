@@ -2,27 +2,28 @@
  * @internal
  */
 import pending, { Pending } from './pending';
-import { BaseFunction } from './types';
 import {
     ReducerFunction,
     ReducerCallParameters,
     latestArguments
 } from './callReducers';
 
-export type CallFunction<F extends BaseFunction, Args extends any[]> = (
+/**
+ * @internal
+ */
+export type CallFunction<F extends (...args: any[]) => any, Args extends any[]> = (
     ...args: Args
 ) => Promise<ReturnType<F>>;
-
 
 /**
  * @internal
  */
-const wrap = <F extends BaseFunction>(
+const wrap = <F extends (...args: any[]) => any>(
     fn: F,
-    before?: BaseFunction,
-    after?: BaseFunction
+    before?: (...args: any[]) => any,
+    after?: (...args: any[]) => any
 ): F => {
-    let wrapped: BaseFunction = fn;
+    let wrapped: (...args: any[]) => any = fn;
     if (before && after) {
         wrapped = (...args) => {
             before();
@@ -45,11 +46,34 @@ const wrap = <F extends BaseFunction>(
     }
     return wrapped as F;
 };
+
 /**
  * @internal
+ */
+const getRunner = (
+    fn: (...args: any[]) => any,
+    args: any[],
+    result: Pending<any>
+) => () => {
+    try {
+        result.complete(fn(...args));
+    } catch (e) {
+        result.error(e);
+    }
+};
+
+/**
+ * @internal
+ */
+const empty = () => {};
+
+/**
+ * @internal
+ *
  * Utility function that wraps a function and will use a reducer to combine the arguments
  * of multiple calls to that function. As the function is not executed until it is invoked
  * a promise for the result is returned to the callers.
+ *
  * @param fn The function to wrap.
  * @param {?argumentsReducer} callReducer Used to determine the arguments when `fn` is invoked.
  * This will be called every time the wrapped function is called.
@@ -59,13 +83,13 @@ const wrap = <F extends BaseFunction>(
  * @returns
  */
 const callReduce = <
-    Invoke extends BaseFunction,
+    Invoke extends (...args: any[]) => any,
     Reducer extends ReducerFunction<Invoke, any> = ReducerFunction<Invoke>
 >(
     fn: Invoke,
     callReducer?: Reducer,
-    onBeforeReduce?: BaseFunction,
-    onAfterReduce?: BaseFunction
+    onBeforeReduce?: (...args: any[]) => any,
+    onAfterReduce?: (...args: any[]) => any
 ): [
     /**
      * This is the main wrapped function
@@ -75,9 +99,12 @@ const callReduce = <
         ReducerCallParameters<typeof reducer, Parameters<Invoke>>
     >,
     /**
-     * Call this to invoke the main function and return it's result to any waiting callers
+     * Call this to prepare to invoke.
+     * It returns a function that invokes the main function and
+     * resolves it's result to any waiting callers.
+     * This resets the current call state.
      */
-    () => void,
+    () => () => void,
     /**
      * Resets the current pending calls.
      *
@@ -92,7 +119,7 @@ const callReduce = <
     let result: Pending<ReturnType<Invoke>> | null = null;
     let args: Parameters<Invoke> | any[] = [];
 
-    const reset = (reason?: Error) => {
+    const reject = (reason?: Error) => {
         if (result !== null) {
             result.error(reason ? reason : new Error('reset'));
             result = null;
@@ -100,21 +127,16 @@ const callReduce = <
         }
     };
 
-    const invoke = () => {
+    // capture the invocation state
+    const prepare = () => {
         if (result === null) {
             // sanity check no result pending
-            return;
+            return empty;
         }
-        const final = result;
-        const invokeArgs = args;
-        // reset for subsequent calls;
+        const run = getRunner(fn, args, result);
         result = null;
         args = [];
-        try {
-            final.complete(fn(...invokeArgs));
-        } catch (e) {
-            final.error(e);
-        }
+        return run;
     };
 
     const call = wrap(
@@ -129,7 +151,7 @@ const callReduce = <
         onAfterReduce
     );
 
-    return [call, invoke, reset];
+    return [call, prepare, reject];
 };
 
 export default callReduce;

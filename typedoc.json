@@ -1,14 +1,24 @@
 {
     "name": "async-wrappers",
-    "inputFiles": ["./src/index.ts"],
     "gitRevision": "master",
+    "readme": "./typedoc.md",
+    "exclude": ["src/index.ts"],
+    "theme": "minimal",
     "categorizeByGroup": true,
+    "categoryOrder": [
+        "Wrapper",
+        "Debounce",
+        "Retry",
+        "Throttle",
+        "Wait",
+        "Argument Reducer",
+        "*"
+    ],
     "excludeNotExported": true,
     "excludePrivate": true,
     "excludeProtected": true,
     "excludeExternals": true,
     "stripInternal": true,
     "mode": "file",
-    "out": "docs/api",
-    "readme": "none"
+    "out": "docs/api"
 }

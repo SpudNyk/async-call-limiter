@@ -3,8 +3,9 @@ import throttle from '../throttle';
 type NumArgs = Parameters<(num: number) => {}>;
 
 describe('throttle', () => {
-    let clock: ft.InstalledClock;
+    let clock;
     beforeAll(() => {
+        // @ts-ignore
         clock = ft.install({ now: Date.now() });
     });
     afterAll(() => {
@@ -73,7 +74,7 @@ describe('throttle', () => {
     });
     it('calls the arguments reducer on every call', async () => {
         const reducer = jest.fn(args => args);
-        const throttled = throttle(arg => arg, 1, reducer);
+        const throttled = throttle(arg => arg, 1, { reducer });
         throttled(1);
         throttled(2);
         throttled(3);
@@ -83,22 +84,20 @@ describe('throttle', () => {
         expect(reducer).toHaveBeenCalledTimes(5);
     });
     it('uses the arguments reducer', async () => {
-        const throttled = throttle(
-            (arg: number): number => arg,
-            20,
-            ([current = 0]: [number], [num]: NumArgs) => [current + num]
-        );
+        const throttled = throttle((arg: number): number => arg, 20, {
+            reducer: ([current = 0]: [number], [num]: NumArgs) => [
+                current + num
+            ]
+        });
         throttled(4);
         const result = throttled(6);
         clock.tick(25);
         await expect(result).resolves.toBe(10);
     });
     it('resets the arguments reducer between invocations', async () => {
-        const throttled = throttle(
-            (arg: number): number => arg,
-            25,
-            ([current = 0], [num]: NumArgs) => [current + num]
-        );
+        const throttled = throttle((arg: number): number => arg, 25, {
+            reducer: ([current = 0], [num]: NumArgs) => [current + num]
+        });
         throttled(4);
         const result = throttled(6);
         clock.tick(25);
@@ -115,6 +114,44 @@ describe('throttle', () => {
         const result = Promise.all(values.map(value => throttled(value)));
         clock.tick(25);
         await expect(result).resolves.toEqual([4, 4, 4, 4]);
+    });
+    it('implements maxCalls', async () => {
+        const executor = jest.fn(args => args);
+        const throttled = throttle(executor, 50, {
+            reducer: ([count]) => [count === undefined ? 1 : count + 1],
+            maxCalls: 5
+        });
+        const first = throttled();
+        let final;
+        for (let i = 0; i < 20; i++) {
+            final = throttled();
+        }
+        await clock.tickAsync(0);
+        await expect(first).resolves.toBe(5);
+        await clock.tickAsync(50);
+        expect(final).resolves.toBe(1);
+        await final;
+        expect(executor).toHaveBeenCalledTimes(5);
+    });
+    it('implements flush', async () => {
+        const executor = jest.fn(args => args);
+        const throttled = throttle(executor, 50, {
+            reducer: ([count]) => [count === undefined ? 1 : count + 1]
+        });
+        const first = throttled();
+        throttled.flush();
+        const second = throttled();
+        throttled();
+        throttled();
+        throttled.flush();
+        const third = throttled();
+        throttled();
+        await clock.tickAsync(0);
+        await expect(first).resolves.toBe(1);
+        await expect(second).resolves.toBe(3);
+        await clock.tickAsync(50);
+        await expect(third).resolves.toBe(2);
+        expect(executor).toHaveBeenCalledTimes(3);
     });
     it('cancels', async () => {
         const executor = jest.fn(args => args);

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RetryStoppedError | async-wrappers</title>
+	<title>ThrottleOptions | async-wrappers</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -2364,51 +2364,42 @@ img {
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-class">
-			<a href="retrycancellederror.html" class="tsd-kind-icon">Retry<wbr>Cancelled<wbr>Error</a>
+			<a href="../classes/retrycancellederror.html" class="tsd-kind-icon">Retry<wbr>Cancelled<wbr>Error</a>
 		</li>
 		<li class=" tsd-kind-class">
-			<a href="retryerror.html" class="tsd-kind-icon">Retry<wbr>Error</a>
+			<a href="../classes/retryerror.html" class="tsd-kind-icon">Retry<wbr>Error</a>
 		</li>
-		<li class="current tsd-kind-class">
-			<a href="retrystoppederror.html" class="tsd-kind-icon">Retry<wbr>Stopped<wbr>Error</a>
+		<li class=" tsd-kind-class">
+			<a href="../classes/retrystoppederror.html" class="tsd-kind-icon">Retry<wbr>Stopped<wbr>Error</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
+			<a href="debounceoptions.html" class="tsd-kind-icon">Debounce<wbr>Options</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
+			<a href="debounced.html" class="tsd-kind-icon">Debounced</a>
+		</li>
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
+			<a href="retryresult.html" class="tsd-kind-icon">Retry<wbr>Result</a>
+		</li>
+		<li class="current tsd-kind-interface tsd-has-type-parameter">
+			<a href="throttleoptions.html" class="tsd-kind-icon">Throttle<wbr>Options</a>
 			<ul>
-				<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-					<a href="retrystoppederror.html#constructor" class="tsd-kind-icon">constructor</a>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="throttleoptions.html#maxcalls" class="tsd-kind-icon">max<wbr>Calls</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a href="retrystoppederror.html#error" class="tsd-kind-icon">error</a>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="throttleoptions.html#oncancel" class="tsd-kind-icon">on<wbr>Cancel</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a href="retrystoppederror.html#message" class="tsd-kind-icon">message</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a href="retrystoppederror.html#name" class="tsd-kind-icon">name</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a href="retrystoppederror.html#stack" class="tsd-kind-icon">stack</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a href="retrystoppederror.html#type" class="tsd-kind-icon">type</a>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="throttleoptions.html#reducer" class="tsd-kind-icon">reducer</a>
 				</li>
 			</ul>
 		</li>
 		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="../interfaces/debounceoptions.html" class="tsd-kind-icon">Debounce<wbr>Options</a>
+			<a href="throttled.html" class="tsd-kind-icon">Throttled</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="../interfaces/debounced.html" class="tsd-kind-icon">Debounced</a>
-		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="../interfaces/retryresult.html" class="tsd-kind-icon">Retry<wbr>Result</a>
-		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="../interfaces/throttleoptions.html" class="tsd-kind-icon">Throttle<wbr>Options</a>
-		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="../interfaces/throttled.html" class="tsd-kind-icon">Throttled</a>
-		</li>
-		<li class=" tsd-kind-interface tsd-has-type-parameter">
-			<a href="../interfaces/waitresult.html" class="tsd-kind-icon">Wait<wbr>Result</a>
+			<a href="waitresult.html" class="tsd-kind-icon">Wait<wbr>Result</a>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 			<a href="../globals.html#argumentsreducer" class="tsd-kind-icon">Arguments<wbr>Reducer</a>
@@ -2474,20 +2465,28 @@ img {
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>The error given when retrying stops</p>
+					<p>Options for <a href="../globals.html#throttle">throttle</a></p>
 				</div>
 			</div>
+		</section>
+		<section class="tsd-panel tsd-type-parameters">
+			<h3>Type parameters</h3>
+			<ul class="tsd-type-parameters">
+				<li>
+					<h4>Reducer</h4>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>an <a href="../globals.html#argumentsreducer">ArgumentsReducer</a></p>
+						</div>
+					</div>
+				</li>
+			</ul>
 		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<a href="retryerror.html" class="tsd-signature-type">RetryError</a>
-					<ul class="tsd-hierarchy">
-						<li>
-							<span class="target">RetryStoppedError</span>
-						</li>
-					</ul>
+					<span class="target">ThrottleOptions</span>
 				</li>
 			</ul>
 		</section>
@@ -2496,118 +2495,64 @@ img {
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Constructors</h3>
-						<ul class="tsd-index-list">
-							<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="retrystoppederror.html#constructor" class="tsd-kind-icon">constructor</a></li>
-						</ul>
-					</section>
-					<section class="tsd-index-section tsd-is-inherited">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="retrystoppederror.html#error" class="tsd-kind-icon">error</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="retrystoppederror.html#message" class="tsd-kind-icon">message</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="retrystoppederror.html#name" class="tsd-kind-icon">name</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="retrystoppederror.html#stack" class="tsd-kind-icon">stack</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="retrystoppederror.html#type" class="tsd-kind-icon">type</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="throttleoptions.html#maxcalls" class="tsd-kind-icon">max<wbr>Calls</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="throttleoptions.html#oncancel" class="tsd-kind-icon">on<wbr>Cancel</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="throttleoptions.html#reducer" class="tsd-kind-icon">reducer</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Constructors</h2>
-			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-				<a name="constructor" class="tsd-anchor"></a>
-				<h3>constructor</h3>
-				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Retry<wbr>Stopped<wbr>Error<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, error<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="retrystoppederror.html" class="tsd-signature-type">RetryStoppedError</a></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<p>Overrides <a href="retryerror.html">RetryError</a>.<a href="retryerror.html#constructor">constructor</a></p>
-							<ul>
-								<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/retry.ts#L179">src/retry.ts:179</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> message: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Stopped&quot;</span></h5>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> error: <span class="tsd-signature-type">any</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="retrystoppederror.html" class="tsd-signature-type">RetryStoppedError</a></h4>
-					</li>
-				</ul>
-			</section>
-		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 			<h2>Properties</h2>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-				<a name="error" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> error</h3>
-				<div class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="maxcalls" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> max<wbr>Calls</h3>
+				<div class="tsd-signature tsd-kind-icon">max<wbr>Calls<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 				<aside class="tsd-sources">
-					<p>Inherited from <a href="retryerror.html">RetryError</a>.<a href="retryerror.html#error">error</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/retry.ts#L155">src/retry.ts:155</a></li>
+						<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/throttle.ts#L23">src/throttle.ts:23</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The last error that occurred when retrying</p>
+						<p>The maximum number of calls before the function will
+						be executed</p>
 					</div>
 				</div>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-				<a name="message" class="tsd-anchor"></a>
-				<h3>message</h3>
-				<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="oncancel" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Cancel</h3>
+				<div class="tsd-signature tsd-kind-icon">on<wbr>Cancel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span></div>
 				<aside class="tsd-sources">
-					<p>Inherited from <a href="retryerror.html">RetryError</a>.<a href="retryerror.html#message">message</a></p>
 					<ul>
-						<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:974</li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-				<a name="name" class="tsd-anchor"></a>
-				<h3>name</h3>
-				<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-				<aside class="tsd-sources">
-					<p>Inherited from <a href="retryerror.html">RetryError</a>.<a href="retryerror.html#name">name</a></p>
-					<ul>
-						<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:973</li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-				<a name="stack" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> stack</h3>
-				<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-				<aside class="tsd-sources">
-					<p>Inherited from <a href="retryerror.html">RetryError</a>.<a href="retryerror.html#stack">stack</a></p>
-					<ul>
-						<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:975</li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-				<a name="type" class="tsd-anchor"></a>
-				<h3>type</h3>
-				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../globals.html#retryerrortypes" class="tsd-signature-type">RetryErrorTypes</a></div>
-				<aside class="tsd-sources">
-					<p>Inherited from <a href="retryerror.html">RetryError</a>.<a href="retryerror.html#type">type</a></p>
-					<ul>
-						<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/retry.ts#L151">src/retry.ts:151</a></li>
+						<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/throttle.ts#L28">src/throttle.ts:28</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The type of error</p>
+						<p>If supplied this function will be called if the debounced function is cancelled
+						defaults</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<a name="reducer" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagOptional">Optional</span> reducer</h3>
+				<div class="tsd-signature tsd-kind-icon">reducer<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">Reducer</a></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/SpudNyk/async-wrappers/blob/master/src/throttle.ts#L18">src/throttle.ts:18</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Used to create the arguments to <code>fn</code> when it is
+							executed. It is run for every call of the debounced function. The default
+						implementation is to execute <code>func</code> with the latest arguments.</p>
 					</div>
 				</div>
 			</section>

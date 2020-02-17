@@ -4,6 +4,7 @@ import debounce from '../debounce';
 describe('debounce', () => {
     let clock;
     beforeAll(() => {
+        // @ts-ignore
         clock = ft.install({ now: Date.now() });
     });
     afterAll(() => {
@@ -35,7 +36,9 @@ describe('debounce', () => {
             then = now;
         };
         const executor = jest.fn((n: number) => null);
-        const debounced = debounce(executor, 50, args => args);
+        const debounced = debounce(executor, 50, {
+            reducer: args => args
+        });
         debounced(1);
         debounced(2);
         debounced(3);
@@ -71,11 +74,10 @@ describe('debounce', () => {
         // let it settle
         await clock.tickAsync(25);
         expect(executor).toHaveBeenCalledTimes(2);
-
     });
     it('calls the arguments reducer on every call', async () => {
         const reducer = jest.fn(args => args);
-        const debounced = debounce(arg => arg, 1, reducer);
+        const debounced = debounce(arg => arg, 1, { reducer });
         debounced(1);
         debounced(2);
         debounced(3);
@@ -86,14 +88,12 @@ describe('debounce', () => {
     });
     it('uses the arguments reducer', async () => {
         const ident = (x: number): number => x;
-        const debounced = debounce(
-            ident,
-            1,
-            (
+        const debounced = debounce(ident, 1, {
+            reducer: (
                 [current = 0]: [number],
                 [num]: Parameters<(num: number) => {}>
             ) => [current + num]
-        );
+        });
         debounced(5);
         const result = debounced(6);
         clock.tick(25);
@@ -101,13 +101,12 @@ describe('debounce', () => {
     });
     it('resets the arguments reducer between invocations', async () => {
         const ident = (x: number): number => x;
-        const debounced = debounce(
-            ident,
-            25,
-            ([current = 0], [num]: Parameters<(num: number) => {}>) => [
-                current + num
-            ]
-        );
+        const debounced = debounce(ident, 25, {
+            reducer: (
+                [current = 0],
+                [num]: Parameters<(num: number) => {}>
+            ) => [current + num]
+        });
         debounced(4);
         const result = debounced(6);
         clock.tick(25);
@@ -127,7 +126,9 @@ describe('debounce', () => {
     });
     it('forces a call after maxDelay', async () => {
         const executor = jest.fn(args => args);
-        const debounced = debounce(executor, 50, undefined, 100);
+        const debounced = debounce(executor, 50, {
+            maxDelay: 100
+        });
         debounced(1);
         expect(executor).toHaveBeenCalledTimes(0);
         await clock.tickAsync(25);
@@ -146,9 +147,47 @@ describe('debounce', () => {
         debounced(6);
         expect(executor).toHaveBeenCalledTimes(2);
     });
+    it('implements maxCalls', async () => {
+        const executor = jest.fn(args => args);
+        const debounced = debounce(executor, 50, {
+            reducer: ([count]) => [count === undefined ? 1 : count + 1],
+            maxCalls: 5
+        });
+        const first = debounced();
+        let final;
+        for (let i = 0; i < 20; i++) {
+            final = debounced();
+        }
+        await clock.tickAsync(0);
+        await expect(first).resolves.toBe(5);
+        await clock.tickAsync(50);
+        expect(final).resolves.toBe(1);
+        await final;
+        expect(executor).toHaveBeenCalledTimes(5);
+    });
+    it('implements flush', async () => {
+        const executor = jest.fn(args => args);
+        const debounced = debounce(executor, 50, {
+            reducer: ([count]) => [count === undefined ? 1 : count + 1]
+        });
+        const first = debounced();
+        debounced.flush();
+        const second = debounced();
+        debounced();
+        debounced();
+        debounced.flush();
+        const third = debounced();
+        debounced();
+        await clock.tickAsync(0);
+        await expect(first).resolves.toBe(1);
+        await expect(second).resolves.toBe(3);
+        await clock.tickAsync(50);
+        await expect(third).resolves.toBe(2);
+        expect(executor).toHaveBeenCalledTimes(3);
+    });
     it('cancels', async () => {
         const executor = jest.fn(args => args);
-        const debounced = debounce(executor, 50, undefined, 100);
+        const debounced = debounce(executor, 50, { maxDelay: 100 });
         const result = debounced(1);
         const done = expect(result).rejects.toThrow();
         await clock.tickAsync(25);
@@ -158,7 +197,7 @@ describe('debounce', () => {
     });
     it('cancels with reason', async () => {
         const executor = jest.fn(args => args);
-        const debounced = debounce(executor, 50, undefined, 100);
+        const debounced = debounce(executor, 50, { maxDelay: 100 });
         const result = debounced(1);
         const done = expect(result).rejects.toThrow('cancel reason test');
         debounced.cancel(new Error('cancel reason test'));
@@ -169,7 +208,7 @@ describe('debounce', () => {
     it('calls onCancel when cancelled', async () => {
         const executor = jest.fn(args => args);
         const onCancel = jest.fn(() => {});
-        const debounced = debounce(executor, 50, undefined, 100, onCancel);
+        const debounced = debounce(executor, 50, { maxDelay: 100, onCancel });
         const result = debounced(1);
         const done = expect(result).rejects.toThrow();
         await clock.tickAsync(25);

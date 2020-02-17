@@ -1,5 +1,3 @@
-import { BaseFunction } from './types';
-
 /**
  * @internal
  */
@@ -23,9 +21,9 @@ export interface Deferred {
 /**
  * @internal
  */
-const deferred = (callback: BaseFunction): Deferred => {
+const deferred = (callback: (...args: any[]) => any): Deferred => {
     let handle: any = null;
-    let clear: BaseFunction = clearTimeout;
+    let clear: (...args: any[]) => any = clearTimeout;
 
     let call = () => {
         deferred.called = Date.now();

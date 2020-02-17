@@ -1,5 +1,4 @@
-import wait, { Waiting } from './wait';
-import { BaseFunction } from './types';
+import wait, { WaitResult } from './wait';
 
 /**
  * @internal
@@ -15,25 +14,36 @@ const defaultDelays = [
     10 * 60 * 1000
 ];
 
-interface RetryNextDelayFunction {
+/**
+ * Function for determining a how long to wait after the given attempt
+ *
+ * @category Retry
+ */
+type RetryDelayCallback =
     /**
-     * Function for determining a how long to wait after the given attempt
      * @param attempt The current attempt number.
      * @param previousDelay The previous delay.
      * @param error The error from the current attempt.
      * @return The new delay in milliseconds.
      */
-    (attempt: number, previousDelay: number, error: any):
-        | number
-        | PromiseLike<number>;
-}
+    (
+        attempt: number,
+        previousDelay: number,
+        error: any
+    ) => number | PromiseLike<number>;
 
-type RetryDelays = RetryNextDelayFunction | number[] | number;
+/**
+ * A delay, list of delays or [[RetryNextDelayFunction|callback]] for
+ * [[retry]] to use when determining the delay between attempts.
+ *
+ * @category Retry
+ */
+type RetryDelay = RetryDelayCallback | number[] | number;
 
 /**
  * @internal
  */
-const getDelayFn = (times: RetryDelays): RetryNextDelayFunction => {
+const getDelayFn = (times: RetryDelay): RetryDelayCallback => {
     if (typeof times === 'function') {
         return times;
     }
@@ -43,50 +53,77 @@ const getDelayFn = (times: RetryDelays): RetryNextDelayFunction => {
     return (attempt: number) => times[Math.min(attempt, times.length - 1)];
 };
 
-interface RetryStopFunction {
+/**
+ * A function used to determine if to stop for the given retry attempt.
+ *
+ * Errors thrown by this function will cause retry to reject with the
+ * errorTypes of retry errors
+ *
+ * @category Retry
+ */
+type RetryStopCallback =
     /**
-     * Function for determining if to stop for the given attempt
-     *
-     * Errors thrown by this function will cause retry to reject with the
-     * error.
-     *
      * @param nextAttempt The attempt number for the next try.
      * @param delay The current delay before retrying.
      * @param error The error from the current attempt.
      * @return true or a message to stop trying and reject with the given
      * message.
      */
-    (nextAttempt: number, delay: number, error: any): boolean | string;
-}
+    (nextAttempt: number, delay: number, error: any) => boolean | string;
 
-type RetryStop = RetryStopFunction | number;
+/**
+ * The number of calls or [[RetryStopCallback|callback]] for [[retry]] to use when determining
+ * to stop retrying.
+ *
+ * @category Retry
+ */
+type RetryStop = RetryStopCallback | number;
 /**
  * @internal
  */
-const getStopFn = (stop: RetryStop): RetryStopFunction => {
+const getStopFn = (stop: RetryStop): RetryStopCallback => {
     if (typeof stop === 'function') {
         return stop;
     }
     return attempt => attempt >= stop;
 };
 
-export interface RetryArgumentsCallback<F extends BaseFunction> {
+/**
+ * callback for [[retry]] to determine the arguments to
+ * the function to retry.
+ * @typeparam RetryFunction the type of function to retry.
+ *
+ * @category Retry
+ */
+export type RetryArgumentsCallback<
+    RetryFunction extends (...args: any[]) => any
+> =
     /**
-     *
+     * @param attempt The attempt number for the next try.
+     * @param delay The current delay before retrying.
+     * @param error The error from the current attempt.
+     * @return The arguments for the function
      */
-    (attempt: number, delay: number, error: any):
-        | Parameters<F>
-        | Promise<Parameters<F>>;
-}
+    (
+        attempt: number,
+        delay: number,
+        error: any
+    ) => Parameters<RetryFunction> | Promise<Parameters<RetryFunction>>;
 
-export type RetryArguments<F extends BaseFunction> =
+/**
+ * An array of arguments or [[RetryArgumentsCallback|callback]] for [[retry]]
+ * to use when calling it's function
+ *
+ * @category Retry
+ */
+export type RetryArguments<F extends (...args: any[])=>any> =
     | Parameters<F>
     | RetryArgumentsCallback<F>;
 
 /**
  * @internal
  */
-const getArgsFn = <F extends BaseFunction>(
+const getArgsFn = <F extends (...args: any[]) => any>(
     args: RetryArguments<F>
 ): RetryArgumentsCallback<F> => {
     if (typeof args === 'function') {
@@ -97,12 +134,14 @@ const getArgsFn = <F extends BaseFunction>(
 
 /**
  * Types of retry errors
+ *
  * @category Retry
  */
 export type RetryErrorTypes = 'cancelled' | 'stopped';
 
 /**
  * Base Class for all retry errors
+ *
  * @category Retry
  */
 export class RetryError extends Error {
@@ -123,6 +162,7 @@ export class RetryError extends Error {
 
 /**
  * The error given when retrying is cancelled
+ *
  * @category Retry
  */
 export class RetryCancelledError extends RetryError {
@@ -133,6 +173,7 @@ export class RetryCancelledError extends RetryError {
 
 /**
  * The error given when retrying stops
+ *
  * @category Retry
  */
 export class RetryStoppedError extends RetryError {
@@ -140,12 +181,16 @@ export class RetryStoppedError extends RetryError {
         super('stopped', message, error);
     }
 }
-
-export interface RetryResult<F extends BaseFunction>
+/**
+ * The return type of [[retry]]
+ *
+ * @category Retry
+ */
+export interface RetryResult<F extends (...args: any[]) => any>
     extends Promise<ReturnType<F> | void> {
     /**
-     * Cancels pending function execution.
-     * Pending results will be rejected.
+     * Cancels retrying.
+     *
      * @param reason Optional reason to reject results with.
      */
 
@@ -153,19 +198,23 @@ export interface RetryResult<F extends BaseFunction>
 }
 
 /**
+ * Retry the wrapped function according to the
  *
- * @param func the function to retry
- * @param delay A delay in milliseconds or an array of millisecond delays
- * @param stop The number of attempts or function to determine when retry
- * should stop retrying `func`.
- * @param args arguments to use for the base function
+ * @param func the function to retry.
+ * @param delay a delay in milliseconds, an array of millisecond delays or
+ * [[RetryDelayCallback|callback]] to determine the delay before the next
+ * attempt.
+ *
+ * @param stop the number of attempts, or [[RetryStopCallback|callback]] to
+ * determine when retry should stop retrying `func`.
+ * @param args an array or [[RetryArgumentsCallback|callback]] to
+ * provide arguments to `func`
  *
  * @category Wrapper
- * @category Retry
  */
 const retry = (
-    func: BaseFunction,
-    delay: RetryDelays = defaultDelays,
+    func: (...args: any[]) => any,
+    delay: RetryDelay = defaultDelays,
     stop: RetryStop = 10,
     args: RetryArguments<typeof func> = ([] as unknown) as Parameters<
         typeof func
@@ -178,7 +227,7 @@ const retry = (
     let finished = false;
     let cancelled = false;
     let cancelReason: string | undefined;
-    let waiting: Waiting<null> | undefined;
+    let waiting: WaitResult<null> | undefined;
     let previousDelay = 0;
     let currentError: any;
 

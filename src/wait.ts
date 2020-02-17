@@ -1,11 +1,42 @@
 import pending from './pending';
-import { CancelablePromise } from './types';
 import deferred from './deferred';
 
-type ResolverFunction<T> = () => T | PromiseLike<T>;
-type Resolver<T> = T | PromiseLike<T> | ResolverFunction<T>;
+/**
+ * A callback that will return a value after [[wait]] is completed.
+ *
+ * @typeparam T the type of the value.
+ *
+ * @category Wait
+ */
+type WaitValueCallback<T> =
+    /**
+     * @returns the value or promise to return the value
+     */
+    () => T | PromiseLike<T>;
 
-export interface Waiting<T> extends CancelablePromise<T> {
+/**
+ * A value or [[WaitValueCallback|callback]] that will return the value for
+ * [[wait]].
+ *
+ * @typeparam T the type of the value.
+ *
+ * @category Wait
+ */
+type WaitValue<T> = T | PromiseLike<T> | WaitValueCallback<T>;
+
+/**
+ * A promise will resolve with a value when [[wait]] is complete.
+ *
+ * @typeparam T the type of the value.
+ *
+ * @category Wait
+ */
+export interface WaitResult<T> extends Promise<T> {
+    /**
+     * Causes the promise to reject.
+     * @param error If suplied this will be the error the promise rejects with.
+     */
+    cancel: (error?: Error) => void;
     /**
      * Stops waiting
      * this will cause any waiting values to be resolved on the next runtime loop.
@@ -20,23 +51,23 @@ export interface Waiting<T> extends CancelablePromise<T> {
  * runtime event loop.
  *
  * @param delay The time in milliseconds before the value is returned.
- * @param value An optional value to return after sleeping. 
- * If a function is supplied it will be executed after the delay and it's
- * value is returned.
+ * @param func A function or value that will be returned after waiting.
  *
  * @returns A promise that resolves with the value/function result.
  * The promise has 2 extra functions defined:
  *  - `cancel` cancels the result and rejects the promise.
  *  - `stop` stops waiting and resolves the promised value.
+ *
+ * @category Wrapper
  */
-const wait = <T = void>(delay: number, value?: Resolver<T>): Waiting<T> => {
+const wait = <T = void>(delay: number, func?: WaitValue<T>): WaitResult<T> => {
     const result = pending<T>();
     const execute = deferred(() => {
         // @ts-ignore
-        result.complete(typeof value === 'function' ? value() : value);
+        result.complete(typeof func === 'function' ? func() : func);
     });
     execute.defer(delay);
-    const promise = result.promise as Waiting<T>;
+    const promise = result.promise as WaitResult<T>;
     promise.cancel = (error?: Error) => {
         execute.cancel();
         result.error(error ? error : new Error('Cancelled'));
