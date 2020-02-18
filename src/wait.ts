@@ -63,16 +63,18 @@ export interface WaitResult<T> extends Promise<T> {
 const wait = <T = void>(delay: number, func?: WaitValue<T>): WaitResult<T> => {
     const result = pending<T>();
     const execute = deferred(() => {
+        // Typescript doesn't accept the function type guard here
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         result.complete(typeof func === 'function' ? func() : func);
     });
     execute.defer(delay);
     const promise = result.promise as WaitResult<T>;
-    promise.cancel = (error?: Error) => {
+    promise.cancel = (error?: Error): void => {
         execute.cancel();
         result.error(error ? error : new Error('Cancelled'));
     };
-    promise.stop = () => {
+    promise.stop = (): void => {
         // execute has already finished
         if (execute.delay < 0) {
             return;

@@ -5,6 +5,7 @@ type NumArgs = Parameters<(num: number) => {}>;
 describe('throttle', () => {
     let clock;
     beforeAll(() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         clock = ft.install({ now: Date.now() });
     });
@@ -46,6 +47,7 @@ describe('throttle', () => {
         expect(executor).toHaveBeenCalledTimes(2);
     });
     it('calls the executor in appropriate intervals', async () => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const executor = jest.fn((x: number) => null);
         const throttled = throttle(executor, 50);
         expect(executor).toHaveBeenCalledTimes(0);

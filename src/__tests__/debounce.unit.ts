@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import ft from '@sinonjs/fake-timers';
 import debounce from '../debounce';
 
 describe('debounce', () => {
     let clock;
     beforeAll(() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         clock = ft.install({ now: Date.now() });
     });
@@ -28,14 +30,7 @@ describe('debounce', () => {
         await result;
     });
     it('calls the executor only after settling', async () => {
-        const start = Date.now();
-        let then = Date.now();
-        const elapsed = () => {
-            const now = Date.now();
-            console.log(`Elapsed: ${now - then} Total: ${now - start}`);
-            then = now;
-        };
-        const executor = jest.fn((n: number) => null);
+        const executor = jest.fn(() => null);
         const debounced = debounce(executor, 50, {
             reducer: args => args
         });

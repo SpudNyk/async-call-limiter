@@ -1,7 +1,7 @@
 /**
  * @internal
  */
-const throwSettled = () => {
+const throwSettled = (): void => {
     throw new Error('pending cannot be changed after it has settled');
 };
 
@@ -30,15 +30,15 @@ export interface Pending<T> {
  * create a waiting empty result
  * @internal
  */
-const pending = <T>() => {
+const pending = <T>(): Pending<T> => {
     const value = {} as Pending<T>;
     value.promise = new Promise((resolve, reject) => {
-        value.complete = arg => {
+        value.complete = (arg): Promise<T> => {
             resolve(arg);
             reject = resolve = throwSettled;
             return value.promise;
         };
-        value.error = err => {
+        value.error = (err): Promise<T> => {
             reject(err);
             reject = resolve = throwSettled;
             return value.promise;

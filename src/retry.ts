@@ -48,9 +48,10 @@ const getDelayFn = (times: RetryDelay): RetryDelayCallback => {
         return times;
     }
     if (typeof times === 'number') {
-        return () => times;
+        return (): number => times;
     }
-    return (attempt: number) => times[Math.min(attempt, times.length - 1)];
+    return (attempt: number): number =>
+        times[Math.min(attempt, times.length - 1)];
 };
 
 /**
@@ -85,7 +86,7 @@ const getStopFn = (stop: RetryStop): RetryStopCallback => {
     if (typeof stop === 'function') {
         return stop;
     }
-    return attempt => attempt >= stop;
+    return (attempt): boolean => attempt >= stop;
 };
 
 /**
@@ -116,7 +117,7 @@ export type RetryArgumentsCallback<
  *
  * @category Retry
  */
-export type RetryArguments<F extends (...args: any[])=>any> =
+export type RetryArguments<F extends (...args: any[]) => any> =
     | Parameters<F>
     | RetryArgumentsCallback<F>;
 
@@ -129,7 +130,7 @@ const getArgsFn = <F extends (...args: any[]) => any>(
     if (typeof args === 'function') {
         return args;
     }
-    return () => args;
+    return (): Parameters<F> => args;
 };
 
 /**
@@ -166,7 +167,7 @@ export class RetryError extends Error {
  * @category Retry
  */
 export class RetryCancelledError extends RetryError {
-    constructor(message: string = 'Cancelled', error?: any) {
+    constructor(message = 'Cancelled', error?: any) {
         super('cancelled', message, error);
     }
 }
@@ -177,7 +178,7 @@ export class RetryCancelledError extends RetryError {
  * @category Retry
  */
 export class RetryStoppedError extends RetryError {
-    constructor(message: string = 'Stopped', error?: any) {
+    constructor(message = 'Stopped', error?: any) {
         super('stopped', message, error);
     }
 }
@@ -231,14 +232,14 @@ const retry = (
     let previousDelay = 0;
     let currentError: any;
 
-    const afterAwait = () => {
+    const afterAwait = (): void => {
         if (finished || !cancelled) {
             return;
         }
         throw new RetryCancelledError(cancelReason, currentError);
     };
 
-    const exec = async () => {
+    const exec = async (): Promise<ReturnType<typeof func>> => {
         while (!cancelled) {
             const args = await getArgs(attempt, previousDelay, currentError);
             afterAwait();
@@ -271,7 +272,7 @@ const retry = (
     };
 
     const result = exec() as RetryResult<typeof func>;
-    result.cancel = (reason?: string) => {
+    result.cancel = (reason?: string): void => {
         if (finished || cancelled) {
             return;
         }

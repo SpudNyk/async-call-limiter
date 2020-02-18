@@ -76,12 +76,12 @@ const throttle = <
     Reducer extends ReducerFunction<Invoke, any> = ReducerFunction<Invoke>
 >(
     func: Invoke,
-    delay: number = 50,
+    delay = 50,
     options: ThrottleOptions<Reducer> = {}
 ): Throttled<Invoke, Reducer> => {
     const { reducer, onCancel, maxCalls } = options;
     let calls = 0;
-    const afterReduce = () => {
+    const afterReduce = (): void => {
         if (maxCalls) {
             calls++;
             if (calls >= maxCalls) {
@@ -107,13 +107,13 @@ const throttle = <
         calls = 0;
         runner()();
     });
-    const flush = () => {
+    const flush = (): void => {
         calls = 0;
         execute.cancel();
         deferred(runner()).defer(0);
     };
 
-    const cancel = (reason?: Error) => {
+    const cancel = (reason?: Error): void => {
         execute.cancel();
         if (onCancel) {
             onCancel();

@@ -11,9 +11,10 @@ import {
 /**
  * @internal
  */
-export type CallFunction<F extends (...args: any[]) => any, Args extends any[]> = (
-    ...args: Args
-) => Promise<ReturnType<F>>;
+export type CallFunction<
+    F extends (...args: any[]) => any,
+    Args extends any[]
+> = (...args: Args) => Promise<ReturnType<F>>;
 
 /**
  * @internal
@@ -25,20 +26,20 @@ const wrap = <F extends (...args: any[]) => any>(
 ): F => {
     let wrapped: (...args: any[]) => any = fn;
     if (before && after) {
-        wrapped = (...args) => {
+        wrapped = (...args): void => {
             before();
             const result = fn(...args);
             after();
             return result;
         };
     } else if (before) {
-        wrapped = (...args) => {
+        wrapped = (...args): void => {
             before();
             const result = fn(...args);
             return result;
         };
     } else if (after) {
-        wrapped = (...args) => {
+        wrapped = (...args): void => {
             const result = fn(...args);
             after();
             return result;
@@ -54,7 +55,7 @@ const getRunner = (
     fn: (...args: any[]) => any,
     args: any[],
     result: Pending<any>
-) => () => {
+) => (): void => {
     try {
         result.complete(fn(...args));
     } catch (e) {
@@ -65,7 +66,8 @@ const getRunner = (
 /**
  * @internal
  */
-const empty = () => {};
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const empty = (): void => {};
 
 /**
  * @internal
@@ -119,7 +121,7 @@ const callReduce = <
     let result: Pending<ReturnType<Invoke>> | null = null;
     let args: Parameters<Invoke> | any[] = [];
 
-    const reject = (reason?: Error) => {
+    const reject = (reason?: Error): void => {
         if (result !== null) {
             result.error(reason ? reason : new Error('reset'));
             result = null;
@@ -128,7 +130,7 @@ const callReduce = <
     };
 
     // capture the invocation state
-    const prepare = () => {
+    const prepare = (): (() => void) => {
         if (result === null) {
             // sanity check no result pending
             return empty;

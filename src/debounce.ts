@@ -4,9 +4,9 @@ import deferred from './deferred';
 
 /**
  * Options for [[debounce]]
- * 
+ *
  * @typeparam Reducer an [[ArgumentsReducer]]
- * 
+ *
  * @category Debounce
  */
 export interface DebounceOptions<Reducer> {
@@ -37,7 +37,7 @@ export interface DebounceOptions<Reducer> {
 
 /**
  * A debounced function
- * 
+ *
  * @category Debounce
  */
 export interface Debounced<
@@ -56,8 +56,6 @@ export interface Debounced<
      */
     flush(): void;
 }
-
-
 
 /**
  * Ensure multiple calls to a function will only execute it when it has been
@@ -98,7 +96,7 @@ const debounce = <
     // as all calls this process tick will be handled next tick
     const afterReduce =
         delay > 0 && maxDelay > 0
-            ? () => {
+            ? (): void => {
                   if (maxCalls) {
                       calls++;
                       if (calls >= maxCalls) {
@@ -121,7 +119,7 @@ const debounce = <
                       }
                   }
               }
-            : () => {
+            : (): void => {
                   if (maxCalls) {
                       calls++;
                       if (calls >= maxCalls) {
@@ -144,12 +142,12 @@ const debounce = <
         runner()();
     });
 
-    const flush = () => {
+    const flush = (): void => {
         calls = 0;
         execute.cancel();
         deferred(runner()).defer(0);
     };
-    const cancel = (reason?: Error) => {
+    const cancel = (reason?: Error): void => {
         calls = 0;
         execute.cancel();
         if (onCancel) {

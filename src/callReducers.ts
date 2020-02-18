@@ -23,11 +23,9 @@ export type ArgumentsReducer<
  * @internal
  * extracts arguments from function or uses a supplied tuple
  */
-export type ParametersOrArray<T extends (...args: any[]) => any | any[]> = T extends (
-    ...args: any[]
-) => any
-    ? Parameters<T>
-    : T;
+export type ParametersOrArray<
+    T extends (...args: any[]) => any | any[]
+> = T extends (...args: any[]) => any ? Parameters<T> : T;
 
 /**
  * An implementation [[ArgumentsReducer]] for a particular invocation
@@ -151,11 +149,11 @@ export const extendArguments = <T extends any>(
 export const callArguments = <T extends any>(
     invokeArgs: [T[]],
     callArgs: T
-) => {
+): [T[]] => {
     let [calls] = invokeArgs;
     if (calls === undefined) {
         invokeArgs[0] = calls = [];
     }
     calls.push(callArgs);
-    return calls;
+    return [calls];
 };

@@ -25,13 +25,13 @@ const deferred = (callback: (...args: any[]) => any): Deferred => {
     let handle: any = null;
     let clear: (...args: any[]) => any = clearTimeout;
 
-    let call = () => {
+    const call = (): void => {
         deferred.called = Date.now();
         deferred.delay = -1;
         callback();
     };
 
-    const defer = (delay: number) => {
+    const defer = (delay: number): void => {
         delay = delay < 0 ? 0 : delay;
         deferred.deferred = Date.now();
 
@@ -55,7 +55,7 @@ const deferred = (callback: (...args: any[]) => any): Deferred => {
         }
     };
 
-    const cancel = () => {
+    const cancel = (): void => {
         if (handle !== null) {
             deferred.delay = -1;
             clear(handle);

@@ -1,11 +1,10 @@
 import ft from '@sinonjs/fake-timers';
 import retry from '../retry';
-import { notDeepEqual } from 'assert';
 
-const failUntil = (count: number) => {
+const failUntil = (count: number): (() => number) => {
     const stop = count - 1;
     let run = 0;
-    return () => {
+    return (): number => {
         if (run < stop) {
             run++;
             throw new Error('Failed');
@@ -22,7 +21,7 @@ describe('retry', () => {
     afterAll(() => {
         clock.uninstall();
     });
-    const exhaustRetries = async (count: number) => {
+    const exhaustRetries = async (count: number): Promise<void> => {
         // specifically built for retry function (needs to await twice for each timer exhaustion)
         for (let i = 0; i < count; i++) {
             // await Promise.resolve();
